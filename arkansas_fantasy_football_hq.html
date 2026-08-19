@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arkansas Fantasy Football HQ</title>
+<style>
+  :root {
+    --bg:#0b0f14; --panel:#121821; --panel2:#171f2a; --text:#f4f7fb;
+    --muted:#9ca8b7; --line:#253140; --accent:#f0b429; --good:#63d39c;
+    --bad:#ff6b6b; --blue:#69a7ff;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:radial-gradient(circle at top,#17202c 0,#0b0f14 38%);
+    color:var(--text); min-height:100vh;
+  }
+  header {
+    padding:28px 18px 18px; border-bottom:1px solid var(--line);
+    background:rgba(11,15,20,.82); backdrop-filter:blur(12px); position:sticky; top:0; z-index:10;
+  }
+  .wrap { max-width:1100px; margin:0 auto; }
+  .eyebrow { color:var(--accent); font-weight:800; letter-spacing:.13em; font-size:.75rem; }
+  h1 { margin:6px 0 4px; font-size:clamp(1.8rem,4vw,3rem); line-height:1; }
+  .sub { color:var(--muted); font-size:.95rem; }
+  nav { display:flex; gap:8px; overflow-x:auto; padding:14px 0 0; scrollbar-width:none; }
+  nav button {
+    border:1px solid var(--line); background:var(--panel); color:var(--muted);
+    padding:9px 13px; border-radius:999px; white-space:nowrap; font-weight:700; cursor:pointer;
+  }
+  nav button.active { color:#111; background:var(--accent); border-color:var(--accent); }
+  main { padding:20px 18px 50px; }
+  .grid { display:grid; grid-template-columns:repeat(12,1fr); gap:14px; }
+  .card {
+    background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line);
+    border-radius:16px; padding:16px; box-shadow:0 12px 30px rgba(0,0,0,.18);
+  }
+  .span12{grid-column:span 12} .span8{grid-column:span 8} .span6{grid-column:span 6}
+  .span4{grid-column:span 4} .span3{grid-column:span 3}
+  .metric { font-size:2rem; font-weight:900; margin-top:4px; }
+  .label { color:var(--muted); font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; }
+  .section-title { margin:0 0 12px; font-size:1.05rem; }
+  table { width:100%; border-collapse:collapse; font-size:.92rem; }
+  th,td { padding:11px 8px; border-bottom:1px solid var(--line); text-align:left; }
+  th { color:var(--muted); font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; }
+  .rank { width:34px; font-weight:900; color:var(--accent); }
+  .owner { color:var(--muted); font-size:.82rem; }
+  .tag {
+    display:inline-block; padding:5px 8px; border:1px solid var(--line); border-radius:999px;
+    color:var(--muted); font-size:.75rem; margin:2px;
+  }
+  .good { color:var(--good); } .bad{color:var(--bad)} .blue{color:var(--blue)}
+  .hero {
+    padding:22px; background:
+      linear-gradient(135deg,rgba(240,180,41,.18),transparent 48%),
+      linear-gradient(180deg,var(--panel2),var(--panel));
+  }
+  .hero h2 { margin:3px 0 8px; font-size:1.5rem; }
+  .notice {
+    color:var(--muted); font-size:.9rem; line-height:1.5;
+    background:#0e141c; border:1px dashed var(--line); padding:12px; border-radius:12px;
+  }
+  .hidden { display:none!important; }
+  .loading { padding:50px 0; text-align:center; color:var(--muted); }
+  .spinner {
+    width:34px;height:34px;border:4px solid var(--line);border-top-color:var(--accent);
+    border-radius:50%;margin:0 auto 12px;animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .team-card h3 { margin:0 0 4px; }
+  .team-card .record { font-weight:900; font-size:1.25rem; margin:8px 0; }
+  .mini { color:var(--muted); font-size:.82rem; }
+  .award { font-size:1.8rem; }
+  footer { color:var(--muted); font-size:.75rem; padding:25px 0 0; text-align:center; }
+  @media(max-width:760px){
+    .span8,.span6,.span4,.span3{grid-column:span 12}
+    header{position:static}
+    table{font-size:.82rem}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">AFF • LEAGUE HEADQUARTERS</div>
+    <h1>Arkansas Fantasy Football</h1>
+    <div class="sub" id="leagueMeta">Connecting to Sleeper…</div>
+    <nav>
+      <button class="active" data-tab="overview">HQ</button>
+      <button data-tab="standings">Standings</button>
+      <button data-tab="teams">Teams</button>
+      <button data-tab="records">Record Book</button>
+      <button data-tab="history">History</button>
+      <button data-tab="council">Council</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="loading" class="loading"><div class="spinner"></div>Pulling league data from Sleeper…</div>
+  <div id="error" class="card hidden"></div>
+
+  <section id="overview" class="tab hidden">
+    <div class="grid">
+      <div class="card hero span12">
+        <div class="eyebrow">COMMISSIONER'S OFFICE</div>
+        <h2 id="heroName">Arkansas Fantasy Football</h2>
+        <div class="sub" id="heroSub"></div>
+      </div>
+      <div class="card span3"><div class="label">Teams</div><div class="metric" id="mTeams">—</div></div>
+      <div class="card span3"><div class="label">Season</div><div class="metric" id="mSeason">—</div></div>
+      <div class="card span3"><div class="label">Weeks Played</div><div class="metric" id="mWeeks">—</div></div>
+      <div class="card span3"><div class="label">League Seasons Found</div><div class="metric" id="mHistory">—</div></div>
+
+      <div class="card span8">
+        <h3 class="section-title">Current Power Board</h3>
+        <div id="powerBoard"></div>
+      </div>
+      <div class="card span4">
+        <h3 class="section-title">Weekly Hardware</h3>
+        <div id="awards" class="notice">Awards activate once regular-season matchups have scores.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="standings" class="tab hidden">
+    <div class="card">
+      <h3 class="section-title">Official Standings</h3>
+      <div id="standingsTable"></div>
+    </div>
+  </section>
+
+  <section id="teams" class="tab hidden">
+    <div class="grid" id="teamGrid"></div>
+  </section>
+
+  <section id="records" class="tab hidden">
+    <div class="grid">
+      <div class="card span4"><div class="label">Highest Current PF</div><div class="metric" id="recHighPF">—</div><div class="mini" id="recHighPFName"></div></div>
+      <div class="card span4"><div class="label">Best Current Record</div><div class="metric" id="recBest">—</div><div class="mini" id="recBestName"></div></div>
+      <div class="card span4"><div class="label">Biggest Weekly Score</div><div class="metric" id="recWeek">—</div><div class="mini" id="recWeekName"></div></div>
+      <div class="card span12">
+        <h3 class="section-title">AFF Record Book</h3>
+        <div class="notice">
+          This first build calculates live current-season records automatically. Historical all-time records can be expanded
+          from the linked previous Sleeper league seasons found in your league chain.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="history" class="tab hidden">
+    <div class="card">
+      <h3 class="section-title">League Timeline</h3>
+      <div id="historyList"></div>
+    </div>
+  </section>
+
+  <section id="council" class="tab hidden">
+    <div class="grid">
+      <div class="card span6">
+        <div class="eyebrow">ARKANSAS FANTASY FOOTBALL COUNCIL</div>
+        <h3>Commissioner's Office</h3>
+        <p class="sub">League rulings, votes, constitutional amendments and glorious bureaucratic football nonsense live here.</p>
+      </div>
+      <div class="card span6">
+        <h3>Future Council Modules</h3>
+        <span class="tag">Bylaws</span><span class="tag">Votes</span><span class="tag">Rulings</span>
+        <span class="tag">Draft Lottery</span><span class="tag">Hall of Fame</span><span class="tag">Awards</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>Data source: Sleeper public API • League ID 1315130200236781568</footer>
+</main>
+
+<script>
+const LEAGUE_ID = "1315130200236781568";
+const API = "https://api.sleeper.app/v1";
+let league, users=[], rosters=[], matchups=[], history=[];
+
+const el = id => document.getElementById(id);
+const fmt = n => (Number(n)||0).toFixed(2).replace(/\.00$/,"");
+const ownerMap = () => Object.fromEntries(users.map(u => [u.user_id,u]));
+const teamName = (r) => {
+  const u = ownerMap()[r.owner_id];
+  return (r.metadata && r.metadata.team_name) || (u && (u.metadata?.team_name || u.display_name)) || `Roster ${r.roster_id}`;
+};
+const ownerName = (r) => ownerMap()[r.owner_id]?.display_name || "Unknown Owner";
+
+async function j(url) {
+  const r = await fetch(url);
+  if(!r.ok) throw new Error(`Sleeper API returned ${r.status} for ${url}`);
+  return r.json();
+}
+
+async function loadHistory(id, depth=0) {
+  if(!id || id==="0" || depth>15) return;
+  const l = await j(`${API}/league/${id}`);
+  history.push(l);
+  if(l.previous_league_id && l.previous_league_id !== id) await loadHistory(l.previous_league_id, depth+1);
+}
+
+async function getSeasonMatchups(lid, weeks=18) {
+  const all=[];
+  for(let w=1; w<=weeks; w++) {
+    try {
+      const rows = await j(`${API}/league/${lid}/matchups/${w}`);
+      if(!rows || !rows.length) break;
+      const hasAny = rows.some(x => (x.points||0) !== 0);
+      if(hasAny) all.push(...rows.map(x=>({...x,week:w})));
+    } catch(e) { break; }
+  }
+  return all;
+}
+
+function sortedRosters() {
+  return [...rosters].sort((a,b)=> {
+    const aw=a.settings?.wins||0, al=a.settings?.losses||0;
+    const bw=b.settings?.wins||0, bl=b.settings?.losses||0;
+    if(bw!==aw) return bw-aw;
+    if(al!==bl) return al-bl;
+    return (b.settings?.fpts||0) - (a.settings?.fpts||0);
+  });
+}
+
+function renderStandings(target="standingsTable") {
+  const rows=sortedRosters();
+  const html = `<table><thead><tr><th>#</th><th>Team</th><th>W-L</th><th>PF</th><th>PA</th></tr></thead><tbody>` +
+    rows.map((r,i)=>{
+      const s=r.settings||{};
+      const pf=(s.fpts||0)+(s.fpts_decimal||0)/100;
+      const pa=(s.fpts_against||0)+(s.fpts_against_decimal||0)/100;
+      return `<tr><td class="rank">${i+1}</td><td><b>${teamName(r)}</b><div class="owner">${ownerName(r)}</div></td>
+      <td><b>${s.wins||0}-${s.losses||0}</b>${s.ties?`-${s.ties}`:""}</td><td>${fmt(pf)}</td><td>${fmt(pa)}</td></tr>`;
+    }).join("") + `</tbody></table>`;
+  el(target).innerHTML=html;
+}
+
+function renderTeams() {
+  el("teamGrid").innerHTML = sortedRosters().map(r=>{
+    const s=r.settings||{};
+    const pf=(s.fpts||0)+(s.fpts_decimal||0)/100;
+    return `<div class="card span4 team-card">
+      <div class="label">Roster ${r.roster_id}</div>
+      <h3>${teamName(r)}</h3>
+      <div class="owner">${ownerName(r)}</div>
+      <div class="record">${s.wins||0}-${s.losses||0}</div>
+      <div class="mini">${fmt(pf)} points for</div>
+    </div>`;
+  }).join("");
+}
+
+function renderAwards() {
+  if(!matchups.length) return;
+  const max=[...matchups].sort((a,b)=>(b.points||0)-(a.points||0))[0];
+  const r=rosters.find(x=>x.roster_id===max.roster_id);
+  el("awards").className="";
+  el("awards").innerHTML = `<div class="award">🔥</div><b>Highest Weekly Score</b>
+    <div style="font-size:1.7rem;font-weight:900;margin:5px 0">${fmt(max.points)}</div>
+    <div class="mini">${teamName(r)} • Week ${max.week}</div>`;
+  el("recWeek").textContent=fmt(max.points);
+  el("recWeekName").textContent=`${teamName(r)} • Week ${max.week}`;
+}
+
+function renderRecords() {
+  const rows=sortedRosters();
+  if(!rows.length) return;
+  const byPF=[...rows].sort((a,b)=>{
+    const ap=(a.settings?.fpts||0)+(a.settings?.fpts_decimal||0)/100;
+    const bp=(b.settings?.fpts||0)+(b.settings?.fpts_decimal||0)/100;
+    return bp-ap;
+  });
+  const p=byPF[0], ps=p.settings||{};
+  const pf=(ps.fpts||0)+(ps.fpts_decimal||0)/100;
+  el("recHighPF").textContent=fmt(pf);
+  el("recHighPFName").textContent=teamName(p);
+  const b=rows[0], bs=b.settings||{};
+  el("recBest").textContent=`${bs.wins||0}-${bs.losses||0}`;
+  el("recBestName").textContent=teamName(b);
+}
+
+function renderHistory() {
+  if(!history.length) {
+    el("historyList").innerHTML='<div class="notice">No linked prior league seasons found yet.</div>'; return;
+  }
+  el("historyList").innerHTML = history.map((l,i)=>`
+    <div style="padding:13px 0;border-bottom:1px solid var(--line)">
+      <b>${l.season || "Unknown season"} • ${l.name || "Sleeper League"}</b>
+      <div class="mini">${i===0?"Current league":"Linked prior season"} • ${l.league_id}</div>
+    </div>`).join("");
+}
+
+function render() {
+  const weeks = new Set(matchups.map(x=>x.week)).size;
+  el("leagueMeta").textContent = `${league.name} • ${league.season} • Sleeper synced`;
+  el("heroName").textContent = league.name || "Arkansas Fantasy Football";
+  el("heroSub").textContent = `${league.total_rosters} teams • ${league.season} season • Live Sleeper data`;
+  el("mTeams").textContent=league.total_rosters||rosters.length;
+  el("mSeason").textContent=league.season||"—";
+  el("mWeeks").textContent=weeks;
+  el("mHistory").textContent=history.length;
+  renderStandings("powerBoard");
+  renderStandings();
+  renderTeams();
+  renderAwards();
+  renderRecords();
+  renderHistory();
+  el("loading").classList.add("hidden");
+  el("overview").classList.remove("hidden");
+}
+
+async function boot() {
+  try {
+    [league,users,rosters] = await Promise.all([
+      j(`${API}/league/${LEAGUE_ID}`),
+      j(`${API}/league/${LEAGUE_ID}/users`),
+      j(`${API}/league/${LEAGUE_ID}/rosters`)
+    ]);
+    await Promise.all([
+      loadHistory(LEAGUE_ID),
+      getSeasonMatchups(LEAGUE_ID).then(x=>matchups=x)
+    ]);
+    render();
+  } catch(err) {
+    el("loading").classList.add("hidden");
+    el("error").classList.remove("hidden");
+    el("error").innerHTML = `<h3>Couldn’t reach Sleeper</h3><p class="sub">${err.message}</p>
+      <p class="mini">Make sure this file is opened while you have an internet connection.</p>`;
+  }
+}
+
+document.querySelectorAll("nav button").forEach(btn=>btn.addEventListener("click",()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll(".tab").forEach(x=>x.classList.add("hidden"));
+  el(btn.dataset.tab).classList.remove("hidden");
+}));
+
+boot();
+</script>
+</body>
+</html>
