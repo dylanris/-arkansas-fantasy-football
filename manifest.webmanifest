@@ -1,0 +1,18 @@
+{
+  "name": "Arkansas Fantasy Football League HQ",
+  "short_name": "AFFL HQ",
+  "description": "Official headquarters of the Arkansas Fantasy Football League.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090d12",
+  "theme_color": "#0b0f14",
+  "icons": [
+    {
+      "src": "affl-icon.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
