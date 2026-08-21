@@ -79,6 +79,14 @@
 .roster-player{display:grid;grid-template-columns:46px 1fr auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
 .roster-player:last-child{border-bottom:0}.roster-pos{color:var(--gold);font-size:.72rem;font-weight:950}.roster-team{color:var(--muted);font-size:.72rem}
 .season-resume{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.allseason-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel3)}
+.allseason-table{min-width:720px;margin:0}
+.allseason-table th{background:rgba(246,185,37,.05)}
+.allseason-table td:first-child{font-weight:950;color:var(--gold)}
+.allseason-record{font-size:1.05rem;font-weight:950;color:var(--text)}
+.allseason-result{font-weight:900}
+.allseason-total td{border-top:2px solid rgba(246,185,37,.35);background:rgba(246,185,37,.06);font-weight:900}
+
 .season-resume-card{border:1px solid var(--line);border-radius:13px;background:var(--panel3);padding:11px}
 .trophy-case{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
 .trophy-item{border:1px solid rgba(246,185,37,.25);border-radius:13px;background:rgba(246,185,37,.05);padding:11px}
@@ -115,10 +123,18 @@
 
 @media(min-width:700px){.profile-modal{align-items:center}}
 @media(max-width:800px){header{position:static}.hero-brand{align-items:flex-start}.hero-logo{width:90px;height:90px;border-radius:21px}.span8,.span7,.span6,.span5,.span4,.span3{grid-column:span 12}.brandline{align-items:center}.statuspill{display:none}table{font-size:.81rem}}@media(max-width:450px){.brandlogo{width:48px;height:48px;border-radius:13px}.brandidentity{gap:9px}.hero-brand{display:block}.hero-logo{width:94px;height:94px;margin-bottom:13px}.award-grid,.award-list,.ballot-grid,.hof-grid,.story-grid,.edition-grid{grid-template-columns:1fr}.profile-kpis,.season-kpis{grid-template-columns:repeat(2,1fr)}.match-list,.lineup-grid{grid-template-columns:1fr}.rivalry-hero{grid-template-columns:1fr}.series-badge{margin:5px 0}.news-article{font-size:1rem}}
+
+/* V11-V13 bundle */
+.council-dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.council-kpi{background:var(--panel3);border:1px solid var(--line);border-radius:13px;padding:12px}.vote-card{border:1px solid var(--line);background:var(--panel3);border-radius:14px;padding:13px;margin-bottom:9px}.vote-card:last-child{margin-bottom:0}.vote-result{font-size:1.05rem;font-weight:950}.vote-pass{color:#8ce6ad}.vote-fail{color:#ff9d9d}.vote-open{color:var(--gold)}.vote-bars{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.vote-bar{border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center}.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.case-archive-card{border:1px solid var(--line);background:var(--panel3);border-radius:14px;padding:12px}.amendment-row{padding:10px 0;border-bottom:1px solid var(--line)}.amendment-row:last-child{border-bottom:0}
+.champ-hero{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}.champ-crown{font-size:4rem;filter:drop-shadow(0 8px 18px rgba(246,185,37,.25))}.rafters{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.title-banner{position:relative;overflow:hidden;border:1px solid rgba(246,185,37,.34);border-radius:16px;padding:15px;background:linear-gradient(135deg,rgba(246,185,37,.16),rgba(246,185,37,.03) 48%,var(--panel3));cursor:pointer}.title-banner:before{content:'CHAMPION';position:absolute;right:-22px;top:14px;transform:rotate(35deg);font-size:.62rem;font-weight:950;letter-spacing:.14em;color:rgba(246,185,37,.34)}.title-year{font-size:1.9rem;font-weight:950;color:var(--gold)}.dynasty-row{display:grid;grid-template-columns:36px 1fr auto auto;gap:9px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.dynasty-row:last-child{border-bottom:0}.champ-vault-row{display:grid;grid-template-columns:72px 1fr auto;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}.champ-vault-row:last-child{border-bottom:0}.franchise-rafters{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid rgba(246,185,37,.2)}.mini-banner{background:linear-gradient(180deg,#e6b21d,#a36d05);color:#111;border-radius:8px;padding:7px 10px;font-weight:950;font-size:.72rem;box-shadow:0 5px 16px rgba(0,0,0,.22)}
+.draft-top{display:grid;grid-template-columns:1.3fr .7fr;gap:12px}.on-clock{border:1px solid rgba(246,185,37,.35);border-radius:15px;padding:15px;background:radial-gradient(circle at 0 0,rgba(246,185,37,.17),transparent 50%),var(--panel3)}.on-clock .metric{color:var(--gold)}.draft-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.draft-pick{border:1px solid var(--line);border-radius:12px;padding:9px;background:var(--panel3);min-height:100px}.draft-pick.empty{opacity:.55}.draft-pick .pickno{font-size:.66rem;color:var(--muted);font-weight:900}.draft-pick .player{font-weight:950;margin:5px 0 2px}.draft-pick .value{font-size:.68rem;color:var(--gold);font-weight:900}.draft-order{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.draft-slot{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--panel3)}.draft-report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.draft-report{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--panel3)}.draft-grade{font-size:2rem;font-weight:950;color:var(--gold)}.draft-status{display:inline-flex;padding:5px 8px;border-radius:999px;border:1px solid rgba(246,185,37,.25);color:var(--gold);font-size:.72rem;font-weight:900;text-transform:uppercase}.pick-feed-row{display:grid;grid-template-columns:55px 1fr auto;gap:9px;padding:9px 0;border-bottom:1px solid var(--line);align-items:center}.pick-feed-row:last-child{border-bottom:0}
+@media(max-width:900px){.council-dashboard{grid-template-columns:repeat(2,1fr)}.rafters{grid-template-columns:1fr}.draft-board{grid-template-columns:repeat(3,1fr)}.draft-order,.draft-report-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.case-grid,.vote-bars,.draft-top,.draft-order,.draft-report-grid{grid-template-columns:1fr}.draft-board{grid-template-columns:repeat(2,1fr)}.champ-hero{grid-template-columns:1fr}.champ-crown{font-size:3rem}.council-dashboard{grid-template-columns:repeat(2,1fr)}}
+
 </style>
 </head>
 <body>
-<header><div class="wrap"><div class="brandline"><div class="brandidentity"><img class="brandlogo" src="affl-icon.png" alt="AFFL logo"><div class="brandcopy"><div class="eyebrow">AFFL • LEAGUE HEADQUARTERS</div><h1>Arkansas Fantasy Football League</h1><div class="sub" id="leagueMeta">Connecting to Sleeper…</div><div class="mini" style="margin-top:3px;color:var(--gold);font-weight:900">V10 • FRANCHISE BUILD</div></div></div><div class="statuspill"><span class="dot"></span><span id="syncPill">SYNCING</span></div></div><nav><button class="active" data-tab="overview">HQ</button><button data-tab="newsroom">📰 Newsroom</button><button data-tab="franchises">🏟️ Franchises</button><button data-tab="weekly">Weekly</button><button data-tab="standings">Standings</button><button data-tab="alltime">All-Time</button><button data-tab="rivalries">Rivalries</button><button data-tab="records">Record Book</button><button data-tab="annualawards">Awards</button><button data-tab="hof">Hall of Fame</button><button data-tab="seasons">Seasons</button><button data-tab="history">Champions</button><button data-tab="playoffs">Playoffs</button><button data-tab="council">Council</button></nav></div></header>
+<header><div class="wrap"><div class="brandline"><div class="brandidentity"><img class="brandlogo" src="affl-icon.png" alt="AFFL logo"><div class="brandcopy"><div class="eyebrow">AFFL • LEAGUE HEADQUARTERS</div><h1>Arkansas Fantasy Football League</h1><div class="sub" id="leagueMeta">Connecting to Sleeper…</div><div class="mini" style="margin-top:3px;color:var(--gold);font-weight:900">V13.1 • ALL-SEASON FRANCHISE RECORDS</div></div></div><div class="statuspill"><span class="dot"></span><span id="syncPill">SYNCING</span></div></div><nav><button class="active" data-tab="overview">HQ</button><button data-tab="newsroom">📰 Newsroom</button><button data-tab="franchises">🏟️ Franchises</button><button data-tab="championship">🏆 Championship</button><button data-tab="drafthq">📋 Draft HQ</button><button data-tab="weekly">Weekly</button><button data-tab="standings">Standings</button><button data-tab="alltime">All-Time</button><button data-tab="rivalries">Rivalries</button><button data-tab="records">Record Book</button><button data-tab="annualawards">Awards</button><button data-tab="hof">Hall of Fame</button><button data-tab="seasons">Seasons</button><button data-tab="history">Champions</button><button data-tab="playoffs">Playoffs</button><button data-tab="council">Council</button></nav></div></header>
 <main class="wrap">
 <div id="loading" class="loading"><img class="loading-logo" src="affl-icon.png" alt="AFFL"><div class="spinner"></div><b>Opening the AFFL archives…</b><div class="mini" id="loadText">Connecting to Sleeper</div><div class="progress-shell"><div class="progress" id="progress"></div></div></div>
 <div id="error" class="card err hidden"></div>
@@ -147,6 +163,11 @@
       <div class="grid">
         <div class="card hero span12" id="franchiseHero"></div>
         <div class="card span12">
+          <div class="franchise-section-title"><h3 class="section-title" style="margin:0">📚 All Seasons Record</h3><span class="badge">Every archived AFFL season</span></div>
+          <div class="mini" style="margin-bottom:10px">Regular-season wins and losses are shown year-by-year. Playoff record is listed separately so postseason games do not muddy the season standings record.</div>
+          <div id="franchiseAllSeasons"></div>
+        </div>
+        <div class="card span12">
           <div class="franchise-section-title"><h3 class="section-title" style="margin:0">Current Roster</h3><span class="badge" id="franchiseRosterSeason">Current season</span></div>
           <div id="franchiseRoster"><div class="archive-loading"><span class="tinyspin"></span> Loading roster…</div></div>
         </div>
@@ -166,6 +187,29 @@
     </div>
   </div>
 </section>
+
+<section id="championship" class="tab hidden">
+  <div class="grid">
+    <div class="card hero span12" id="champCentralHero"><div class="archive-loading"><span class="tinyspin"></span> Raising the championship banners…</div></div>
+    <div class="card span8"><div class="toolbar"><h3 class="section-title" style="margin:0">Championship Rafters</h3><span class="badge">Every Sleeper-era title</span></div><div id="champRafters" class="rafters"></div></div>
+    <div class="card span4"><h3 class="section-title">Dynasty Board</h3><div id="champDynasty"></div></div>
+    <div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">Title Game Vault</h3><span class="badge">Scores • opponents • archive links</span></div><div id="champVault"></div></div>
+  </div>
+</section>
+
+<section id="drafthq" class="tab hidden">
+  <div class="grid">
+    <div class="card hero span12">
+      <div class="toolbar" style="margin-bottom:0"><div><div class="eyebrow">AFFL DRAFT NIGHT HEADQUARTERS</div><h2 style="margin:5px 0 5px">Draft HQ</h2><div class="sub">Live Sleeper draft board, on-the-clock tracking and post-draft report cards.</div></div><button class="btn goldbtn" id="draftRefreshBtn">↻ Refresh Draft</button></div>
+    </div>
+    <div class="card span12"><div class="toolbar"><div><span class="label">Draft</span><select id="draftHQSelect"></select></div><span class="draft-status" id="draftHQStatus">Loading</span></div><div id="draftHQTop"></div></div>
+    <div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">Draft Board</h3><span class="badge" id="draftBoardMeta">Waiting on Sleeper</span></div><div id="draftBoard" class="draft-board"></div></div>
+    <div class="card span5"><h3 class="section-title">Draft Order</h3><div id="draftOrder" class="draft-order"></div></div>
+    <div class="card span7"><h3 class="section-title">Latest Picks</h3><div id="draftPickFeed"></div></div>
+    <div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">AFFL Draft Report Cards</h3><span class="badge">Based on Sleeper board rank</span></div><div class="notice" style="margin-bottom:10px">Grades are a fun draft-night metric comparing pick number with Sleeper's player search rank. They are not a prediction of who will actually have the best season.</div><div id="draftReports" class="draft-report-grid"></div></div>
+  </div>
+</section>
+
 <section id="weekly" class="tab hidden"><div class="grid">
 <div class="card hero span12"><div class="toolbar"><div><div class="eyebrow">AFFL WEEKLY</div><h2 id="weeklyTitle" style="margin:4px 0 6px">Current Week</h2><div class="sub" id="weeklySub">Scoreboard, weekly hardware and power movement.</div></div><select id="weeklyWeekSelect"></select></div></div>
 <div class="card span7"><h3 class="section-title">Scoreboard</h3><div id="weeklyScoreboard"></div></div>
@@ -308,6 +352,15 @@
 
 <section id="council" class="tab hidden">
   <div class="grid">
+
+    <div class="card span12">
+      <div class="toolbar"><div><div class="eyebrow">V11 • COUNCIL CHAMBER</div><h3 style="margin:4px 0">League Governance Dashboard</h3></div><span class="badge" id="councilDataStamp">Loading vote file…</span></div>
+      <div class="council-dashboard" id="councilDashboard"></div>
+    </div>
+    <div class="card span7"><div class="toolbar"><h3 class="section-title" style="margin:0">League Votes</h3><span class="badge">Powered by affl-votes.json</span></div><div id="councilVotes"></div></div>
+    <div class="card span5"><h3 class="section-title">Amendment Ledger</h3><div id="councilAmendments"></div></div>
+    <div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">Council Case Archive</h3><span class="badge">Permanent precedent</span></div><div id="councilCases" class="case-grid"></div></div>
+
     <div class="card hero span8">
       <div class="eyebrow">ARKANSAS FANTASY FOOTBALL LEAGUE COUNCIL</div>
       <h2 style="margin:5px 0 8px">Constitution & Bylaws</h2>
@@ -667,14 +720,14 @@
     </div>
   </div>
 </section>
-<footer>Arkansas Fantasy Football League HQ V10 • Sleeper-powered statistics • League ID 1315130200236781568</footer>
+<footer>Arkansas Fantasy Football League HQ V13 • Sleeper-powered statistics • League ID 1315130200236781568</footer>
 </main>
 <div id="profileModal" class="profile-modal hidden" onclick="if(event.target===this)closeProfile()">
   <div class="profile-sheet" id="profileSheet"></div>
 </div>
 <script>
 const LEAGUE_ID="1315130200236781568",LEAGUE_DISPLAY_NAME="Arkansas Fantasy Football League",API="https://api.sleeper.app/v1",MAX_WEEKS=18,TIMEOUT_MS=12000;
-let currentLeague=null,currentUsers=[],currentRosters=[],seasons=[],games=[],champions=[],ownerStats={},ownerNames={},ownerMeta={},seasonData=[],rivalryMap=new Map(),seasonExtrasCache={},playerDirectory=null,currentArchiveId=null,currentWeekNumber=null,nflState={},annualAwardArchive={},currentFranchiseId=null;
+let currentLeague=null,currentUsers=[],currentRosters=[],seasons=[],games=[],champions=[],ownerStats={},ownerNames={},ownerMeta={},seasonData=[],rivalryMap=new Map(),seasonExtrasCache={},playerDirectory=null,currentArchiveId=null,currentWeekNumber=null,nflState={},annualAwardArchive={},currentFranchiseId=null,councilData=null,draftHQData=null;
 const NAME_ALIASES={"dylanris":"Dylan","tacky2012":"Tackett"};
 const $=id=>document.getElementById(id),fmt=n=>{const x=Number(n)||0;return x.toFixed(2).replace(/\.00$/,"").replace(/(\.\d)0$/,"$1")},pct=(w,l,t=0)=>{const g=w+l+t;return g?(((w+t*.5)/g)*100).toFixed(1)+"%":"—"},esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
 function setProgress(p,t){$("progress").style.width=Math.max(4,Math.min(100,p))+"%";if(t)$("loadText").textContent=t}
@@ -843,12 +896,23 @@ function franchiseHofRank(id){
 function franchiseSeasonResume(id){
   return [...seasonData].sort((a,b)=>Number(b.league.season)-Number(a.league.season)).map(sd=>{
     const r=sd.rosters.find(x=>x.owner_id===id);if(!r)return null;
-    const st=r.settings||{},regRank=seasonSortedRosters(sd).findIndex(x=>x.owner_id===id)+1;
+    const st=r.settings||{},wins=Number(st.wins||0),losses=Number(st.losses||0),ties=Number(st.ties||0);
+    const regRank=seasonSortedRosters(sd).findIndex(x=>x.owner_id===id)+1;
     let finish=`#${regRank} Regular Season`;
     if(sd.champ?.winner===id)finish="🏆 Champion";
     else if(sd.champ?.runnerUp===id)finish="🥈 Runner-Up";
     else if(sd.playoffOwners?.has(id))finish=`Playoffs • #${regRank} Regular Season`;
-    return{season:String(sd.league.season),record:`${st.wins||0}-${st.losses||0}${st.ties?("-"+st.ties):""}`,pf:seasonPoints(r),pa:seasonAgainst(r),finish}
+    let pw=0,pl=0,pt=0;
+    sd.games.filter(g=>g.playoff&&(g.ownerA===id||g.ownerB===id)).forEach(g=>{
+      const mine=g.ownerA===id?g.pointsA:g.pointsB,opp=g.ownerA===id?g.pointsB:g.pointsA;
+      if(mine>opp)pw++;else if(mine<opp)pl++;else pt++;
+    });
+    return{
+      season:String(sd.league.season),wins,losses,ties,
+      record:`${wins}-${losses}${ties?("-"+ties):""}`,
+      playoffRecord:(pw+pl+pt)?`${pw}-${pl}${pt?("-"+pt):""}`:"—",
+      pw,pl,pt,pf:seasonPoints(r),pa:seasonAgainst(r),finish,regRank
+    }
   }).filter(Boolean)
 }
 function franchiseRivalRows(id){
@@ -874,6 +938,40 @@ function switchToFranchiseTab(){
   document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.tab==="franchises"));
   document.querySelectorAll(".tab").forEach(x=>x.classList.add("hidden"));$("franchises").classList.remove("hidden")
 }
+function renderFranchiseAllSeasons(id){
+  const rows=franchiseSeasonResume(id);
+  if(!rows.length){
+    $("franchiseAllSeasons").innerHTML=`<div class="notice">No archived season records were found for this franchise.</div>`;
+    return;
+  }
+  const totals=rows.reduce((a,x)=>({
+    w:a.w+x.wins,l:a.l+x.losses,t:a.t+x.ties,
+    pw:a.pw+x.pw,pl:a.pl+x.pl,pt:a.pt+x.pt,
+    pf:a.pf+x.pf,pa:a.pa+x.pa
+  }),{w:0,l:0,t:0,pw:0,pl:0,pt:0,pf:0,pa:0});
+  const regularTotal=`${totals.w}-${totals.l}${totals.t?("-"+totals.t):""}`;
+  const playoffTotal=(totals.pw+totals.pl+totals.pt)?`${totals.pw}-${totals.pl}${totals.pt?("-"+totals.pt):""}`:"—";
+  $("franchiseAllSeasons").innerHTML=`<div class="allseason-wrap"><table class="allseason-table">
+    <thead><tr><th>Season</th><th>W</th><th>L</th><th>T</th><th>Record</th><th>PF</th><th>PA</th><th>Playoffs</th><th>Finish</th></tr></thead>
+    <tbody>
+      ${rows.map(x=>`<tr>
+        <td>${esc(x.season)}</td>
+        <td><b>${x.wins}</b></td>
+        <td><b>${x.losses}</b></td>
+        <td>${x.ties||"—"}</td>
+        <td class="allseason-record">${esc(x.record)}</td>
+        <td>${fmt(x.pf)}</td>
+        <td>${fmt(x.pa)}</td>
+        <td>${esc(x.playoffRecord)}</td>
+        <td class="allseason-result">${esc(x.finish)}</td>
+      </tr>`).join("")}
+      <tr class="allseason-total">
+        <td>CAREER</td><td>${totals.w}</td><td>${totals.l}</td><td>${totals.t||"—"}</td>
+        <td>${regularTotal}</td><td>${fmt(totals.pf)}</td><td>${fmt(totals.pa)}</td><td>${playoffTotal}</td><td>${rows.length} season${rows.length===1?"":"s"}</td>
+      </tr>
+    </tbody>
+  </table></div>`;
+}
 function renderFranchiseShell(id){
   const o=ownerStats[id]||ensureOwner(id),rank=franchiseHofRank(id),resume=hofResume(id),views=ownerGames(id).map(g=>ownerGameView(id,g)),po=playoffCareerV6(id);
   const high=[...views].sort((a,b)=>b.mine-a.mine)[0],low=[...views].filter(x=>x.mine>0).sort((a,b)=>a.mine-b.mine)[0],bigWin=[...views].filter(x=>x.result==="W").sort((a,b)=>b.margin-a.margin)[0],bigLoss=[...views].filter(x=>x.result==="L").sort((a,b)=>a.margin-b.margin)[0];
@@ -891,6 +989,8 @@ function renderFranchiseShell(id){
     <div class="profile-kpi"><span class="label">Seasons</span><b>${o.seasons?.size||0}</b><span class="mini">Sleeper-era</span></div>
     <div class="profile-kpi"><span class="label">Awards</span><b>${annualAwardsForOwner(id).length}</b><span class="mini">career hardware</span></div>
   </div>`;
+  if(years.length)$("franchiseHero").innerHTML+=`<div class="franchise-rafters"><span class="label" style="align-self:center">Championship Rafters</span>${years.map(y=>`<span class="mini-banner">🏆 ${esc(y)} AFFL CHAMPION</span>`).join("")}</div>`;
+  renderFranchiseAllSeasons(id);
   $("franchiseSeasonHistory").innerHTML=`<div class="season-resume">`+franchiseSeasonResume(id).map(x=>`<div class="season-resume-card"><div class="label">${esc(x.season)}</div><h3 style="margin:4px 0">${esc(x.finish)}</h3><div class="mini">${esc(x.record)} • ${fmt(x.pf)} PF • ${fmt(x.pa)} PA</div></div>`).join("")+`</div>`;
   const titleItems=champions.filter(c=>c.winner===id||c.runnerUp===id).map(c=>{const won=c.winner===id;return`<div class="trophy-item"><div class="label">${esc(c.season)}</div><h3 style="margin:4px 0">${won?"🏆 Champion":"🥈 Runner-Up"}</h3><div class="mini">${c.winnerScore!=null?`${fmt(c.winnerScore)}-${fmt(c.runnerScore)} • vs ${esc(ownerName(won?c.runnerUp:c.winner))}`:"Championship appearance"}</div></div>`});
   const awards=annualAwardsForOwner(id).slice(0,8).map(a=>`<div class="trophy-item"><div class="label">${esc(a.season)} • ${a.icon}</div><h3 style="margin:4px 0">${esc(a.title)}</h3><div class="mini">${esc(a.detail||"")}</div></div>`);
@@ -1254,7 +1354,72 @@ function renderHeader(){
   $("syncPill").textContent="LIVE";
   document.querySelector(".dot").style.background="var(--green)"
 }
-function renderEverything(){renderHeader();renderCurrent();renderAllTime();renderAwards();renderChampions();renderTimeline();renderRecords();renderRivalrySelectors();renderRivalryTable();playoffSeasonOptions();setupSeasonArchivePicker();setupWeekly();setupNewsroom();preloadCoreAnnualAwards();setupAnnualAwards();setupFranchises()}
+
+// ===== V11 COUNCIL CHAMBER =====
+const DEFAULT_COUNCIL_DATA={updated:"2026",votes:[],amendments:[],cases:[{case_number:"AFFL-2026-001",season:"2026",date:"August 2026",title:"Replacement Owner Draft Position Redraw",status:"RULING",issue:"How to assign the two open replacement-franchise draft positions to Greg and Drew.",decision:"Greg and Drew redraw between the two available replacement-franchise draft positions. No draft-position auction is used. The redraw result becomes the official 2026 assignment.",precedent:"Season-specific ruling. It resolves the 2026 replacement-owner situation and does not create a universal future replacement-owner rule."}]};
+async function loadCouncilData(){
+  try{const r=await fetch(`affl-votes.json?ts=${Date.now()}`,{cache:"no-store"});if(!r.ok)throw new Error("vote file unavailable");councilData=await r.json()}catch(e){councilData=DEFAULT_COUNCIL_DATA}
+  return councilData
+}
+function voteCounts(v){const y=Number(v.yes||0),n=Number(v.no||0),a=Number(v.abstain||0);return{y,n,a,total:y+n+a}}
+function voteStatusClass(status){status=String(status||"").toUpperCase();return status.includes("PASS")?"vote-pass":status.includes("FAIL")?"vote-fail":"vote-open"}
+function renderCouncilChamber(data){
+  const votes=data.votes||[],active=votes.filter(v=>String(v.status||"").toUpperCase()==="OPEN"),closed=votes.filter(v=>String(v.status||"").toUpperCase()!=="OPEN"),cases=data.cases||[],amend=data.amendments||[];
+  $("councilDataStamp").textContent=`Vote file • ${data.updated||"current"}`;
+  $("councilDashboard").innerHTML=`<div class="council-kpi"><div class="label">Open Votes</div><div class="metric">${active.length}</div><div class="mini">awaiting result</div></div><div class="council-kpi"><div class="label">Archived Votes</div><div class="metric">${closed.length}</div><div class="mini">permanent record</div></div><div class="council-kpi"><div class="label">Council Cases</div><div class="metric">${cases.length}</div><div class="mini">recorded rulings</div></div><div class="council-kpi"><div class="label">Amendments</div><div class="metric">${amend.length}</div><div class="mini">recorded changes</div></div>`;
+  $("councilVotes").innerHTML=votes.length?votes.slice().reverse().map(v=>{const c=voteCounts(v),status=String(v.status||"OPEN").toUpperCase();return`<div class="vote-card"><div class="toolbar" style="margin-bottom:4px"><div><div class="label">${esc(v.vote_number||"AFFL Vote")} • ${esc(v.date||v.season||"")}</div><h3 style="margin:4px 0">${esc(v.title||v.proposal||"League Vote")}</h3></div><span class="vote-result ${voteStatusClass(status)}">${esc(status)}</span></div><div class="mini">${esc(v.proposal||v.description||"")}</div><div class="vote-bars"><div class="vote-bar"><div class="label">Yes</div><b>${c.y}</b></div><div class="vote-bar"><div class="label">No</div><b>${c.n}</b></div><div class="vote-bar"><div class="label">Abstain</div><b>${c.a}</b></div></div>${v.result_note?`<div class="mini" style="margin-top:8px">${esc(v.result_note)}</div>`:""}${Array.isArray(v.owner_votes)&&v.owner_votes.length?`<div class="mini" style="margin-top:8px">${v.owner_votes.map(x=>`${esc(x.owner)}: <b>${esc(x.vote)}</b>`).join(" • ")}</div>`:""}</div>`}).join(""):`<div class="notice">No league votes have been entered yet. When a vote finishes, update <b>affl-votes.json</b> and it will appear here.</div>`;
+  $("councilAmendments").innerHTML=amend.length?amend.slice().reverse().map(a=>`<div class="amendment-row"><div class="label">${esc(a.date||a.season||"")} • ${esc(a.article||"Amendment")}</div><b>${esc(a.title||a.change||"")}</b><div class="mini">${esc(a.result||a.note||"")}</div></div>`).join(""):`<div class="notice">No formal amendments recorded in the data file yet.</div>`;
+  $("councilCases").innerHTML=cases.length?cases.slice().reverse().map(c=>`<div class="case-archive-card"><div class="toolbar" style="margin-bottom:5px"><div class="case-number">${esc(c.case_number||"AFFL Case")}</div><span class="case-status">${esc(c.status||"RULING")}</span></div><h3 style="margin:4px 0">${esc(c.title||"Council Ruling")}</h3><div class="mini">${esc(c.date||c.season||"")}</div><p class="mini"><b>Issue:</b> ${esc(c.issue||"")}</p><div class="constitution-rule"><b>Decision:</b> ${esc(c.decision||"")}</div>${c.precedent?`<p class="mini"><b>Precedent:</b> ${esc(c.precedent)}</p>`:""}</div>`).join(""):`<div class="notice">No Council cases recorded.</div>`
+}
+async function setupCouncilChamber(){renderCouncilChamber(await loadCouncilData())}
+
+// ===== V12 CHAMPIONSHIP CENTRAL =====
+function setupChampionshipCentral(){
+  const rows=[...champions].sort((a,b)=>Number(b.season)-Number(a.season)),latest=rows[0];
+  if(!latest){$("champCentralHero").innerHTML=`<div class="eyebrow">AFFL CHAMPIONSHIP CENTRAL</div><h2>No completed championship in the archive yet.</h2>`;$("champRafters").innerHTML="";$("champDynasty").innerHTML="";$("champVault").innerHTML="";return}
+  const sd=seasonData.find(x=>String(x.league.league_id)===String(latest.leagueId)),team=sd?.rosters?.find(r=>r.owner_id===latest.winner),teamName=team?rosterName(team,sd.users):ownerName(latest.winner);
+  $("champCentralHero").innerHTML=`<div class="champ-hero"><div><div class="eyebrow">DEFENDING AFFL CHAMPION</div><h2 style="margin:5px 0">${esc(ownerName(latest.winner))}</h2><div class="sub">${esc(teamName)} • ${esc(latest.season)} Champion${latest.winnerScore!=null?` • ${fmt(latest.winnerScore)}-${fmt(latest.runnerScore)} over ${esc(ownerName(latest.runnerUp))}`:""}</div><div style="margin-top:12px"><button class="btn goldbtn" onclick="openFranchise('${latest.winner}')">Open Champion Franchise</button></div></div><div class="champ-crown">🏆</div></div>`;
+  $("champRafters").innerHTML=rows.map(c=>`<div class="title-banner" onclick="openSeasonArchive('${c.leagueId}')"><div class="label">AFFL CHAMPIONSHIP BANNER</div><div class="title-year">${esc(c.season)}</div><h3 style="margin:1px 0 4px">${esc(ownerName(c.winner))}</h3><div class="mini">${c.winnerScore!=null?`${fmt(c.winnerScore)}-${fmt(c.runnerScore)} • ${esc(ownerName(c.runnerUp))}`:`Runner-up: ${esc(ownerName(c.runnerUp))}`}</div></div>`).join("");
+  const dynasty=Object.values(ownerStats).filter(o=>(o.titles||0)||(o.runnerUps||0)).sort((a,b)=>(b.titles||0)-(a.titles||0)||(b.runnerUps||0)-(a.runnerUps||0)||(b.w||0)-(a.w||0));
+  $("champDynasty").innerHTML=dynasty.map((o,i)=>`<div class="dynasty-row"><span class="rank">${i+1}</span><span><b class="owner-link" onclick="openFranchise('${o.id}')">${esc(ownerName(o.id))}</b><div class="mini">${o.runnerUps||0} runner-up</div></span><b>${o.titles||0}</b><span>🏆</span></div>`).join("")||`<div class="notice">No title résumés yet.</div>`;
+  $("champVault").innerHTML=rows.map(c=>`<div class="champ-vault-row"><div><div class="title-year" style="font-size:1.25rem">${esc(c.season)}</div><div class="mini">Week ${c.titleWeek||"—"}</div></div><div><b>${esc(ownerName(c.winner))}</b> defeated ${esc(ownerName(c.runnerUp))}<div class="mini">${c.winnerScore!=null?`${fmt(c.winnerScore)} - ${fmt(c.runnerScore)}`:"Score unavailable"}</div></div><button class="btn" onclick="openSeasonArchive('${c.leagueId}')">Open Season</button></div>`).join("")
+}
+
+// ===== V13 DRAFT NIGHT HQ =====
+function draftOwnerForRoster(rid){return currentRosters.find(r=>Number(r.roster_id)===Number(rid))?.owner_id||null}
+function draftOwnerForSlot(d,slot){const rid=d.slot_to_roster_id?.[String(slot)]??d.slot_to_roster_id?.[slot];if(rid!=null)return draftOwnerForRoster(rid);const e=Object.entries(d.draft_order||{}).find(([,s])=>Number(s)===Number(slot));return e?.[0]||null}
+function draftSlotForPick(pick,teams,type){const r=Math.ceil(pick/teams),within=((pick-1)%teams)+1;return String(type||"").toLowerCase()==="snake"&&r%2===0?teams-within+1:within}
+function draftPlayerName(p){return playerLabel(p.player_id,p.metadata)}
+function draftValue(p){const rank=Number(playerDirectory?.[p.player_id]?.search_rank);if(!Number.isFinite(rank)||rank<=0)return null;const diff=Number(p.pick_no||0)-rank;let label="🎯 Near board";if(diff>=20)label="🔥 Big value";else if(diff>=8)label="📈 Value";else if(diff<=-20)label="🚀 Aggressive";else if(diff<=-8)label="🎲 Reach";return{rank,diff,label}}
+function draftGrade(avg){if(avg==null||!Number.isFinite(avg))return"INC";if(avg>=20)return"A+";if(avg>=10)return"A";if(avg>=2)return"B";if(avg>=-6)return"C";return"D"}
+function formatDraftTime(ts){if(!ts)return"Not scheduled";try{return new Date(Number(ts)).toLocaleString()}catch(e){return"Scheduled"}}
+async function setupDraftHQ(){
+  $("draftRefreshBtn").onclick=()=>loadDraftHQ(true);
+  await loadDraftHQ(false)
+}
+async function loadDraftHQ(force=false){
+  $("draftHQStatus").textContent="Loading";
+  const list=await fetchJSON(`${API}/league/${LEAGUE_ID}/drafts`,true)||[];
+  draftHQData={list};
+  if(!list.length){$("draftHQSelect").innerHTML=`<option>No draft found</option>`;$("draftHQStatus").textContent="Waiting";$("draftHQTop").innerHTML=`<div class="notice">Sleeper has not returned a draft for this league yet.</div>`;$("draftBoard").innerHTML="";$("draftOrder").innerHTML="";$("draftPickFeed").innerHTML="";$("draftReports").innerHTML="";return}
+  const sel=$("draftHQSelect");sel.innerHTML=list.map((d,i)=>`<option value="${esc(d.draft_id)}">${esc(d.season||currentLeague.season)} ${String(d.type||"draft").toUpperCase()}${d.status?` • ${esc(d.status)}`:""}</option>`).join("");
+  const preferred=list.find(d=>d.status==="drafting")||list.find(d=>d.status==="pre_draft")||list[0];sel.value=preferred.draft_id;sel.onchange=()=>renderDraftHQ(sel.value);await renderDraftHQ(sel.value)
+}
+async function renderDraftHQ(draftId){
+  $("draftHQStatus").textContent="Syncing";$("draftBoard").innerHTML=`<div class="archive-loading"><span class="tinyspin"></span> Loading draft board…</div>`;
+  let d=await fetchJSON(`${API}/draft/${draftId}`,true);if(!d)d=draftHQData?.list?.find(x=>String(x.draft_id)===String(draftId));if(!d)return;
+  const picks=await fetchJSON(`${API}/draft/${draftId}/picks`,true)||[];if(picks.length&&!playerDirectory){try{await loadPlayerDirectory()}catch(e){}}
+  const teams=Number(d.settings?.teams||currentLeague.total_rosters||currentRosters.length||12),rounds=Number(d.settings?.rounds||currentLeague.settings?.draft_rounds||15),total=teams*rounds,next=picks.length+1,status=String(d.status||"pre_draft"),complete=status==="complete"||picks.length>=total,slot=complete?null:draftSlotForPick(next,teams,d.type),onOwner=slot?draftOwnerForSlot(d,slot):null;
+  $("draftHQStatus").textContent=status.replace("_"," ");$("draftBoardMeta").textContent=`${picks.length}/${total} picks • ${rounds} rounds • ${teams} teams`;
+  $("draftHQTop").innerHTML=`<div class="draft-top"><div class="on-clock"><div class="label">${complete?"Draft Status":"On The Clock"}</div><div class="metric">${complete?"DRAFT COMPLETE":esc(ownerName(onOwner)||`Slot ${slot}`)}</div><div class="mini">${complete?`${picks.length} picks recorded`:`Pick ${next} • Round ${Math.ceil(next/teams)} • Slot ${slot}`}</div></div><div class="on-clock"><div class="label">Draft Details</div><b>${esc(String(d.type||"snake").toUpperCase())} • ${rounds} rounds</b><div class="mini" style="margin-top:5px">${status==="pre_draft"?`Starts: ${esc(formatDraftTime(d.start_time))}`:`Sleeper status: ${esc(status)}`}</div></div></div>`;
+  const byNo=Object.fromEntries(picks.map(p=>[Number(p.pick_no),p]));let board="";for(let n=1;n<=total;n++){const p=byNo[n],r=Math.ceil(n/teams),sl=draftSlotForPick(n,teams,d.type),owner=p?draftOwnerForRoster(p.roster_id):draftOwnerForSlot(d,sl),v=p?draftValue(p):null;board+=p?`<div class="draft-pick"><div class="pickno">${r}.${String(((n-1)%teams)+1).padStart(2,"0")} • #${n}</div><div class="player">${esc(draftPlayerName(p))}</div><div class="mini">${esc(p.metadata?.position||"")} ${p.metadata?.team?`• ${esc(p.metadata.team)}`:""}</div><div class="mini">${esc(ownerName(owner))}</div>${v?`<div class="value">${esc(v.label)}</div>`:""}</div>`:`<div class="draft-pick empty"><div class="pickno">${r}.${String(((n-1)%teams)+1).padStart(2,"0")} • #${n}</div><div class="player">${n===next&&!complete?"ON CLOCK":"Open"}</div><div class="mini">${esc(ownerName(owner))}</div></div>`}$("draftBoard").innerHTML=board;
+  $("draftOrder").innerHTML=Array.from({length:teams},(_,i)=>i+1).map(sl=>{const id=draftOwnerForSlot(d,sl);return`<div class="draft-slot"><div class="label">Slot ${sl}</div><b>${esc(ownerName(id))}</b><div class="mini">${esc(franchiseTeamName(id))}</div></div>`}).join("");
+  $("draftPickFeed").innerHTML=picks.length?[...picks].sort((a,b)=>b.pick_no-a.pick_no).slice(0,16).map(p=>{const id=draftOwnerForRoster(p.roster_id),v=draftValue(p);return`<div class="pick-feed-row"><b>#${p.pick_no}</b><span><b>${esc(draftPlayerName(p))}</b><div class="mini">${esc(ownerName(id))} • ${esc(p.metadata?.position||"")} ${p.metadata?.team?`• ${esc(p.metadata.team)}`:""}</div></span><span class="mini">${v?esc(v.label):""}</span></div>`}).join(""):`<div class="notice">No picks have been made yet. This feed wakes up as soon as the draft starts.</div>`;
+  const groups={};picks.forEach(p=>{const id=draftOwnerForRoster(p.roster_id);if(!id)return;(groups[id]??=[]).push(p)});const owners=Array.from({length:teams},(_,i)=>draftOwnerForSlot(d,i+1)).filter(Boolean);
+  $("draftReports").innerHTML=owners.map(id=>{const ps=groups[id]||[],vals=ps.map(draftValue).filter(Boolean),avg=vals.length?vals.reduce((a,v)=>a+v.diff,0)/vals.length:null,positions={};ps.forEach(p=>{const pos=p.metadata?.position||"?";positions[pos]=(positions[pos]||0)+1});const best=vals.length?vals.slice().sort((a,b)=>b.diff-a.diff)[0]:null;return`<div class="draft-report"><div class="label">${esc(franchiseTeamName(id))}</div><h3 style="margin:4px 0">${esc(ownerName(id))}</h3><div class="draft-grade">${draftGrade(avg)}</div><div class="mini">${ps.length} pick${ps.length===1?"":"s"}${avg!=null?` • avg board value ${avg>=0?"+":""}${fmt(avg)}`:" • waiting on picks"}</div><div class="badge-wall">${Object.entries(positions).map(([p,n])=>`<span class="badge-chip">${esc(p)} ${n}</span>`).join("")}</div>${best&&best.diff>=8?`<div class="mini" style="margin-top:7px">Best board value: +${fmt(best.diff)}</div>`:""}</div>`}).join("")
+}
+
+function renderEverything(){renderHeader();renderCurrent();renderAllTime();renderAwards();renderChampions();renderTimeline();renderRecords();renderRivalrySelectors();renderRivalryTable();playoffSeasonOptions();setupSeasonArchivePicker();setupWeekly();setupNewsroom();preloadCoreAnnualAwards();setupAnnualAwards();setupFranchises();setupChampionshipCentral();setupCouncilChamber();setupDraftHQ()}
 function toggleConstitution(openState){
   document.querySelectorAll("#council .constitution-doc details").forEach(d=>d.open=openState)
 }
