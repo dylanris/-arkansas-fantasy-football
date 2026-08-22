@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b0f14">
+<meta name="application-name" content="AFFL HQ">
+<meta name="apple-mobile-web-app-title" content="AFFL HQ">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" type="image/png" href="affl-icon.png">
+<link rel="apple-touch-icon" href="affl-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Arkansas Fantasy Football League HQ</title>
+<style>
+:root{--bg:#090d12;--panel:#111821;--panel2:#151e29;--panel3:#0d131b;--text:#f6f8fb;--muted:#96a2b2;--line:#253140;--gold:#f6b925;--green:#55d69e;--red:#ff7070;--blue:#70adff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 20% -10%,rgba(246,185,37,.13),transparent 28%),radial-gradient(circle at 100% 10%,rgba(112,173,255,.07),transparent 24%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}button,select{font:inherit}.wrap{max-width:1180px;margin:0 auto}header{position:sticky;top:0;z-index:20;background:rgba(9,13,18,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:calc(16px + env(safe-area-inset-top)) 16px 12px}.brandline{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.brandidentity{display:flex;align-items:center;gap:12px;min-width:0}
+.brandlogo{width:58px;height:58px;border-radius:15px;object-fit:cover;box-shadow:0 7px 22px rgba(0,0,0,.35);border:1px solid rgba(246,185,37,.35);flex:none}
+.brandcopy{min-width:0}
+.hero-brand{display:flex;align-items:center;gap:18px}
+.hero-logo{width:118px;height:118px;border-radius:26px;object-fit:cover;box-shadow:0 18px 42px rgba(0,0,0,.34);border:1px solid rgba(246,185,37,.35);flex:none}
+.loading-logo{width:96px;height:96px;border-radius:23px;display:block;margin:0 auto 14px;box-shadow:0 16px 38px rgba(0,0,0,.32);border:1px solid rgba(246,185,37,.32)}
+.app-tip{margin-top:12px;padding:10px 12px;border:1px solid rgba(246,185,37,.24);background:rgba(246,185,37,.06);border-radius:12px;color:var(--muted);font-size:.8rem;line-height:1.45}
+.eyebrow{color:var(--gold);font-weight:900;letter-spacing:.14em;font-size:.72rem}h1{margin:5px 0 4px;font-size:clamp(1.75rem,5vw,2.75rem);line-height:1}.sub{color:var(--muted);font-size:.9rem}.statuspill{display:flex;align-items:center;gap:7px;border:1px solid var(--line);padding:8px 10px;border-radius:999px;color:var(--muted);font-size:.75rem;white-space:nowrap}.dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(246,185,37,.12)}nav{display:flex;gap:8px;overflow-x:auto;padding-top:14px;scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav button{border:1px solid var(--line);background:var(--panel3);color:var(--muted);padding:9px 13px;border-radius:999px;white-space:nowrap;font-weight:800;cursor:pointer}nav button.active{background:var(--gold);border-color:var(--gold);color:#111}main{padding:18px 16px 60px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:13px}.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:17px;padding:16px;box-shadow:0 12px 32px rgba(0,0,0,.16)}.hero{background:radial-gradient(circle at 0% 0%,rgba(246,185,37,.20),transparent 35%),linear-gradient(180deg,var(--panel2),var(--panel));padding:21px}.span12{grid-column:span 12}.span8{grid-column:span 8}.span7{grid-column:span 7}.span6{grid-column:span 6}.span5{grid-column:span 5}.span4{grid-column:span 4}.span3{grid-column:span 3}.label{color:var(--muted);font-size:.71rem;text-transform:uppercase;letter-spacing:.09em;font-weight:800}.metric{font-size:clamp(1.55rem,5vw,2rem);font-weight:950;margin:4px 0}.mini{color:var(--muted);font-size:.8rem;line-height:1.45}.section-title{margin:0 0 12px;font-size:1.05rem}table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{padding:10px 7px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}th{color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em}.rank{font-weight:950;color:var(--gold);width:34px}.owner{color:var(--muted);font-size:.77rem;margin-top:2px}.badge{display:inline-flex;gap:5px;align-items:center;padding:5px 8px;border:1px solid var(--line);background:var(--panel3);border-radius:999px;color:var(--muted);font-size:.73rem;margin:2px 2px 2px 0}.notice{color:var(--muted);font-size:.86rem;line-height:1.5;background:var(--panel3);border:1px dashed var(--line);padding:12px;border-radius:12px}.hidden{display:none!important}.loading{padding:50px 12px;text-align:center;color:var(--muted)}.spinner{width:34px;height:34px;border:4px solid var(--line);border-top-color:var(--gold);border-radius:50%;margin:0 auto 12px;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.progress-shell{max-width:330px;height:8px;background:var(--line);border-radius:999px;margin:14px auto 0;overflow:hidden}.progress{height:100%;width:4%;background:var(--gold);transition:width .25s ease}.btn{border:1px solid var(--line);background:var(--panel3);color:var(--text);padding:9px 12px;border-radius:11px;font-weight:800;cursor:pointer}.btn.goldbtn{background:var(--gold);border-color:var(--gold);color:#111}.toolbar{display:flex;gap:9px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px}select{background:var(--panel3);color:var(--text);border:1px solid var(--line);padding:10px 12px;border-radius:11px;min-width:145px}.award-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.award{background:var(--panel3);border:1px solid var(--line);border-radius:13px;padding:12px;min-height:108px}.award .emoji{font-size:1.5rem}.award .name{font-weight:900;margin:5px 0 2px}.award .value{font-size:1.1rem;font-weight:950}.timeline-item{padding:13px 0;border-bottom:1px solid var(--line)}.timeline-item:last-child{border-bottom:0}.champ{display:flex;justify-content:space-between;gap:12px;align-items:center}.trophy{font-size:1.55rem}.rivalry-score{font-size:1.35rem;font-weight:950}.team-card h3{margin:3px 0 4px}.team-card .record{font-size:1.25rem;font-weight:950;margin:8px 0}.big-icon{font-size:1.7rem;margin-bottom:6px}footer{padding:24px 0;color:var(--muted);font-size:.72rem;text-align:center}.err{border-color:rgba(255,112,112,.45)}
+.clickable{cursor:pointer}.clickable:hover{border-color:rgba(246,185,37,.55)}.owner-link{cursor:pointer;text-decoration:underline;text-decoration-color:rgba(246,185,37,.45);text-underline-offset:3px}
+.profile-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:100;display:flex;align-items:flex-end;justify-content:center;padding:18px;backdrop-filter:blur(8px)}
+.profile-sheet{width:min(720px,100%);max-height:90vh;overflow:auto;background:linear-gradient(180deg,#17212d,#0f161f);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.profile-head{display:flex;gap:13px;align-items:center}.avatar{width:58px;height:58px;border-radius:50%;object-fit:cover;background:var(--panel3);border:2px solid var(--gold)}.avatar-fallback{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#111;font-weight:950;font-size:1.25rem}
+.closebtn{margin-left:auto;border:1px solid var(--line);background:var(--panel3);color:var(--text);width:38px;height:38px;border-radius:50%;font-size:1.2rem}
+.profile-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:14px 0}.profile-kpi{background:var(--panel3);border:1px solid var(--line);border-radius:13px;padding:11px}.profile-kpi b{display:block;font-size:1.2rem;margin-top:3px}
+.bracket-round{margin-bottom:16px}.round-title{color:var(--gold);font-size:.75rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;margin-bottom:8px}.bracket-game{background:var(--panel3);border:1px solid var(--line);border-radius:13px;padding:10px;margin-bottom:8px}.bracket-team{display:flex;justify-content:space-between;gap:10px;padding:7px 3px}.bracket-team.win{font-weight:950;color:var(--text)}.bracket-team.lose{color:var(--muted)}.champ-score{font-weight:950;color:var(--gold);font-size:1.05rem}.season-picker{width:100%;max-width:230px}
+.statline{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}.statline:last-child{border-bottom:0}
+.season-card{padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--panel3);margin-bottom:9px;cursor:pointer}.season-card:hover{border-color:rgba(246,185,37,.55)}
+.season-card h3{margin:3px 0}.season-card .arrow{font-size:1.35rem;color:var(--gold)}
+.hof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.hof-card{position:relative;overflow:hidden;border:1px solid rgba(246,185,37,.35);background:linear-gradient(180deg,rgba(246,185,37,.09),var(--panel3));border-radius:16px;padding:15px}.hof-card:before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;background:rgba(246,185,37,.06);right:-45px;top:-45px}.hof-rank{font-size:2rem;font-weight:950;color:var(--gold)}.hof-name{font-size:1.15rem;font-weight:950;margin:3px 0}.hof-score{font-size:.78rem;color:var(--muted)}.hof-meter{height:7px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:9px}.hof-meter span{display:block;height:100%;background:var(--gold)}
+.badge-wall{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.career-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:999px;background:var(--panel3);border:1px solid var(--line);font-size:.74rem;font-weight:800}.badge-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;background:rgba(246,185,37,.08);border:1px solid rgba(246,185,37,.25);font-size:.72rem;font-weight:800}
+.award-season{margin-bottom:16px}.award-season-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}.award-list{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.award-row{border:1px solid var(--line);border-radius:13px;background:var(--panel3);padding:11px}.award-title{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:900}.award-winner{font-size:1rem;font-weight:950;margin-top:4px}.award-detail{font-size:.77rem;color:var(--muted);margin-top:3px;line-height:1.4}
+
+.constitution-intro{line-height:1.65;color:var(--muted)}
+.constitution-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.constitution-doc details{border:1px solid var(--line);border-radius:14px;background:var(--panel3);margin-bottom:9px;overflow:hidden}
+.constitution-doc summary{cursor:pointer;padding:13px 14px;font-weight:950;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.constitution-doc summary::-webkit-details-marker{display:none}
+.constitution-doc summary:after{content:"＋";color:var(--gold);font-size:1.1rem}
+.constitution-doc details[open] summary:after{content:"−"}
+.constitution-body{padding:0 14px 14px;color:var(--muted);line-height:1.62}
+.constitution-body h4{color:var(--text);margin:15px 0 5px;font-size:.94rem}
+.constitution-body ul{margin:7px 0 10px;padding-left:20px}
+.constitution-body li{margin:4px 0}
+.constitution-rule{border-left:3px solid var(--gold);padding:10px 12px;background:rgba(246,185,37,.06);border-radius:0 10px 10px 0;color:var(--text);margin:10px 0}
+.case-card{border:1px solid rgba(246,185,37,.32);background:linear-gradient(180deg,rgba(246,185,37,.08),var(--panel3));border-radius:15px;padding:14px}
+.case-number{font-size:.72rem;font-weight:950;letter-spacing:.1em;color:var(--gold)}
+.case-status{display:inline-flex;padding:5px 8px;border-radius:999px;border:1px solid rgba(85,214,158,.32);color:var(--green);font-size:.7rem;font-weight:900}
+.authority-list{counter-reset:authority;padding:0;margin:0;list-style:none}
+.authority-list li{counter-increment:authority;display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.authority-list li:before{content:counter(authority);display:grid;place-items:center;min-width:25px;height:25px;border-radius:50%;background:var(--gold);color:#111;font-weight:950;font-size:.72rem}
+.pledge{font-weight:850;line-height:1.75;color:var(--text);text-align:center;padding:5px 10px}
+
+.ballot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.ballot-card{border:1px solid var(--line);border-radius:13px;background:var(--panel3);padding:12px;display:flex;align-items:center;gap:10px}.ballot-card input{width:20px;height:20px;accent-color:var(--gold)}.vote-count{font-weight:950;color:var(--gold)}.ballot-note{margin-top:10px;color:var(--muted);font-size:.78rem}
+
+.power-card{border:1px solid var(--line);background:var(--panel3);border-radius:14px;padding:12px;margin-bottom:9px}.power-head{display:flex;gap:10px;align-items:center}.power-rank{font-size:1.35rem;font-weight:950;color:var(--gold);min-width:40px}.power-name{font-weight:950}.power-meta{color:var(--muted);font-size:.78rem}.power-score{margin-left:auto;font-weight:950}.move-up{color:var(--green)}.move-down{color:var(--red)}.move-flat{color:var(--muted)}
+.form-row{display:flex;gap:4px;margin-top:7px}.form-dot{width:22px;height:22px;border-radius:999px;display:grid;place-items:center;font-size:.68rem;font-weight:900;background:var(--line)}.form-dot.w{background:rgba(85,214,158,.18);color:var(--green)}.form-dot.l{background:rgba(255,112,112,.16);color:var(--red)}.form-dot.t{color:var(--muted)}.commentary{margin-top:7px;color:var(--muted);font-size:.82rem;line-height:1.45}.spark{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:8px}.spark>span{display:block;height:100%;background:var(--gold)}
+.rivalry-hero{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;text-align:center}.rivalry-side h2{margin:4px 0}.series-badge{font-size:1.45rem;font-weight:950;color:var(--gold)}.rivalry-game{border:1px solid var(--line);border-radius:13px;background:var(--panel3);padding:11px;margin-bottom:8px}.rivalry-game .top{display:flex;justify-content:space-between;gap:10px}.rivalry-game .result{font-weight:950}
+.rivalry-week-intro{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(214,172,72,.18),rgba(255,255,255,.025) 48%,rgba(126,36,48,.18));border-color:rgba(214,172,72,.38)}
+.rivalry-week-intro:after{content:"RIVALRY WEEK";position:absolute;right:-10px;bottom:-18px;font-size:clamp(2.4rem,8vw,6.7rem);font-weight:1000;letter-spacing:-.06em;color:rgba(255,255,255,.035);pointer-events:none;white-space:nowrap}
+.rivalry-week-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.official-rivalry{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:17px;background:var(--panel3);padding:16px;min-height:170px}
+.official-rivalry:before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--gold),transparent)}
+.official-rivalry-name{font-size:1.12rem;font-weight:1000;color:var(--gold);margin:4px 0 10px}
+.official-rivalry-matchup{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:1.02rem;font-weight:950}
+.official-rivalry-vs{font-size:.72rem;letter-spacing:.16em;color:var(--muted);font-weight:900}
+.official-rivalry-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px}
+.official-rivalry-stat{border:1px solid var(--line);border-radius:11px;background:rgba(0,0,0,.12);padding:8px;text-align:center}
+.official-rivalry-stat b{display:block;font-size:.95rem}.official-rivalry-stat span{display:block;margin-top:2px;font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.official-rivalry-lore{margin-top:10px;font-size:.78rem;color:var(--muted);line-height:1.45}
+@media(max-width:700px){.rivalry-week-grid{grid-template-columns:1fr}}
+.franchise-directory{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.franchise-card{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--panel2),var(--panel3));padding:14px;cursor:pointer;transition:.15s ease}
+.franchise-card:hover{border-color:rgba(246,185,37,.48);transform:translateY(-1px)}
+.franchise-card-top{display:flex;align-items:center;gap:10px}
+.franchise-avatar{width:52px;height:52px;border-radius:14px;object-fit:cover;border:1px solid rgba(246,185,37,.3);background:var(--panel3)}
+.franchise-avatar-fallback{width:52px;height:52px;border-radius:14px;background:var(--gold);color:#111;display:grid;place-items:center;font-weight:950}
+.franchise-card h3{margin:1px 0 3px}.franchise-minirow{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.franchise-hero{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center}
+.franchise-hero-avatar{width:92px;height:92px;border-radius:22px;object-fit:cover;border:2px solid rgba(246,185,37,.4);box-shadow:0 14px 34px rgba(0,0,0,.28)}
+.franchise-hero-fallback{width:92px;height:92px;border-radius:22px;background:var(--gold);color:#111;display:grid;place-items:center;font-weight:950;font-size:1.7rem}
+.franchise-rank{text-align:right}.franchise-rank .metric{color:var(--gold)}
+.franchise-kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:14px}
+.franchise-section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.roster-columns{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.roster-panel{border:1px solid var(--line);border-radius:14px;background:var(--panel3);padding:12px}
+.roster-player{display:grid;grid-template-columns:46px 1fr auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.roster-player:last-child{border-bottom:0}.roster-pos{color:var(--gold);font-size:.72rem;font-weight:950}.roster-team{color:var(--muted);font-size:.72rem}
+.season-resume{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.allseason-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel3)}
+.allseason-table{min-width:720px;margin:0}
+.allseason-table th{background:rgba(246,185,37,.05)}
+.allseason-table td:first-child{font-weight:950;color:var(--gold)}
+.allseason-record{font-size:1.05rem;font-weight:950;color:var(--text)}
+.allseason-result{font-weight:900}
+.allseason-total td{border-top:2px solid rgba(246,185,37,.35);background:rgba(246,185,37,.06);font-weight:900}
+
+.season-resume-card{border:1px solid var(--line);border-radius:13px;background:var(--panel3);padding:11px}
+.trophy-case{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.trophy-item{border:1px solid rgba(246,185,37,.25);border-radius:13px;background:rgba(246,185,37,.05);padding:11px}
+.rival-list{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.rival-card{border:1px solid var(--line);border-radius:13px;background:var(--panel3);padding:11px;cursor:pointer}
+.rival-card:hover{border-color:rgba(246,185,37,.45)}
+.vault-row{display:grid;grid-template-columns:70px 1fr auto;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.vault-row:last-child{border-bottom:0}.vault-season{color:var(--gold);font-weight:950}.alumni-label{margin-top:18px;margin-bottom:8px}
+@media(max-width:900px){.franchise-directory{grid-template-columns:repeat(2,1fr)}.franchise-kpis{grid-template-columns:repeat(3,1fr)}.season-resume{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.franchise-directory,.roster-columns,.season-resume,.trophy-case,.rival-list{grid-template-columns:1fr}.franchise-hero{grid-template-columns:auto 1fr}.franchise-rank{grid-column:1/-1;text-align:left}.franchise-kpis{grid-template-columns:repeat(2,1fr)}}
+
+.season-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.match-list{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.match-card{border:1px solid var(--line);border-radius:13px;background:var(--panel3);padding:11px}
+.match-team{display:flex;justify-content:space-between;gap:10px;padding:7px 2px}.match-team.winner{font-weight:950}.match-team.loser{color:var(--muted)}
+.scorebig{font-weight:950}.season-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.draft-round{margin-bottom:16px}.draft-pick{display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.picknum{color:var(--gold);font-weight:950}.pickpos{color:var(--muted);font-size:.75rem}.keeper{color:var(--purple,#b59cff)}
+.tx-row{padding:11px 0;border-bottom:1px solid var(--line)}.tx-row:last-child{border-bottom:0}.tx-head{display:flex;justify-content:space-between;gap:12px}
+.tx-type{text-transform:uppercase;letter-spacing:.08em;font-size:.68rem;font-weight:900;color:var(--gold)}.tx-players{margin-top:5px;line-height:1.5}
+.lineup-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.lineup-card{border:1px solid var(--line);border-radius:14px;background:var(--panel3);padding:12px}
+.player-row{display:grid;grid-template-columns:42px 1fr auto;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}.player-row:last-child{border-bottom:0}
+.slot{color:var(--muted);font-size:.72rem;font-weight:800}.playerpts{font-weight:900}.mvp{color:var(--gold)}
+.archive-loading{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.8rem}.tinyspin{width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+.news-masthead{display:flex;align-items:center;gap:12px;margin-bottom:12px}.news-mark{width:46px;height:46px;border-radius:12px;object-fit:cover;border:1px solid rgba(246,185,37,.35)}
+.news-headline{font-size:clamp(1.7rem,5vw,3rem);line-height:1.02;margin:7px 0 8px;letter-spacing:-.02em}.news-dek{font-size:1rem;color:var(--muted);line-height:1.55;max-width:780px}
+.news-byline{margin-top:10px;color:var(--muted);font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;font-weight:850}
+.news-article{font-family:Georgia,Times,serif;font-size:1.04rem;line-height:1.72;color:#e8edf4}.news-article p{margin:0 0 15px}.news-dropcap:first-letter{float:left;font-size:3.5rem;line-height:.78;padding:7px 8px 0 0;color:var(--gold);font-weight:900}
+.story-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.story-card{border:1px solid var(--line);background:var(--panel3);border-radius:13px;padding:12px}.story-icon{font-size:1.45rem}.story-title{font-weight:950;margin:5px 0 2px}.story-copy{font-size:.79rem;color:var(--muted);line-height:1.45}
+.race-row{display:grid;grid-template-columns:38px 1fr auto;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}.race-row:last-child{border-bottom:0}.seed{width:29px;height:29px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#111;font-size:.72rem;font-weight:950}.seed.out{background:var(--line);color:var(--muted)}
+.news-rank{padding:10px 0;border-bottom:1px solid var(--line)}.news-rank:last-child{border-bottom:0}.news-rank-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.news-rank-name{font-weight:950}.news-rank-note{font-size:.79rem;color:var(--muted);line-height:1.45;margin-top:4px}
+.edition-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.edition-card{border:1px solid var(--line);background:var(--panel3);border-radius:12px;padding:10px;cursor:pointer}.edition-card.active{border-color:var(--gold);box-shadow:0 0 0 1px rgba(246,185,37,.2) inset}.edition-card:hover{border-color:rgba(246,185,37,.55)}.edition-week{font-weight:950}.edition-season{font-size:.72rem;color:var(--muted);margin-top:2px}
+.news-kicker{color:var(--gold);font-size:.72rem;font-weight:950;letter-spacing:.12em;text-transform:uppercase}.news-scoreline{font-size:1.4rem;font-weight:950;margin:3px 0}.news-divider{height:1px;background:var(--line);margin:14px 0}.paper-note{font-size:.72rem;color:var(--muted);margin-top:9px}
+
+
+@media(min-width:700px){.profile-modal{align-items:center}}
+@media(max-width:800px){header{position:static}.hero-brand{align-items:flex-start}.hero-logo{width:90px;height:90px;border-radius:21px}.span8,.span7,.span6,.span5,.span4,.span3{grid-column:span 12}.brandline{align-items:center}.statuspill{display:none}table{font-size:.81rem}}@media(max-width:450px){.brandlogo{width:48px;height:48px;border-radius:13px}.brandidentity{gap:9px}.hero-brand{display:block}.hero-logo{width:94px;height:94px;margin-bottom:13px}.award-grid,.award-list,.ballot-grid,.hof-grid,.story-grid,.edition-grid{grid-template-columns:1fr}.profile-kpis,.season-kpis{grid-template-columns:repeat(2,1fr)}.match-list,.lineup-grid{grid-template-columns:1fr}.rivalry-hero{grid-template-columns:1fr}.series-badge{margin:5px 0}.news-article{font-size:1rem}}
+
+/* V11-V13 bundle */
+.council-dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.council-kpi{background:var(--panel3);border:1px solid var(--line);border-radius:13px;padding:12px}.vote-card{border:1px solid var(--line);background:var(--panel3);border-radius:14px;padding:13px;margin-bottom:9px}.vote-card:last-child{margin-bottom:0}.vote-result{font-size:1.05rem;font-weight:950}.vote-pass{color:#8ce6ad}.vote-fail{color:#ff9d9d}.vote-open{color:var(--gold)}.vote-bars{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.vote-bar{border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center}.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.case-archive-card{border:1px solid var(--line);background:var(--panel3);border-radius:14px;padding:12px}.amendment-row{padding:10px 0;border-bottom:1px solid var(--line)}.amendment-row:last-child{border-bottom:0}
+.champ-hero{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}.champ-crown{font-size:4rem;filter:drop-shadow(0 8px 18px rgba(246,185,37,.25))}.rafters{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.title-banner{position:relative;overflow:hidden;border:1px solid rgba(246,185,37,.34);border-radius:16px;padding:15px;background:linear-gradient(135deg,rgba(246,185,37,.16),rgba(246,185,37,.03) 48%,var(--panel3));cursor:pointer}.title-banner:before{content:'CHAMPION';position:absolute;right:-22px;top:14px;transform:rotate(35deg);font-size:.62rem;font-weight:950;letter-spacing:.14em;color:rgba(246,185,37,.34)}.title-year{font-size:1.9rem;font-weight:950;color:var(--gold)}.dynasty-row{display:grid;grid-template-columns:36px 1fr auto auto;gap:9px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.dynasty-row:last-child{border-bottom:0}.champ-vault-row{display:grid;grid-template-columns:72px 1fr auto;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}.champ-vault-row:last-child{border-bottom:0}.franchise-rafters{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid rgba(246,185,37,.2)}.mini-banner{background:linear-gradient(180deg,#e6b21d,#a36d05);color:#111;border-radius:8px;padding:7px 10px;font-weight:950;font-size:.72rem;box-shadow:0 5px 16px rgba(0,0,0,.22)}
+.draft-top{display:grid;grid-template-columns:1.3fr .7fr;gap:12px}.on-clock{border:1px solid rgba(246,185,37,.35);border-radius:15px;padding:15px;background:radial-gradient(circle at 0 0,rgba(246,185,37,.17),transparent 50%),var(--panel3)}.on-clock .metric{color:var(--gold)}.draft-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.draft-pick{border:1px solid var(--line);border-radius:12px;padding:9px;background:var(--panel3);min-height:100px}.draft-pick.empty{opacity:.55}.draft-pick .pickno{font-size:.66rem;color:var(--muted);font-weight:900}.draft-pick .player{font-weight:950;margin:5px 0 2px}.draft-pick .value{font-size:.68rem;color:var(--gold);font-weight:900}.draft-order{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.draft-slot{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--panel3)}.draft-report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.draft-report{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--panel3)}.draft-grade{font-size:2rem;font-weight:950;color:var(--gold)}.draft-status{display:inline-flex;padding:5px 8px;border-radius:999px;border:1px solid rgba(246,185,37,.25);color:var(--gold);font-size:.72rem;font-weight:900;text-transform:uppercase}.pick-feed-row{display:grid;grid-template-columns:55px 1fr auto;gap:9px;padding:9px 0;border-bottom:1px solid var(--line);align-items:center}.pick-feed-row:last-child{border-bottom:0}
+@media(max-width:900px){.council-dashboard{grid-template-columns:repeat(2,1fr)}.rafters{grid-template-columns:1fr}.draft-board{grid-template-columns:repeat(3,1fr)}.draft-order,.draft-report-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.case-grid,.vote-bars,.draft-top,.draft-order,.draft-report-grid{grid-template-columns:1fr}.draft-board{grid-template-columns:repeat(2,1fr)}.champ-hero{grid-template-columns:1fr}.champ-crown{font-size:3rem}.council-dashboard{grid-template-columns:repeat(2,1fr)}}
+
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="brandline"><div class="brandidentity"><img class="brandlogo" src="affl-icon.png" alt="AFFL logo"><div class="brandcopy"><div class="eyebrow">AFFL • LEAGUE HEADQUARTERS</div><h1>Arkansas Fantasy Football League</h1><div class="sub" id="leagueMeta">Connecting to Sleeper…</div><div class="mini" style="margin-top:3px;color:var(--gold);font-weight:900">V13.1 • ALL-SEASON FRANCHISE RECORDS</div></div></div><div class="statuspill"><span class="dot"></span><span id="syncPill">SYNCING</span></div></div><nav><button class="active" data-tab="overview">HQ</button><button data-tab="newsroom">📰 Newsroom</button><button data-tab="franchises">🏟️ Franchises</button><button data-tab="championship">🏆 Championship</button><button data-tab="drafthq">📋 Draft HQ</button><button data-tab="weekly">Weekly</button><button data-tab="standings">Standings</button><button data-tab="alltime">All-Time</button><button data-tab="rivalries">Rivalries</button><button data-tab="records">Record Book</button><button data-tab="annualawards">Awards</button><button data-tab="hof">Hall of Fame</button><button data-tab="seasons">Seasons</button><button data-tab="history">Champions</button><button data-tab="playoffs">Playoffs</button><button data-tab="council">Council</button></nav></div></header>
+<main class="wrap">
+<div id="loading" class="loading"><img class="loading-logo" src="affl-icon.png" alt="AFFL"><div class="spinner"></div><b>Opening the AFFL archives…</b><div class="mini" id="loadText">Connecting to Sleeper</div><div class="progress-shell"><div class="progress" id="progress"></div></div></div>
+<div id="error" class="card err hidden"></div>
+<section id="overview" class="tab hidden"><div class="grid"><div class="card hero span12"><div class="hero-brand"><img class="hero-logo" src="affl-icon.png" alt="AFFL app icon"><div><div class="eyebrow">COMMISSIONER'S OFFICE</div><h2 id="heroName" style="margin:4px 0 7px">Arkansas Fantasy Football League</h2><div class="sub" id="heroSub"></div><div style="margin-top:13px"><button class="btn goldbtn" id="refreshBtn">↻ Refresh Sleeper Data</button></div><div class="app-tip"><b>AFFL HQ is Home Screen ready.</b> On iPhone, open this site in Safari, tap Share, then <b>Add to Home Screen</b>. It will use the official AFFL icon.</div></div></div></div><div class="card span3"><div class="label">Current Teams</div><div class="metric" id="mTeams">—</div></div><div class="card span3"><div class="label">Seasons Found</div><div class="metric" id="mSeasons">—</div></div><div class="card span3"><div class="label">Games Archived</div><div class="metric" id="mGames">—</div></div><div class="card span3"><div class="label">Champions Found</div><div class="metric" id="mChamps">—</div></div><div class="card span7"><h3 class="section-title">Current Standings</h3><div id="powerBoard"></div></div><div class="card span5"><h3 class="section-title">Latest Weekly Hardware</h3><div id="awards"></div></div></div></section>
+
+
+<section id="franchises" class="tab hidden">
+  <div class="grid">
+    <div class="card hero span12">
+      <div class="eyebrow">AFFL FRANCHISE DIRECTORY</div>
+      <h2 style="margin:4px 0 6px">League Franchises</h2>
+      <div class="sub">Every current team and every owner in the Sleeper-era archive gets a permanent home.</div>
+    </div>
+    <div class="card span12" id="franchiseDirectoryCard">
+      <div class="franchise-section-title">
+        <h3 class="section-title" style="margin:0">Current Franchises</h3>
+        <span class="badge">Tap a team to open its franchise page</span>
+      </div>
+      <div id="franchiseDirectory" class="franchise-directory"></div>
+      <div id="franchiseAlumniWrap" class="hidden">
+        <div class="eyebrow alumni-label">AFFL ALUMNI</div>
+        <div id="franchiseAlumni" class="franchise-directory"></div>
+      </div>
+    </div>
+    <div id="franchiseProfile" class="span12 hidden">
+      <div class="grid">
+        <div class="card hero span12" id="franchiseHero"></div>
+        <div class="card span12">
+          <div class="franchise-section-title"><h3 class="section-title" style="margin:0">📚 All Seasons Record</h3><span class="badge">Every archived AFFL season</span></div>
+          <div class="mini" style="margin-bottom:10px">Regular-season wins and losses are shown year-by-year. Playoff record is listed separately so postseason games do not muddy the season standings record.</div>
+          <div id="franchiseAllSeasons"></div>
+        </div>
+        <div class="card span12">
+          <div class="franchise-section-title"><h3 class="section-title" style="margin:0">Current Roster</h3><span class="badge" id="franchiseRosterSeason">Current season</span></div>
+          <div id="franchiseRoster"><div class="archive-loading"><span class="tinyspin"></span> Loading roster…</div></div>
+        </div>
+        <div class="card span7"><h3 class="section-title">Season-by-Season Résumé</h3><div id="franchiseSeasonHistory"></div></div>
+        <div class="card span5"><h3 class="section-title">Trophy Case</h3><div id="franchiseTrophyCase"></div></div>
+        <div class="card span6"><h3 class="section-title">Rivalry Board</h3><div id="franchiseRivalries"></div></div>
+        <div class="card span6"><h3 class="section-title">Career Highs & Lows</h3><div id="franchiseHighLow"></div></div>
+        <div class="card span12">
+          <div class="franchise-section-title"><h3 class="section-title" style="margin:0">Draft Vault</h3><span class="badge">Sleeper-era picks</span></div>
+          <div id="franchiseDraftVault"><div class="archive-loading"><span class="tinyspin"></span> Loading draft history…</div></div>
+        </div>
+        <div class="card span12">
+          <div class="franchise-section-title"><h3 class="section-title" style="margin:0">GM Activity</h3><span class="badge">Trades • Waivers • Free Agents</span></div>
+          <div id="franchiseGMActivity"><div class="archive-loading"><span class="tinyspin"></span> Loading transaction history…</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="championship" class="tab hidden">
+  <div class="grid">
+    <div class="card hero span12" id="champCentralHero"><div class="archive-loading"><span class="tinyspin"></span> Raising the championship banners…</div></div>
+    <div class="card span8"><div class="toolbar"><h3 class="section-title" style="margin:0">Championship Rafters</h3><span class="badge">Every Sleeper-era title</span></div><div id="champRafters" class="rafters"></div></div>
+    <div class="card span4"><h3 class="section-title">Dynasty Board</h3><div id="champDynasty"></div></div>
+    <div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">Title Game Vault</h3><span class="badge">Scores • opponents • archive links</span></div><div id="champVault"></div></div>
+  </div>
+</section>
+
+<section id="drafthq" class="tab hidden">
+  <div class="grid">
+    <div class="card hero span12">
+      <div class="toolbar" style="margin-bottom:0"><div><div class="eyebrow">AFFL DRAFT NIGHT HEADQUARTERS</div><h2 style="margin:5px 0 5px">Draft HQ</h2><div class="sub">Live Sleeper draft board, on-the-clock tracking and post-draft report cards.</div></div><button class="btn goldbtn" id="draftRefreshBtn">↻ Refresh Draft</button></div>
+    </div>
+    <div class="card span12"><div class="toolbar"><div><span class="label">Draft</span><select id="draftHQSelect"></select></div><span class="draft-status" id="draftHQStatus">Loading</span></div><div id="draftHQTop"></div></div>
+    <div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">Draft Board</h3><span class="badge" id="draftBoardMeta">Waiting on Sleeper</span></div><div id="draftBoard" class="draft-board"></div></div>
+    <div class="card span5"><h3 class="section-title">Draft Order</h3><div id="draftOrder" class="draft-order"></div></div>
+    <div class="card span7"><h3 class="section-title">Latest Picks</h3><div id="draftPickFeed"></div></div>
+    <div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">AFFL Draft Report Cards</h3><span class="badge">Based on Sleeper board rank</span></div><div class="notice" style="margin-bottom:10px">Grades are a fun draft-night metric comparing pick number with Sleeper's player search rank. They are not a prediction of who will actually have the best season.</div><div id="draftReports" class="draft-report-grid"></div></div>
+  </div>
+</section>
+
+<section id="weekly" class="tab hidden"><div class="grid">
+<div class="card hero span12"><div class="toolbar"><div><div class="eyebrow">AFFL WEEKLY</div><h2 id="weeklyTitle" style="margin:4px 0 6px">Current Week</h2><div class="sub" id="weeklySub">Scoreboard, weekly hardware and power movement.</div></div><select id="weeklyWeekSelect"></select></div></div>
+<div class="card span7"><h3 class="section-title">Scoreboard</h3><div id="weeklyScoreboard"></div></div>
+<div class="card span5"><h3 class="section-title">Weekly Awards</h3><div id="weeklyAwardsFull"></div></div>
+<div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">AFFL Power Rankings</h3><span class="badge">Record + PF + recent form</span></div><div id="powerRankings"></div></div>
+</div></section>
+<section id="newsroom" class="tab hidden">
+  <div class="grid">
+    <div class="card hero span12">
+      <div class="toolbar">
+        <div class="news-masthead"><img class="news-mark" src="affl-icon.png" alt="AFFL"><div><div class="eyebrow">AFFL NEWSROOM</div><h2 style="margin:3px 0 0">The Weekly Ledger</h2></div></div>
+        <div><select id="newsSeasonSelect" class="season-picker"></select><select id="newsWeekSelect"></select></div>
+      </div>
+      <div class="news-kicker" id="newsKicker">WEEKLY EDITION</div>
+      <h2 class="news-headline" id="newsHeadline">Loading the presses…</h2>
+      <div class="news-dek" id="newsDek"></div>
+      <div class="news-byline" id="newsByline">AFFL Newsroom</div>
+    </div>
+
+    <div class="card span8">
+      <h3 class="section-title">Week in Review</h3>
+      <article class="news-article" id="newsArticle"></article>
+    </div>
+    <div class="card span4">
+      <h3 class="section-title">Front Page</h3>
+      <div id="newsFrontPage"></div>
+    </div>
+
+    <div class="card span7">
+      <h3 class="section-title">League Storylines</h3>
+      <div class="story-grid" id="newsStorylines"></div>
+    </div>
+    <div class="card span5">
+      <h3 class="section-title">Playoff Race</h3>
+      <div id="newsPlayoffRace"></div>
+    </div>
+
+    <div class="card span7">
+      <h3 class="section-title">Power Desk</h3>
+      <div id="newsPowerDesk"></div>
+    </div>
+    <div class="card span5">
+      <h3 class="section-title">Edition Archive</h3>
+      <div class="edition-grid" id="newsEditionArchive"></div>
+      <div class="paper-note">Every edition is generated from the matchup history already stored in Sleeper, so old weeks remain readable without manually saving articles.</div>
+    </div>
+  </div>
+</section>
+<section id="standings" class="tab hidden"><div class="grid"><div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">Official Current Standings</h3><span class="badge" id="currentSeasonBadge">Current Season</span></div><div id="standingsTable"></div></div><div class="card span12"><h3 class="section-title">Current Owners</h3><div class="grid" id="teamGrid"></div></div></div></section>
+<section id="alltime" class="tab hidden"><div class="grid"><div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">AFFL All-Time Owner Standings</h3><span class="badge">Tap an owner for profile</span></div><div id="allTimeTable"></div></div><div class="card span4"><div class="label">All-Time Wins Leader</div><div class="metric" id="leaderWins">—</div><div class="mini" id="leaderWinsName"></div></div><div class="card span4"><div class="label">Points King</div><div class="metric" id="leaderPF">—</div><div class="mini" id="leaderPFName"></div></div><div class="card span4"><div class="label">Most Titles</div><div class="metric" id="leaderTitles">—</div><div class="mini" id="leaderTitlesName"></div></div></div></section>
+<section id="rivalries" class="tab hidden"><div class="grid">
+<div class="card span12 rivalry-week-intro"><div class="eyebrow">AFFL TRADITION</div><h2 style="margin:4px 0 6px">🏆 Official Rivalry Week</h2><div class="sub">Six permanent matchups. Six sets of bragging rights. Every season adds another chapter to the grudge book.</div><div id="officialRivalryWeek" class="rivalry-week-grid"></div></div>
+<div class="card span12"><div class="toolbar"><div><div class="eyebrow">HEAD-TO-HEAD LAB</div><h3 style="margin:4px 0 0">Rivalry Machine</h3></div><div><select id="rivalA"></select><select id="rivalB"></select></div></div><div id="rivalryDetail"></div></div>
+<div class="card span12"><h3 class="section-title">Series History</h3><div id="rivalryHistory"></div></div>
+<div class="card span12"><h3 class="section-title">Most Played Rivalries</h3><div id="rivalryTable"></div></div>
+</div></section>
+<section id="records" class="tab hidden"><div class="grid"><div class="card span4"><div class="big-icon">🚀</div><div class="label">Highest Weekly Score</div><div class="metric" id="recHigh">—</div><div class="mini" id="recHighName"></div></div><div class="card span4"><div class="big-icon">🧊</div><div class="label">Lowest Weekly Score</div><div class="metric" id="recLow">—</div><div class="mini" id="recLowName"></div></div><div class="card span4"><div class="big-icon">💀</div><div class="label">Biggest Blowout</div><div class="metric" id="recBlowout">—</div><div class="mini" id="recBlowoutName"></div></div><div class="card span4"><div class="big-icon">😬</div><div class="label">Closest Game</div><div class="metric" id="recClose">—</div><div class="mini" id="recCloseName"></div></div><div class="card span4"><div class="big-icon">🔥</div><div class="label">Longest Win Streak</div><div class="metric" id="recWinStreak">—</div><div class="mini" id="recWinStreakName"></div></div><div class="card span4"><div class="big-icon">🥶</div><div class="label">Longest Losing Streak</div><div class="metric" id="recLoseStreak">—</div><div class="mini" id="recLoseStreakName"></div></div><div class="card span12"><h3 class="section-title">Archive Notes</h3><div class="notice" id="archiveNote"></div></div></div></section>
+
+
+<section id="annualawards" class="tab hidden">
+  <div class="grid">
+    <div class="card hero span12"><div class="eyebrow">AFFL TROPHY ROOM</div><h2 style="margin:4px 0 6px">Annual Awards</h2><div class="sub">Season hardware calculated from the Sleeper archive. GM awards use your league transaction history.</div></div>
+    <div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">Award Archive</h3><select id="annualAwardSeason" class="season-picker"></select></div><div id="annualAwardContent"></div></div>
+  </div>
+</section>
+<section id="hof" class="tab hidden">
+  <div class="grid">
+    <div class="card hero span12"><div class="eyebrow">ARKANSAS FANTASY FOOTBALL</div><h2 style="margin:4px 0 6px">Hall of Fame</h2><div class="sub">Career résumé rankings built from titles, playoff wins, career wins, scoring and longevity.</div></div>
+    <div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">Hall of Fame Board</h3><span class="badge">Tap an owner for profile</span></div><div class="hof-grid" id="hofGrid"></div></div>
+    <div class="card span7"><h3 class="section-title">AFFL Hall of Fame Ballot</h3><div class="notice">This ballot is a preview tool. It saves only on this device, so the AFFL Council still controls any official league-wide induction vote.</div><div class="ballot-grid" id="hofBallot" style="margin-top:10px"></div><div class="toolbar" style="margin-top:10px"><div><span class="vote-count" id="hofVoteCount">0</span> / 3 selections</div><button class="btn" id="clearBallotBtn">Clear Ballot</button></div></div>
+    <div class="card span5"><h3 class="section-title">Résumé Formula</h3><div class="statline"><span>🏆 Championship</span><b>+30</b></div><div class="statline"><span>🔥 Playoff win</span><b>+5</b></div><div class="statline"><span>📈 Career win</span><b>+1</b></div><div class="statline"><span>🎯 Scoring résumé</span><b>Up to +20</b></div><div class="statline"><span>📚 Longevity</span><b>+2 / season</b></div><div class="notice" style="margin-top:10px">The score ranks résumés. Actual Hall of Fame induction is whatever the AFFL Council decides.</div></div>
+  </div>
+</section>
+<section id="seasons" class="tab hidden">
+  <div class="grid">
+    <div class="card hero span12">
+      <div class="toolbar">
+        <div>
+          <div class="eyebrow">AFFL SEASON ARCHIVE</div>
+          <h2 id="seasonArchiveTitle" style="margin:4px 0 6px">Season Archive</h2>
+          <div class="sub" id="seasonArchiveSub">Pick a season and open the record book.</div>
+        </div>
+        <select id="seasonArchiveSelect" class="season-picker"></select>
+      </div>
+      <div id="seasonArchiveChampion"></div>
+    </div>
+
+    <div class="card span12">
+      <div class="season-kpis" id="seasonKpis"></div>
+    </div>
+
+    <div class="card span7">
+      <h3 class="section-title">Final Regular-Season Standings</h3>
+      <div id="seasonStandings"></div>
+    </div>
+    <div class="card span5">
+      <h3 class="section-title">Season Superlatives</h3>
+      <div id="seasonSuperlatives"></div>
+    </div>
+
+    <div class="card span12">
+      <div class="toolbar">
+        <h3 class="section-title" style="margin:0">Week-by-Week Scoreboard</h3>
+        <select id="seasonWeekSelect"></select>
+      </div>
+      <div id="seasonWeekGames"></div>
+    </div>
+
+    <div class="card span12">
+      <h3 class="section-title">Championship Night</h3>
+      <div id="seasonChampionshipLineup"></div>
+    </div>
+
+    <div class="card span12">
+      <h3 class="section-title">Playoff Path</h3>
+      <div id="seasonPlayoffBracket"></div>
+    </div>
+
+    <div class="card span12">
+      <div class="toolbar">
+        <h3 class="section-title" style="margin:0">Draft Board</h3>
+        <select id="seasonDraftSelect" class="season-picker hidden"></select>
+      </div>
+      <div id="seasonDraftBoard"><div class="archive-loading"><span class="tinyspin"></span> Loading draft history…</div></div>
+    </div>
+
+    <div class="card span12">
+      <div class="toolbar">
+        <h3 class="section-title" style="margin:0">GM Activity</h3>
+        <select id="seasonTxFilter">
+          <option value="all">All transactions</option>
+          <option value="trade">Trades</option>
+          <option value="waiver">Waivers</option>
+          <option value="free_agent">Free agents</option>
+        </select>
+      </div>
+      <div id="seasonTransactions"><div class="archive-loading"><span class="tinyspin"></span> Loading transactions…</div></div>
+    </div>
+  </div>
+</section>
+<section id="history" class="tab hidden"><div class="grid"><div class="card span7"><h3 class="section-title">Championship History</h3><div id="championList"></div></div><div class="card span5"><h3 class="section-title">League Timeline</h3><div id="historyList"></div></div></div></section>
+<section id="playoffs" class="tab hidden"><div class="grid">
+<div class="card span12"><div class="toolbar"><div><div class="eyebrow">POSTSEASON ARCHIVE</div><h3 style="margin:4px 0 0">Playoff Brackets</h3></div><select id="playoffSeason" class="season-picker"></select></div><div id="playoffBracket"></div></div>
+</div></section>
+
+<section id="council" class="tab hidden">
+  <div class="grid">
+
+    <div class="card span12">
+      <div class="toolbar"><div><div class="eyebrow">V11 • COUNCIL CHAMBER</div><h3 style="margin:4px 0">League Governance Dashboard</h3></div><span class="badge" id="councilDataStamp">Loading vote file…</span></div>
+      <div class="council-dashboard" id="councilDashboard"></div>
+    </div>
+    <div class="card span7"><div class="toolbar"><h3 class="section-title" style="margin:0">League Votes</h3><span class="badge">Powered by affl-votes.json</span></div><div id="councilVotes"></div></div>
+    <div class="card span5"><h3 class="section-title">Amendment Ledger</h3><div id="councilAmendments"></div></div>
+    <div class="card span12"><div class="toolbar"><h3 class="section-title" style="margin:0">Council Case Archive</h3><span class="badge">Permanent precedent</span></div><div id="councilCases" class="case-grid"></div></div>
+
+    <div class="card hero span8">
+      <div class="eyebrow">ARKANSAS FANTASY FOOTBALL LEAGUE COUNCIL</div>
+      <h2 style="margin:5px 0 8px">Constitution & Bylaws</h2>
+      <div class="sub">The official governing rules of the AFFL. When the group chat develops a sudden law degree, this is where the answer lives.</div>
+      <div class="constitution-toolbar">
+        <button class="btn goldbtn" onclick="toggleConstitution(true)">Open All Articles</button>
+        <button class="btn" onclick="toggleConstitution(false)">Close All</button>
+      </div>
+    </div>
+
+    <div class="card span4">
+      <div class="label">Current Document</div>
+      <div class="metric">21</div>
+      <div class="mini">Articles • 2026 edition</div>
+      <div style="margin-top:10px"><span class="badge">📜 Constitution</span><span class="badge">⚖️ Council precedent</span><span class="badge">🗳️ League votes</span></div>
+    </div>
+
+    <div class="card span12">
+      <div class="case-card">
+        <div class="toolbar" style="margin-bottom:5px">
+          <div>
+            <div class="case-number">AFFL-2026-001</div>
+            <h3 style="margin:4px 0">Replacement Owner Draft Position Redraw</h3>
+          </div>
+          <span class="case-status">2026 RULING</span>
+        </div>
+        <p class="constitution-intro" style="margin-bottom:8px">Greg and Drew shall redraw between the two available replacement-franchise draft positions. Neither owner automatically receives a position based solely on which vacant team they initially entered.</p>
+        <div class="constitution-rule"><b>No draft-position auction will be used.</b> Once the redraw is completed, the result becomes the official 2026 assignment.</div>
+        <div class="mini">This ruling applies to the 2026 replacement-owner situation and does not automatically establish the procedure for every future vacancy.</div>
+      </div>
+    </div>
+
+    <div class="card span12">
+      <div class="eyebrow">PREAMBLE</div>
+      <p class="constitution-intro">The <b>Arkansas Fantasy Football League</b>, hereafter referred to as the <b>AFFL</b>, exists to provide a competitive, fair, entertaining, and lasting fantasy football league for its members.</p>
+      <p class="constitution-intro">The purpose of this Constitution & Bylaws is to establish clear expectations, preserve league history, prevent disputes whenever possible, and provide a fair process for resolving situations when the rules do not provide an obvious answer.</p>
+      <p class="constitution-intro">All owners are expected to compete in good faith, manage their teams throughout the season, respect league decisions, and protect the long-term integrity of the AFFL. Participation in the league constitutes acceptance of these rules.</p>
+    </div>
+
+    <div class="card span12 constitution-doc">
+
+      <details>
+        <summary>ARTICLE I • League Structure</summary>
+        <div class="constitution-body">
+          <h4>Section 1. League Size</h4>
+          <p>The Arkansas Fantasy Football League shall operate as a <b>12-team fantasy football league</b> unless the league approves a future change.</p>
+          <h4>Section 2. League Platform</h4>
+          <p>The official AFFL league shall operate through <b>Sleeper</b>, unless the league decides to move to another platform. Sleeper shall serve as the official record for rosters, starting lineups, matchup scores, standings, transactions, trades, draft results, playoff results, and league settings.</p>
+          <p>If a conflict exists between a screenshot, memory, verbal statement, or other unofficial source and the official Sleeper record, the Sleeper record shall control unless a platform error is confirmed.</p>
+          <h4>Section 3. League Season</h4>
+          <p>Each AFFL season begins when league operations officially open for the upcoming NFL season and concludes following the league championship and completion of all remaining league business.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE II • League Membership</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Team Ownership</h4>
+          <p>Each franchise shall be controlled by <b>one owner</b>. An owner may not control, manage, or hold ownership of more than one AFFL team at the same time.</p>
+          <h4>Section 2. Good Standing</h4>
+          <p>An owner is considered in good standing when that owner pays required league dues, actively manages their team, follows league rules, does not engage in collusion, responds to important league communications when necessary, and makes a reasonable effort to remain competitive.</p>
+          <h4>Section 3. Returning Owners</h4>
+          <div class="constitution-rule"><b>As long as league dues are paid, owners and their teams will be welcomed back for the following season.</b></div>
+          <p>Returning owners shall not be removed simply to create an opening for another manager.</p>
+          <h4>Section 4. New Owners</h4>
+          <p>When a franchise becomes vacant, the Commissioner may search for and nominate a replacement owner. The goal should be to bring in an owner who understands football, will remain active, will pay league dues, will independently manage their team, and will strengthen the league long-term.</p>
+          <h4>Section 5. Family Members and Significant Others</h4>
+          <p>If the proposed new owner is a <b>family member or significant other of an existing AFFL owner</b>, the proposed owner must be submitted to the league for a vote. The league shall be given an opportunity to voice approval or concerns.</p>
+          <div class="constitution-rule"><b>The Commissioner retains final authority to approve or reject the proposed owner after considering the league vote.</b></div>
+          <p>All owners, regardless of personal relationships, must manage their franchises independently.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE III • League Dues</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Annual Dues</h4>
+          <p>League dues shall be established before each season. The Commissioner shall announce the amount owed, accepted payment methods, payment deadline, and any additional league expenses.</p>
+          <h4>Section 2. Payment Deadline</h4>
+          <p>Owners are expected to pay league dues by the announced deadline. An owner who believes they may not meet the deadline should communicate with the Commissioner.</p>
+          <h4>Section 3. Failure to Pay</h4>
+          <p>Failure to pay league dues may result in the owner's franchise becoming vacant and available to a replacement owner. Until dues are paid, the Commissioner is not required to guarantee that owner's position in the league.</p>
+          <h4>Section 4. League Funds</h4>
+          <p>League funds may be used for championship payout, championship ring, league trophy, championship plaque or engraving, league website expenses, and other approved league awards or expenses. The Commissioner shall make reasonable efforts to keep league financial activity transparent.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE IV • Keepers</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Keeper Format</h4>
+          <div class="constitution-rule">The AFFL is a <b>two-player keeper league</b>. Each owner may keep <b>one quarterback</b> and <b>one non-quarterback</b>. An owner may not keep two quarterbacks or two non-quarterbacks.</div>
+          <h4>Section 2. Keeper Eligibility</h4>
+          <p>Keeper eligibility shall follow AFFL rules and the official league settings established in Sleeper.</p>
+          <h4>Section 3. Keeper Deadline</h4>
+          <p>The Commissioner shall announce a keeper deadline before the draft. Owners are responsible for submitting valid keepers by that deadline.</p>
+          <h4>Section 4. Keeper Trades</h4>
+          <p>Players eligible to be kept may be traded while league trading is open. Keeper rights transfer with the player unless otherwise prohibited by an AFFL rule.</p>
+          <h4>Section 5. Replacement Owners</h4>
+          <p>A replacement owner taking control of an existing franchise inherits that franchise's roster and available keeper rights. The replacement owner may select from players legally eligible to be kept on that roster.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE V • The Draft</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Draft Format</h4>
+          <p>The AFFL shall conduct an annual draft using Sleeper. Unless changed before the season, the league shall use a <b>snake draft</b>.</p>
+          <h4>Section 2. Draft Order</h4>
+          <p>Draft order shall be determined before the draft using the method established for that season. Once officially finalized, the order shall remain binding except when an owner leaves the league or another unusual circumstance requires Commissioner or Council action.</p>
+          <h4>Section 3. Draft Timer</h4>
+          <div class="constitution-rule">The standard AFFL draft timer shall be <b>30 seconds per selection</b>.</div>
+          <p>The Commissioner may announce a different timer before a future draft if necessary.</p>
+          <h4>Section 4. Missed Picks</h4>
+          <p>If an owner's draft clock expires, Sleeper's automatic selection shall control. The Commissioner is not required to reverse an auto-pick caused by an owner failing to make a selection in time.</p>
+          <h4>Section 5. Draft Pick Trading</h4>
+          <p>Draft picks may be traded when permitted by AFFL rules and Sleeper settings. Owners are responsible for understanding the future consequences of trading draft capital.</p>
+          <h4>Section 6. Vacant Teams</h4>
+          <p>When an owner leaves before the draft, the Commissioner and AFFL Council shall determine the fairest way to resolve any affected draft position. The goal shall be to avoid giving an unfair advantage or disadvantage to either returning or replacement owners.</p>
+          <p>Any special decision shall be announced before the draft and recorded as an official AFFL ruling.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE VI • Rosters and Lineups</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Starting Lineups</h4>
+          <p>Owners are responsible for submitting valid starting lineups each week.</p>
+          <h4>Section 2. Active Competition</h4>
+          <p>Every owner is expected to make a reasonable effort to field a competitive lineup. Unacceptable behavior may include intentionally starting inactive players when reasonable alternatives exist, leaving starting positions empty, benching healthy players specifically to help another team, abandoning a roster, or deliberately losing to manipulate another team's playoff chances.</p>
+          <h4>Section 3. Injuries and Mistakes</h4>
+          <p>An owner shall not automatically be punished because of a surprise inactive player, late injury news, emergency, or honest lineup mistake. Intent shall be considered before disciplinary action is taken.</p>
+          <h4>Section 4. Tanking</h4>
+          <p>Intentional losing for the purpose of improperly helping another franchise or manipulating league results is prohibited. Legitimate roster decisions made in the owner's own competitive interest are permitted.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE VII • Free Agency</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Official System</h4>
+          <p>All player additions and drops shall be processed through Sleeper.</p>
+          <h4>Section 2. First Come, First Serve</h4>
+          <div class="constitution-rule">The AFFL <b>does not use a traditional Wednesday waiver period</b>. Once the official fantasy football week has ended and players become available under the league's Sleeper settings, player pickups are <b>FIRST COME, FIRST SERVE</b>.</div>
+          <p>There is no waiver-priority competition among owners once free agency opens. The first owner to legally add an available player through Sleeper receives that player.</p>
+          <h4>Section 3. Timing</h4>
+          <p>Sleeper's official league clock and player availability shall determine when players become eligible to be added. Owners are responsible for monitoring free agency.</p>
+          <h4>Section 4. Commissioner Intervention</h4>
+          <p>The Commissioner shall not reverse a legal free-agent pickup simply because another owner wanted the same player. A transaction may be corrected only when there is clear evidence of platform malfunction, Commissioner error, collusion, or another exceptional circumstance requiring correction.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE VIII • Trades</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Owner Responsibility</h4>
+          <p>Owners are free to evaluate players differently. A trade shall not be overturned simply because another owner believes one side received better value.</p>
+          <div class="constitution-rule"><b>A bad trade is not automatically an illegal trade.</b></div>
+          <h4>Section 2. Trade Standard</h4>
+          <p>Trades shall be presumed legal unless there is credible evidence of collusion, roster dumping, outside payment, coordinated manipulation, or one owner intentionally helping another without legitimate benefit to their own franchise.</p>
+          <h4>Section 3. Commissioner Review</h4>
+          <p>All trade-integrity decisions shall be handled by the <b>Commissioner</b>. The Commissioner shall determine whether there is sufficient evidence that a trade constitutes collusion or otherwise threatens league integrity.</p>
+          <h4>Section 4. No League Veto</h4>
+          <div class="constitution-rule"><b>The AFFL does not use league trade vetoes.</b> Owners shall not vote to approve or reject another team's trade.</div>
+          <p>If the Commissioner determines that a trade is legitimate, the trade stands regardless of whether other league members believe it was fair. If the Commissioner determines that a trade constitutes collusion, the Commissioner may reverse the trade and impose additional penalties when appropriate.</p>
+          <h4>Section 5. Commissioner's Own Trades</h4>
+          <p>When the <b>Commissioner is personally involved in the trade under review</b>, the Commissioner shall not make the final decision regarding collusion.</p>
+          <div class="constitution-rule"><b>The Co-Commissioner shall have final authority</b> to determine whether the Commissioner's trade is legitimate.</div>
+          <h4>Section 6. Trade Deadline</h4>
+          <p>The official trade deadline shall follow the AFFL's established Sleeper settings unless changed before the season.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE IX • Collusion and Competitive Integrity</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Collusion</h4>
+          <p>Collusion occurs when two or more owners coordinate actions for an improper purpose that damages fair competition. Examples include intentionally giving valuable players to another team, secret agreements to return players after a game, coordinating lineups to manipulate standings, outside payments for fantasy transactions, controlling another owner's roster, or sharing control of multiple franchises.</p>
+          <h4>Section 2. Penalties</h4>
+          <p>Depending upon severity, penalties may include transaction reversal, loss of draft picks, loss of keeper rights, forfeiture, removal from the league, or permanent ban. Serious integrity violations may be addressed immediately by league leadership.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE X • Inactive or Abandoned Teams</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Owner Responsibility</h4>
+          <p>Owners are expected to remain reasonably active throughout the entire season regardless of record.</p>
+          <h4>Section 2. Abandonment</h4>
+          <p>A franchise may be considered abandoned when an owner repeatedly fails to set lineups, ignores league communication, stops making reasonable roster decisions, or states they no longer intend to participate.</p>
+          <h4>Section 3. Temporary Commissioner Control</h4>
+          <p>If a franchise is abandoned during the season, the Commissioner may take limited administrative action necessary to preserve competitive fairness. The purpose is to maintain a legal lineup, not to aggressively manage the abandoned team.</p>
+          <h4>Section 4. Replacement Owner</h4>
+          <p>A replacement owner may be appointed during the season when practical. The replacement owner inherits the franchise as it exists at the time control is transferred.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE XI • Playoffs and Championship</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Qualification</h4>
+          <p>Playoff qualification and seeding shall follow the official AFFL Sleeper settings.</p>
+          <h4>Section 2. Tiebreakers</h4>
+          <p>Official Sleeper tiebreakers shall control unless the AFFL establishes a different written rule before the season begins.</p>
+          <h4>Section 3. League Champion</h4>
+          <p>The winner of the official AFFL Championship matchup shall be recognized as the <b>Arkansas Fantasy Football League Champion</b> for that season.</p>
+          <h4>Section 4. Championship History</h4>
+          <p>The AFFL historical archive shall record, when available, the Champion, Runner-up, Championship score, Championship lineup, playoff bracket, final season record, and historical statistics.</p>
+          <h4>Section 5. Permanent Recognition</h4>
+          <p>A championship officially earned and recognized by the league shall remain part of AFFL history. Future rule changes shall not retroactively erase legitimate championships.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE XII • Commissioner and Co-Commissioner</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Commissioner</h4>
+          <p>The Commissioner serves as the chief administrator of the Arkansas Fantasy Football League. Responsibilities include maintaining league settings, collecting dues, organizing the draft, announcing deadlines, maintaining league records, enforcing rules, reviewing trades, resolving disputes, and presenting major issues to the league.</p>
+          <h4>Section 2. Commissioner as an Owner</h4>
+          <p>The Commissioner remains a full league owner and may compete, trade, draft, and manage their team like any other owner. Commissioner authority may not be used to improperly benefit the Commissioner's franchise.</p>
+          <h4>Section 3. Co-Commissioner</h4>
+          <p>The AFFL may maintain a Co-Commissioner to assist with league administration, rule interpretation, disputes, and situations involving a conflict of interest for the Commissioner.</p>
+          <h4>Section 4. Commissioner Conflict of Interest</h4>
+          <p>When an issue directly involves the Commissioner's own franchise and requires an integrity ruling, the Co-Commissioner shall provide the final decision when required by these bylaws.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE XIII • The AFFL Council</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Purpose</h4>
+          <p>The Arkansas Fantasy Football League Council exists to assist with major disputes, unusual situations, rule interpretation, league governance, and future rule development.</p>
+          <h4>Section 2. Council Cases</h4>
+          <p>Significant decisions may be permanently recorded in the AFFL Council Archive. Each ruling may contain a case number, season, date, issue, relevant rules, arguments, final decision, vote result, and future precedent.</p>
+          <h4>Section 3. Precedent</h4>
+          <p>Past Council decisions may be used as guidance in future situations. A previous ruling may be superseded by a later constitutional amendment.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE XIV • League Voting</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Voting Rights</h4>
+          <p>Each active AFFL franchise receives one vote.</p>
+          <h4>Section 2. Voting Methods</h4>
+          <p>Votes may be conducted using Sleeper polls, league group communication, AFFL website polling, or another clearly announced method.</p>
+          <h4>Section 3. Standard Votes</h4>
+          <p>Unless another requirement has already been established, normal league votes shall be decided by a <b>simple majority of votes cast</b>.</p>
+          <h4>Section 4. Major Structural Changes</h4>
+          <p>Major changes should receive substantial league support. Examples include changing league size, eliminating keepers, changing the number of keepers, changing league ownership structure, or replacing league leadership.</p>
+          <h4>Section 5. Tied Votes</h4>
+          <p>A tied league vote fails unless another tiebreaking procedure has been established.</p>
+          <h4>Section 6. Abstentions</h4>
+          <p>An abstention does not count as a vote for or against a proposal.</p>
+          <h4>Section 7. Commissioner Authority</h4>
+          <p>A league vote does not eliminate authority specifically granted to the Commissioner elsewhere in this Constitution. When a rule states that the Commissioner has final authority, the Commissioner retains that authority after considering league input.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE XV • Amendments and Rule Changes</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Timing</h4>
+          <p>Major rule changes should normally occur during the offseason. Rules should not be changed during the season simply because a current situation benefits or harms a particular owner.</p>
+          <h4>Section 2. Emergency Changes</h4>
+          <p>A rule may be changed during the season when necessary because of platform changes, an unforeseen loophole, competitive integrity concerns, or emergency league circumstances.</p>
+          <h4>Section 3. Amendment History</h4>
+          <p>Approved amendments should be recorded with the date, season, rule changed, and vote result or Commissioner/Council ruling when applicable. Previous versions may remain available through AFFL Headquarters for historical purposes.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE XVI • AFFL Record Book</summary>
+        <div class="constitution-body">
+          <p>AFFL Headquarters shall serve as the permanent statistical archive of the Arkansas Fantasy Football League. The archive may track championships, runner-up finishes, career wins and losses, playoff records, points scored, head-to-head records, rivalries, winning and losing streaks, highest and lowest scores, biggest blowouts, closest games, draft history, transactions, annual awards, and Hall of Fame recognition.</p>
+          <p>Sleeper data shall serve as the primary source for automated league statistics.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE XVII • Annual Awards</summary>
+        <div class="constitution-body">
+          <p>The AFFL may recognize awards including League Champion, Runner-Up, Regular Season King, Points King, Most Unlucky, Luckiest Schedule, Single-Game High Score, Public Execution, Photo Finish, Biggest Choke, Waiver/Free-Agent Award, Trade Award, and other awards created by the league.</p>
+          <p>Objective statistical awards may be automatically calculated using Sleeper data. Subjective awards may be determined by league vote, Commissioner decision, or Council selection.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE XVIII • AFFL Hall of Fame</summary>
+        <div class="constitution-body">
+          <h4>Section 1. Purpose</h4>
+          <p>The AFFL Hall of Fame exists to recognize exceptional long-term achievement within the Arkansas Fantasy Football League.</p>
+          <h4>Section 2. Considerations</h4>
+          <p>Hall of Fame consideration may include championships, championship appearances, career wins, playoff success, scoring achievements, longevity, league records, annual awards, and historical impact.</p>
+          <h4>Section 3. Résumé Score</h4>
+          <p>AFFL Headquarters may display an automated Hall of Fame résumé score. This score is informational and shall not automatically induct an owner.</p>
+          <h4>Section 4. Official Induction</h4>
+          <p>Actual Hall of Fame induction shall follow the method established by the league. The AFFL may later establish eligibility requirements, voting threshold, annual number of inductees, waiting periods, and legacy categories.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE XIX • Owner Conduct</summary>
+        <div class="constitution-body">
+          <p>Competitive trash talk, rivalries, jokes, and disagreements are normal parts of fantasy football. However, owners shall not engage in threats, serious harassment, discriminatory abuse, deliberate interference with league operations, or repeated behavior making continued participation unreasonable.</p>
+          <p>League leadership may address serious conduct issues when necessary.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE XX • Unwritten Situations</summary>
+        <div class="constitution-body">
+          <p>No Constitution can anticipate every fantasy football situation. When an issue is not specifically addressed:</p>
+          <ol>
+            <li>The Commissioner shall review the facts.</li>
+            <li>Existing rules shall be considered.</li>
+            <li>Past AFFL Council rulings may be considered.</li>
+            <li>Competitive fairness shall be prioritized.</li>
+            <li>The Commissioner may consult the Co-Commissioner, Council, or league.</li>
+            <li>A final ruling shall be issued.</li>
+            <li>If the situation is likely to happen again, a permanent rule may be created.</li>
+          </ol>
+          <div class="constitution-rule">The purpose of this process is not to reward technical loopholes. The goal is to reach the fairest outcome for the long-term health and integrity of the Arkansas Fantasy Football League.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>ARTICLE XXI • Final Authority</summary>
+        <div class="constitution-body">
+          <p>This Constitution & Bylaws is the primary governing document of the Arkansas Fantasy Football League.</p>
+          <ol class="authority-list">
+            <li><b>AFFL Constitution & Bylaws</b></li>
+            <li><b>Approved amendments</b></li>
+            <li><b>Official AFFL Council rulings</b></li>
+            <li><b>Published seasonal rules</b></li>
+            <li><b>Sleeper league settings</b></li>
+            <li><b>Commissioner administrative decisions</b></li>
+          </ol>
+          <p>When two rules conflict, the higher authority controls unless a later rule specifically changes it.</p>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="card span12">
+      <div class="eyebrow" style="text-align:center">AFFL OWNER'S PLEDGE</div>
+      <div class="pledge">
+        Compete until the end.<br>
+        Manage my own team.<br>
+        Pay my league dues.<br>
+        Respect the rules.<br>
+        Make trades in good faith.<br>
+        Accept wins, losses, bad beats, terrible draft picks, and league rulings as part of fantasy football.<br>
+        Protect the integrity, competitiveness, and history of the Arkansas Fantasy Football League.
+      </div>
+      <h3 style="text-align:center;margin-bottom:0">🏛️ ARKANSAS FANTASY FOOTBALL LEAGUE 🏆</h3>
+    </div>
+  </div>
+</section>
+<footer>Arkansas Fantasy Football League HQ V14 • Sleeper-powered statistics • League ID 1315130200236781568</footer>
+</main>
+<div id="profileModal" class="profile-modal hidden" onclick="if(event.target===this)closeProfile()">
+  <div class="profile-sheet" id="profileSheet"></div>
+</div>
+<script>
+const LEAGUE_ID="1315130200236781568",LEAGUE_DISPLAY_NAME="Arkansas Fantasy Football League",API="https://api.sleeper.app/v1",MAX_WEEKS=18,TIMEOUT_MS=12000;
+let currentLeague=null,currentUsers=[],currentRosters=[],seasons=[],games=[],champions=[],ownerStats={},ownerNames={},ownerMeta={},seasonData=[],rivalryMap=new Map(),seasonExtrasCache={},playerDirectory=null,currentArchiveId=null,currentWeekNumber=null,nflState={},annualAwardArchive={},currentFranchiseId=null,councilData=null,draftHQData=null;
+const NAME_ALIASES={"dylanris":"Dylan","tacky2012":"Tackett"};
+const $=id=>document.getElementById(id),fmt=n=>{const x=Number(n)||0;return x.toFixed(2).replace(/\.00$/,"").replace(/(\.\d)0$/,"$1")},pct=(w,l,t=0)=>{const g=w+l+t;return g?(((w+t*.5)/g)*100).toFixed(1)+"%":"—"},esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+function setProgress(p,t){$("progress").style.width=Math.max(4,Math.min(100,p))+"%";if(t)$("loadText").textContent=t}
+async function fetchJSON(url,optional=false){const c=new AbortController(),timer=setTimeout(()=>c.abort(),TIMEOUT_MS);try{const r=await fetch(url,{signal:c.signal,cache:"no-store"});if(!r.ok){if(optional)return null;throw new Error("Sleeper returned "+r.status)}return await r.json()}catch(e){if(optional)return null;throw e}finally{clearTimeout(timer)}}
+const userMap=u=>Object.fromEntries((u||[]).map(x=>[x.user_id,x])),rosterOwnerMap=r=>Object.fromEntries((r||[]).map(x=>[x.roster_id,x.owner_id]));
+function managerLabel(u){if(!u)return"Unknown Owner";const keys=[u.username,u.display_name].filter(Boolean).map(x=>String(x).toLowerCase());for(const k of keys)if(NAME_ALIASES[k])return NAME_ALIASES[k];return u.display_name||u.username||"Unknown Owner"}
+function rosterName(r,users){const u=userMap(users)[r?.owner_id];return r?.metadata?.team_name||u?.metadata?.team_name||managerLabel(u)||("Roster "+(r?.roster_id??"?"))}
+function ownerName(id){return ownerNames[id]||"Unknown Owner"}
+function rememberNames(users){(users||[]).forEach(u=>{if(u?.user_id){ownerNames[u.user_id]=managerLabel(u)||ownerNames[u.user_id]||"Unknown";ownerMeta[u.user_id]={...(ownerMeta[u.user_id]||{}),username:u.username,display_name:u.display_name,avatar:u.avatar}}})}
+async function buildLeagueChain(){let id=LEAGUE_ID,seen=new Set(),chain=[];for(let d=0;d<20&&id&&id!=="0"&&!seen.has(id);d++){seen.add(id);const lg=await fetchJSON(`${API}/league/${id}`);chain.push(lg);id=lg.previous_league_id;setProgress(8+d*2,`Found ${chain.length} Sleeper season${chain.length===1?"":"s"}…`)}return chain}
+function benchPoints(m){if(!m?.players_points||!Array.isArray(m.players))return null;const st=new Set(m.starters||[]);return m.players.filter(p=>!st.has(p)).reduce((s,p)=>s+(Number(m.players_points[p])||0),0)}
+async function fetchSeason(lg,index,total){
+  const id=lg.league_id,base=18+(index/Math.max(1,total))*52;
+  setProgress(base,`Reading ${lg.season} owners and rosters…`);
+  const [users,rosters,bracket,losersBracket]=await Promise.all([
+    fetchJSON(`${API}/league/${id}/users`,true),
+    fetchJSON(`${API}/league/${id}/rosters`,true),
+    fetchJSON(`${API}/league/${id}/winners_bracket`,true),
+    fetchJSON(`${API}/league/${id}/losers_bracket`,true)
+  ]);
+  rememberNames(users||[]);
+  const rOwner=rosterOwnerMap(rosters||[]),calls=[];
+  for(let w=1;w<=MAX_WEEKS;w++)calls.push(fetchJSON(`${API}/league/${id}/matchups/${w}`,true));
+  const weekly=await Promise.all(calls),playoffStart=Number(lg.settings?.playoff_week_start||99),seasonGames=[];
+  weekly.forEach((rows,wi)=>{
+    const week=wi+1;if(!Array.isArray(rows)||!rows.length)return;
+    const grouped={};rows.forEach(m=>{if(m?.matchup_id==null)return;(grouped[m.matchup_id]??=[]).push(m)});
+    Object.values(grouped).forEach(pair=>{
+      if(pair.length!==2)return;
+      const a=pair[0],b=pair[1],pa=Number(a.custom_points??a.points??0),pb=Number(b.custom_points??b.points??0);
+      const hasScore=pa!==0||pb!==0||a.custom_points!=null||b.custom_points!=null;if(!hasScore)return;
+      const ownerA=rOwner[a.roster_id],ownerB=rOwner[b.roster_id];if(!ownerA||!ownerB)return;
+      seasonGames.push({
+        leagueId:id,season:String(lg.season),week,playoff:week>=playoffStart,
+        ownerA,ownerB,rosterA:a.roster_id,rosterB:b.roster_id,pointsA:pa,pointsB:pb,
+        benchA:benchPoints(a),benchB:benchPoints(b),
+        startersA:[...(a.starters||[])],startersB:[...(b.starters||[])],
+        playersA:[...(a.players||[])],playersB:[...(b.players||[])],
+        playerPointsA:{...(a.players_points||{})},playerPointsB:{...(b.players_points||{})}
+      })
+    })
+  });
+  let champ=null;
+  if(Array.isArray(bracket)){
+    const title=bracket.find(m=>Number(m.p)===1&&m.w);
+    if(title){
+      const winner=rOwner[title.w]||null,runnerUp=rOwner[title.l]||null;
+      const titleWeek=playoffStart+Math.max(0,Number(title.r||1)-1);
+      const cg=seasonGames.find(g=>g.week===titleWeek&&((g.ownerA===winner&&g.ownerB===runnerUp)||(g.ownerA===runnerUp&&g.ownerB===winner)));
+      let winnerScore=null,runnerScore=null;
+      if(cg){winnerScore=cg.ownerA===winner?cg.pointsA:cg.pointsB;runnerScore=cg.ownerA===runnerUp?cg.pointsA:cg.pointsB}
+      champ={season:String(lg.season),winner,runnerUp,leagueId:id,winnerScore,runnerScore,titleWeek}
+    }
+  }
+  const playoffOwners=new Set();
+  if(Array.isArray(bracket))bracket.forEach(m=>["t1","t2","w","l"].forEach(k=>{if(Number.isInteger(m[k])&&rOwner[m[k]])playoffOwners.add(rOwner[m[k]])}));
+  setProgress(base+Math.max(2,52/Math.max(1,total)-2),`Archived ${lg.season}`);
+  return{league:lg,users:users||[],rosters:rosters||[],games:seasonGames,champ,playoffOwners,bracket:Array.isArray(bracket)?bracket:[],losersBracket:Array.isArray(losersBracket)?losersBracket:[],rosterOwners:rOwner,playoffStart}
+}
+function ensureOwner(id){if(!ownerStats[id])ownerStats[id]={id,w:0,l:0,t:0,pf:0,pa:0,games:0,titles:0,runnerUps:0,playoffs:0,seasons:new Set(),gameLog:[]};return ownerStats[id]}
+function compileArchive(){games=[];champions=[];ownerStats={};rivalryMap=new Map();seasonData.forEach(sd=>{sd.users.forEach(u=>ensureOwner(u.user_id).seasons.add(String(sd.league.season)));sd.playoffOwners.forEach(id=>ensureOwner(id).playoffs++);if(sd.champ){champions.push(sd.champ);if(sd.champ.winner)ensureOwner(sd.champ.winner).titles++;if(sd.champ.runnerUp)ensureOwner(sd.champ.runnerUp).runnerUps++}sd.games.forEach(g=>{games.push(g);const a=ensureOwner(g.ownerA),b=ensureOwner(g.ownerB);a.games++;b.games++;a.pf+=g.pointsA;a.pa+=g.pointsB;b.pf+=g.pointsB;b.pa+=g.pointsA;if(g.pointsA>g.pointsB){a.w++;b.l++}else if(g.pointsB>g.pointsA){b.w++;a.l++}else{a.t++;b.t++}a.gameLog.push({season:g.season,week:g.week,result:g.pointsA>g.pointsB?"W":g.pointsA<g.pointsB?"L":"T"});b.gameLog.push({season:g.season,week:g.week,result:g.pointsB>g.pointsA?"W":g.pointsB<g.pointsA?"L":"T"});const ids=[g.ownerA,g.ownerB].sort(),key=ids.join("|");if(!rivalryMap.has(key))rivalryMap.set(key,{ids,games:0,wins:{},ties:0,points:{},playoffGames:0});const r=rivalryMap.get(key);r.games++;r.points[g.ownerA]=(r.points[g.ownerA]||0)+g.pointsA;r.points[g.ownerB]=(r.points[g.ownerB]||0)+g.pointsB;if(g.pointsA>g.pointsB)r.wins[g.ownerA]=(r.wins[g.ownerA]||0)+1;else if(g.pointsB>g.pointsA)r.wins[g.ownerB]=(r.wins[g.ownerB]||0)+1;else r.ties++;if(g.playoff)r.playoffGames++})});Object.values(ownerStats).forEach(o=>o.gameLog.sort((x,y)=>Number(x.season)-Number(y.season)||x.week-y.week));champions.sort((a,b)=>Number(b.season)-Number(a.season))}
+function currentSorted(){const um=userMap(currentUsers);return[...currentRosters].sort((a,b)=>{const A=a.settings||{},B=b.settings||{};if((B.wins||0)!==(A.wins||0))return(B.wins||0)-(A.wins||0);if((A.losses||0)!==(B.losses||0))return(A.losses||0)-(B.losses||0);return((B.fpts||0)+(B.fpts_decimal||0)/100)-((A.fpts||0)+(A.fpts_decimal||0)/100)}).map(r=>({r,u:um[r.owner_id]}))}
+function currentStandingsHTML(){const rows=currentSorted();if(!rows.length)return`<div class="notice">No current rosters found.</div>`;return`<table><thead><tr><th>#</th><th>Team</th><th>W-L</th><th>PF</th><th>PA</th></tr></thead><tbody>`+rows.map(({r,u},i)=>{const s=r.settings||{},pf=(s.fpts||0)+(s.fpts_decimal||0)/100,pa=(s.fpts_against||0)+(s.fpts_against_decimal||0)/100;return`<tr><td class="rank">${i+1}</td><td><b>${esc(rosterName(r,currentUsers))}</b><div class="owner owner-link" onclick="openProfile('${r.owner_id}')">${esc(ownerName(r.owner_id))}</div></td><td><b>${s.wins||0}-${s.losses||0}${s.ties?"-"+s.ties:""}</b></td><td>${fmt(pf)}</td><td>${fmt(pa)}</td></tr>`}).join("")+`</tbody></table>`}
+function renderCurrent(){$("standingsTable").innerHTML=currentStandingsHTML();$("powerBoard").innerHTML=currentStandingsHTML();$("currentSeasonBadge").textContent=(currentLeague?.season||"Current")+" Season";$("teamGrid").innerHTML=currentSorted().map(({r,u})=>{const s=r.settings||{},pf=(s.fpts||0)+(s.fpts_decimal||0)/100;return`<div class="card span4 team-card clickable" onclick="openProfile('${r.owner_id}')"><div class="label">Roster ${r.roster_id}</div><h3>${esc(rosterName(r,currentUsers))}</h3><div class="owner">${esc(ownerName(r.owner_id))}</div><div class="record">${s.wins||0}-${s.losses||0}</div><div class="mini">${fmt(pf)} points for • Tap for career profile</div></div>`}).join("")}
+function allTimeSorted(){return Object.values(ownerStats).filter(o=>o.games>0).sort((a,b)=>b.w-a.w||((b.w+b.t*.5)/b.games)-((a.w+a.t*.5)/a.games)||b.pf-a.pf)}
+function renderAllTime(){const rows=allTimeSorted();if(!rows.length){$("allTimeTable").innerHTML=`<div class="notice">No completed Sleeper matchups were found in the linked seasons yet.</div>`;return}$("allTimeTable").innerHTML=`<table><thead><tr><th>#</th><th>Owner</th><th>Record</th><th>Win%</th><th>PF</th><th>Titles</th><th>PO</th></tr></thead><tbody>`+rows.map((o,i)=>`<tr><td class="rank">${i+1}</td><td class="clickable" onclick="openProfile('${o.id}')"><b class="owner-link">${esc(ownerName(o.id))}</b><div class="owner">${o.seasons.size} season${o.seasons.size===1?"":"s"} • view profile</div></td><td>${o.w}-${o.l}${o.t?"-"+o.t:""}</td><td>${pct(o.w,o.l,o.t)}</td><td>${fmt(o.pf)}</td><td>${o.titles?"🏆 "+o.titles:"—"}</td><td>${o.playoffs||"—"}</td></tr>`).join("")+`</tbody></table>`;const wins=[...rows].sort((a,b)=>b.w-a.w)[0],pf=[...rows].sort((a,b)=>b.pf-a.pf)[0],titles=[...rows].sort((a,b)=>b.titles-a.titles||b.w-a.w)[0];$("leaderWins").textContent=wins?.w??"—";$("leaderWinsName").textContent=wins?ownerName(wins.id):"";$("leaderPF").textContent=pf?fmt(pf.pf):"—";$("leaderPFName").textContent=pf?ownerName(pf.id):"";$("leaderTitles").textContent=titles?.titles??"—";$("leaderTitlesName").textContent=titles?ownerName(titles.id):""}
+function latestCompletedWeekGames(){if(!games.length)return[];const s=[...games].sort((a,b)=>Number(b.season)-Number(a.season)||b.week-a.week),season=s[0].season,week=s[0].week;return s.filter(g=>g.season===season&&g.week===week)}
+function renderAwards(){const gs=latestCompletedWeekGames();if(!gs.length){$("awards").innerHTML=`<div class="notice">Weekly awards wake up after the first completed matchup hits the archive.</div>`;return}const season=gs[0].season,week=gs[0].week,teams=[];gs.forEach(g=>{teams.push({owner:g.ownerA,points:g.pointsA,opp:g.pointsB,bench:g.benchA});teams.push({owner:g.ownerB,points:g.pointsB,opp:g.pointsA,bench:g.benchB})});const high=[...teams].sort((a,b)=>b.points-a.points)[0],low=[...teams].sort((a,b)=>a.points-b.points)[0],big=[...gs].sort((a,b)=>Math.abs(b.pointsA-b.pointsB)-Math.abs(a.pointsA-a.pointsB))[0],close=[...gs].sort((a,b)=>Math.abs(a.pointsA-a.pointsB)-Math.abs(b.pointsA-b.pointsB))[0],losers=teams.filter(x=>x.points<x.opp).sort((a,b)=>b.points-a.points),heart=losers[0],bench=[...teams].filter(x=>x.bench!=null).sort((a,b)=>b.bench-a.bench)[0],winner=big.pointsA>=big.pointsB?big.ownerA:big.ownerB,loser=big.pointsA>=big.pointsB?big.ownerB:big.ownerA,cards=[["🔥","Top Dog",ownerName(high.owner),fmt(high.points)+" pts"],["💀","Ass Whooping",ownerName(winner),fmt(Math.abs(big.pointsA-big.pointsB))+" over "+ownerName(loser)],["😬","Photo Finish",ownerName(close.ownerA)+" vs "+ownerName(close.ownerB),fmt(Math.abs(close.pointsA-close.pointsB))+" pts"],["🧊","Ice Cold",ownerName(low.owner),fmt(low.points)+" pts"]];if(heart)cards.push(["🪦","Heartbreaker",ownerName(heart.owner),fmt(heart.points)+" in a loss"]);if(bench)cards.push(["🪑","Bench Volcano",ownerName(bench.owner),fmt(bench.bench)+" bench pts"]);$("awards").innerHTML=`<div class="mini" style="margin-bottom:9px">${season} • Week ${week}</div><div class="award-grid">`+cards.map(c=>`<div class="award"><div class="emoji">${c[0]}</div><div class="name">${esc(c[1])}</div><div class="value">${esc(c[2])}</div><div class="mini">${esc(c[3])}</div></div>`).join("")+`</div>`}
+function renderChampions(){
+  if(!champions.length){$("championList").innerHTML=`<div class="notice">No completed Sleeper championship bracket was found in the linked league chain yet.</div>`;return}
+  $("championList").innerHTML=champions.map(c=>{
+    const score=(c.winnerScore!=null&&c.runnerScore!=null)?`<div class="champ-score">${fmt(c.winnerScore)} - ${fmt(c.runnerScore)}</div>`:"";
+    return`<div class="timeline-item champ"><div><div class="label">${esc(c.season)} Champion</div><b class="owner-link" onclick="openProfile('${c.winner}')">${esc(ownerName(c.winner))}</b>${score}<div class="mini">${c.runnerUp?`Runner-up: <span class="owner-link" onclick="openProfile('${c.runnerUp}')">${esc(ownerName(c.runnerUp))}</span>`:""}${c.titleWeek?` • Week ${c.titleWeek}`:""}</div></div><div class="trophy">🏆</div></div>`
+  }).join("")
+}
+function displayLeagueName(l){return LEAGUE_DISPLAY_NAME}
+function renderTimeline(){$("historyList").innerHTML=seasons.map((l,i)=>`<div class="season-card" onclick="openSeasonArchive('${l.league_id}')"><div class="season-row"><div><div class="label">${esc(l.season)} Season</div><h3>${esc(displayLeagueName(l))}</h3><div class="mini">${i===0?"Current league":"Linked previous season"} • ${esc(l.status||"")} • Tap for full season</div></div><div class="arrow">›</div></div></div>`).join("")}
+function computeStreak(type){let best={n:0,id:null};Object.values(ownerStats).forEach(o=>{let cur=0,max=0;o.gameLog.forEach(g=>{if(g.result===type){cur++;max=Math.max(max,cur)}else cur=0});if(max>best.n)best={n:max,id:o.id}});return best}
+function renderRecords(){if(!games.length){$("archiveNote").textContent="No completed matchup scores were found yet.";return}const tg=[];games.forEach(g=>{tg.push({owner:g.ownerA,points:g.pointsA,season:g.season,week:g.week});tg.push({owner:g.ownerB,points:g.pointsB,season:g.season,week:g.week})});const nz=tg.filter(x=>x.points>0),high=[...nz].sort((a,b)=>b.points-a.points)[0],low=[...nz].sort((a,b)=>a.points-b.points)[0],blow=[...games].sort((a,b)=>Math.abs(b.pointsA-b.pointsB)-Math.abs(a.pointsA-a.pointsB))[0],close=[...games].sort((a,b)=>Math.abs(a.pointsA-a.pointsB)-Math.abs(b.pointsA-b.pointsB))[0],ws=computeStreak("W"),ls=computeStreak("L");$("recHigh").textContent=high?fmt(high.points):"—";$("recHighName").textContent=high?`${ownerName(high.owner)} • ${high.season} Wk ${high.week}`:"";$("recLow").textContent=low?fmt(low.points):"—";$("recLowName").textContent=low?`${ownerName(low.owner)} • ${low.season} Wk ${low.week}`:"";$("recBlowout").textContent=fmt(Math.abs(blow.pointsA-blow.pointsB));$("recBlowoutName").textContent=`${ownerName(blow.ownerA)} vs ${ownerName(blow.ownerB)} • ${blow.season} Wk ${blow.week}`;$("recClose").textContent=fmt(Math.abs(close.pointsA-close.pointsB));$("recCloseName").textContent=`${ownerName(close.ownerA)} vs ${ownerName(close.ownerB)} • ${close.season} Wk ${close.week}`;$("recWinStreak").textContent=ws.n||"—";$("recWinStreakName").textContent=ws.id?ownerName(ws.id):"";$("recLoseStreak").textContent=ls.n||"—";$("recLoseStreakName").textContent=ls.id?ownerName(ls.id):"";$("archiveNote").innerHTML=`The automatic archive currently covers <b>${games.length}</b> completed head-to-head games across <b>${seasons.length}</b> linked Sleeper season${seasons.length===1?"":"s"}.`}
+const OFFICIAL_RIVALRIES=[
+  {name:"The Riley Rivalry",icon:"🧬",a:"Dylan",b:"Greg",aAliases:["Dylan"],bAliases:["Greg"],lore:"The Riley name is on the line. Family bragging rights last until the next Rivalry Week."},
+  {name:"Battle of Amazon",icon:"📦",a:"Guido",b:"Jerry",aAliases:["Guido"],bAliases:["Jerry"],lore:"Two former Amazon heavyweights collide for warehouse supremacy."},
+  {name:"Battle of the Rookies",icon:"🆕",a:"Christopher",b:"Drew",aAliases:["Christopher","Chris"],bAliases:["Drew"],lore:"The league's new blood gets an annual measuring stick against each other."},
+  {name:"Central Arkansas Bowl",icon:"🗺️",a:"Cody",b:"Asian",aAliases:["Cody"],bAliases:["Asian"],lore:"One county. Two owners. One season of local bragging rights."},
+  {name:"Family Feud",icon:"👊",a:"BJ",b:"Tackett",aAliases:["BJ"],bAliases:["Tackett"],lore:"Family ties are suspended until the final whistle."},
+  {name:"The High Roller Rivalry",icon:"🎰",a:"JP",b:"Mikey",aAliases:["JP"],bAliases:["Mikey","Mickey"],lore:"Big-bank energy meets fantasy football. Somebody has to leave the table lighter."}
+];
+function ownerIdByAliases(aliases){const wanted=(aliases||[]).map(x=>String(x).trim().toLowerCase());for(const[id,name]of Object.entries(ownerNames)){if(wanted.includes(String(name||"").trim().toLowerCase()))return id}return null}
+function officialRivalrySnapshot(riv){const a=ownerIdByAliases(riv.aAliases),b=ownerIdByAliases(riv.bAliases);if(!a||!b)return{a,b,series:"—",meetings:0,holder:"Unclaimed"};const r=rivalryMap.get([a,b].sort().join("|")),rg=rivalryGamesFor(a,b);if(!r||!rg.length)return{a,b,series:"0-0",meetings:0,holder:"Unclaimed"};const aw=r.wins[a]||0,bw=r.wins[b]||0,latest=rg[0],winner=latest.pointsA>latest.pointsB?latest.ownerA:latest.pointsB>latest.pointsA?latest.ownerB:null;return{a,b,series:`${aw}-${bw}${r.ties?"-"+r.ties:""}`,meetings:r.games,holder:winner?ownerName(winner):"Split Decision"}}
+function renderOfficialRivalryWeek(){const el=$("officialRivalryWeek");if(!el)return;el.innerHTML=OFFICIAL_RIVALRIES.map(riv=>{const x=officialRivalrySnapshot(riv);return`<div class="official-rivalry"><div class="eyebrow">${riv.icon} OFFICIAL AFFL RIVALRY</div><div class="official-rivalry-name">${esc(riv.name)}</div><div class="official-rivalry-matchup"><span>${esc(riv.a)}</span><span class="official-rivalry-vs">VS</span><span>${esc(riv.b)}</span></div><div class="official-rivalry-meta"><div class="official-rivalry-stat"><b>${esc(x.series)}</b><span>Series</span></div><div class="official-rivalry-stat"><b>${x.meetings}</b><span>Meetings</span></div><div class="official-rivalry-stat"><b>${esc(x.holder)}</b><span>Holder</span></div></div><div class="official-rivalry-lore">${esc(riv.lore)}</div></div>`}).join("")}
+function rivalryRows(){return[...rivalryMap.values()].sort((a,b)=>b.games-a.games)}
+function renderRivalrySelectors(){const owners=allTimeSorted(),opts=owners.map(o=>`<option value="${esc(o.id)}">${esc(ownerName(o.id))}</option>`).join("");$("rivalA").innerHTML=opts;$("rivalB").innerHTML=opts;if(owners.length>1)$("rivalB").selectedIndex=1;$("rivalA").onchange=renderRivalryDetail;$("rivalB").onchange=renderRivalryDetail;renderRivalryDetail()}
+function rivalryGamesFor(a,b){return games.filter(g=>(g.ownerA===a&&g.ownerB===b)||(g.ownerA===b&&g.ownerB===a)).sort((x,y)=>Number(y.season)-Number(x.season)||y.week-x.week)}
+function renderRivalryDetail(){
+  const a=$("rivalA").value,b=$("rivalB").value;
+  if(!a||!b||a===b){$("rivalryDetail").innerHTML=`<div class="notice">Pick two different owners to open the rivalry file.</div>`;$("rivalryHistory").innerHTML="";return}
+  const r=rivalryMap.get([a,b].sort().join("|"));
+  if(!r){$("rivalryDetail").innerHTML=`<div class="notice">No completed matchup between these owners yet.</div>`;$("rivalryHistory").innerHTML="";return}
+  const aw=r.wins[a]||0,bw=r.wins[b]||0,ap=r.points[a]||0,bp=r.points[b]||0,rg=rivalryGamesFor(a,b),big=[...rg].sort((x,y)=>Math.abs(y.pointsA-y.pointsB)-Math.abs(x.pointsA-x.pointsB))[0],close=[...rg].sort((x,y)=>Math.abs(x.pointsA-x.pointsB)-Math.abs(y.pointsA-y.pointsB))[0];
+  let streakOwner=null,streakN=0;for(const g of rg){const w=g.pointsA>g.pointsB?g.ownerA:g.pointsB>g.pointsA?g.ownerB:null;if(!w)break;if(!streakOwner){streakOwner=w;streakN=1}else if(w===streakOwner)streakN++;else break}
+  $("rivalryDetail").innerHTML=`<div class="rivalry-hero"><div class="rivalry-side"><div class="label">${esc(ownerName(a))}</div><h2>${aw} wins</h2><div class="mini">${fmt(ap)} total points</div></div><div><div class="series-badge">${aw}-${bw}${r.ties?("-"+r.ties):""}</div><div class="mini">${r.games} meetings • ${r.playoffGames} playoff</div></div><div class="rivalry-side"><div class="label">${esc(ownerName(b))}</div><h2>${bw} wins</h2><div class="mini">${fmt(bp)} total points</div></div></div><div class="grid" style="margin-top:12px"><div class="card span4"><div class="label">Biggest Blowout</div><div class="metric">${big?fmt(Math.abs(big.pointsA-big.pointsB)):"—"}</div><div class="mini">${big?`${big.season} Wk ${big.week}`:""}</div></div><div class="card span4"><div class="label">Closest Finish</div><div class="metric">${close?fmt(Math.abs(close.pointsA-close.pointsB)):"—"}</div><div class="mini">${close?`${close.season} Wk ${close.week}`:""}</div></div><div class="card span4"><div class="label">Current Series Streak</div><div class="metric">${streakOwner?streakN:"—"}</div><div class="mini">${streakOwner?`${esc(ownerName(streakOwner))} wins in a row`:""}</div></div></div>`;
+  $("rivalryHistory").innerHTML=rg.map(g=>{const aPts=g.ownerA===a?g.pointsA:g.pointsB,bPts=g.ownerA===b?g.pointsA:g.pointsB,aWon=aPts>bPts,bWon=bPts>aPts;return`<div class="rivalry-game"><div class="top"><div><div class="label">${esc(g.season)} • Week ${g.week}${g.playoff?" • Playoffs":""}</div><b>${esc(ownerName(a))} vs ${esc(ownerName(b))}</b></div><div class="result">${fmt(aPts)} - ${fmt(bPts)}</div></div><div class="mini">${aWon?esc(ownerName(a))+" won":bWon?esc(ownerName(b))+" won":"Tie"} by ${fmt(Math.abs(aPts-bPts))}</div></div>`}).join("")
+}
+function renderRivalryTable(){const rows=rivalryRows().slice(0,15);if(!rows.length){$("rivalryTable").innerHTML=`<div class="notice">No rivalry data yet.</div>`;return}$("rivalryTable").innerHTML=`<table><thead><tr><th>Rivalry</th><th>Games</th><th>Series</th><th>Playoffs</th></tr></thead><tbody>`+rows.map(r=>{const[a,b]=r.ids,aw=r.wins[a]||0,bw=r.wins[b]||0;return`<tr><td><b>${esc(ownerName(a))}</b> vs <b>${esc(ownerName(b))}</b></td><td>${r.games}</td><td>${aw}-${bw}${r.ties?"-"+r.ties:""}</td><td>${r.playoffGames||"—"}</td></tr>`}).join("")+`</tbody></table>`}
+
+
+
+
+function seasonRegularGames(sd){return sd.games.filter(g=>!g.playoff)}
+function regularSeasonRankings(sd){
+  const ids=[...new Set(sd.rosters.map(r=>r.owner_id).filter(Boolean))];
+  return ids.map(id=>({id,...seasonOwnerRecordFromGamesV6(sd,id,true)})).sort((a,b)=>{const ap=(a.w+a.t*.5)/Math.max(1,a.games),bp=(b.w+b.t*.5)/Math.max(1,b.games);if(bp!==ap)return bp-ap;if(b.pf!==a.pf)return b.pf-a.pf;return a.pa-b.pa})
+}
+function seasonOwnerRecordFromGamesV6(sd,id,regularOnly=true){let w=0,l=0,t=0,pf=0,pa=0;const base=(regularOnly?seasonRegularGames(sd):sd.games).filter(g=>g.ownerA===id||g.ownerB===id);base.forEach(g=>{const mine=g.ownerA===id?g.pointsA:g.pointsB,opp=g.ownerA===id?g.pointsB:g.pointsA;pf+=mine;pa+=opp;if(mine>opp)w++;else if(mine<opp)l++;else t++});return{w,l,t,pf,pa,games:base.length}}
+function consolationWinner(sd){
+  const b=sd.losersBracket||[];if(!b.length)return null;
+  const final=[...b].filter(m=>m.w).sort((a,b)=>Number(b.r||0)-Number(a.r||0))[0];
+  return final?sd.rosterOwners[final.w]||null:null
+}
+function coreAnnualAwards(sd){
+  const regular=seasonRegularGames(sd),aw=[];if(!regular.length&&!sd.champ?.winner)return aw;
+  const rank=regularSeasonRankings(sd),teamRows=[];regular.forEach(g=>{teamRows.push({owner:g.ownerA,points:g.pointsA,opp:g.pointsB,week:g.week});teamRows.push({owner:g.ownerB,points:g.pointsB,opp:g.pointsA,week:g.week})});
+  if(sd.champ?.winner)aw.push({icon:'🏆',title:'League Champion',owner:sd.champ.winner,detail:sd.champ.winnerScore!=null?`${fmt(sd.champ.winnerScore)}-${fmt(sd.champ.runnerScore)} championship win`:`${sd.league.season} Champion`});
+  if(sd.champ?.runnerUp)aw.push({icon:'🥈',title:'Runner-Up',owner:sd.champ.runnerUp,detail:'Reached the championship game'});
+  if(rank[0])aw.push({icon:'👑',title:'Regular Season King',owner:rank[0].id,detail:`${rank[0].w}-${rank[0].l}${rank[0].t?'-'+rank[0].t:''} • ${fmt(rank[0].pf)} PF`});
+  if(rank.length){const pf=[...rank].sort((a,b)=>b.pf-a.pf)[0],pa=[...rank].sort((a,b)=>b.pa-a.pa)[0];aw.push({icon:'🎯',title:'Points King',owner:pf.id,detail:`${fmt(pf.pf)} regular-season points`});aw.push({icon:'🌧️',title:'Most Unlucky',owner:pa.id,detail:`Faced ${fmt(pa.pa)} regular-season points`})}
+  if(teamRows.length){const high=[...teamRows].sort((a,b)=>b.points-a.points)[0];aw.push({icon:'🚀',title:'Single-Game High Score',owner:high.owner,detail:`${fmt(high.points)} points • Week ${high.week}`})}
+  if(regular.length){const blow=[...regular].sort((a,b)=>Math.abs(b.pointsA-b.pointsB)-Math.abs(a.pointsA-a.pointsB))[0],close=[...regular].sort((a,b)=>Math.abs(a.pointsA-a.pointsB)-Math.abs(b.pointsA-b.pointsB))[0],bw=blow.pointsA>=blow.pointsB?blow.ownerA:blow.ownerB,bl=blow.pointsA>=blow.pointsB?blow.ownerB:blow.ownerA,cw=close.pointsA>=close.pointsB?close.ownerA:close.ownerB;aw.push({icon:'💀',title:'Public Execution',owner:bw,detail:`Beat ${ownerName(bl)} by ${fmt(Math.abs(blow.pointsA-blow.pointsB))}`});aw.push({icon:'😬',title:'Photo Finish',owner:cw,detail:`Won by ${fmt(Math.abs(close.pointsA-close.pointsB))} • Week ${close.week}`})}
+  if(rank[0]&&sd.champ?.winner&&rank[0].id!==sd.champ.winner)aw.push({icon:'🫠',title:'Biggest Choke',owner:rank[0].id,detail:'Finished #1 in the regular season but did not win the title'});
+  const con=consolationWinner(sd);if(con)aw.push({icon:'🪠',title:'Consolation Bracket Winner',owner:con,detail:'Survived the consolation bracket'});
+  return aw
+}
+async function gmAnnualAwards(sd){
+  try{const extras=await loadSeasonExtras(sd),tx=extras.transactions.filter(t=>t.status==='complete'),count=(type)=>{const c={};tx.filter(t=>t.type===type).forEach(t=>(t.roster_ids||[]).forEach(rid=>{const oid=seasonRosterOwner(sd,rid);if(oid)c[oid]=(c[oid]||0)+1}));return c},top=o=>Object.entries(o).sort((a,b)=>b[1]-a[1])[0],aw=[];const tr=top(count('trade')),wa=top(count('waiver')),fa=top(count('free_agent'));if(tr)aw.push({icon:'🤝',title:'Trade Machine',owner:tr[0],detail:`Involved in ${tr[1]} completed trade${Number(tr[1])===1?'':'s'}`});if(wa)aw.push({icon:'🧙',title:'Waiver Wire Wizard',owner:wa[0],detail:`${wa[1]} waiver claim${Number(wa[1])===1?'':'s'}`});if(fa)aw.push({icon:'🛒',title:'Free-Agent Frenzy',owner:fa[0],detail:`${fa[1]} free-agent move${Number(fa[1])===1?'':'s'}`});const spend={};tx.filter(t=>t.type==='waiver'&&t.settings?.waiver_bid!=null).forEach(t=>(t.roster_ids||[]).forEach(rid=>{const oid=seasonRosterOwner(sd,rid);if(oid)spend[oid]=(spend[oid]||0)+Number(t.settings.waiver_bid||0)}));const sp=top(spend);if(sp&&Number(sp[1])>0)aw.push({icon:'💸',title:'FAAB Big Spender',owner:sp[0],detail:`$${sp[1]} total FAAB bids`});return aw}catch(e){return[]}
+}
+function annualAwardsForOwner(id){const out=[];Object.entries(annualAwardArchive).forEach(([season,arr])=>(arr||[]).forEach(a=>{if(a.owner===id)out.push({...a,season})}));return out}
+function setupAnnualAwards(){const rows=[...seasonData].sort((a,b)=>Number(b.league.season)-Number(a.league.season));$('annualAwardSeason').innerHTML=rows.map(sd=>`<option value="${esc(sd.league.league_id)}">${esc(sd.league.season)} Awards</option>`).join('');$('annualAwardSeason').onchange=()=>renderAnnualAwards($('annualAwardSeason').value);const preferred=rows.find(sd=>sd.league.status==='complete')||rows[0];if(preferred){$('annualAwardSeason').value=preferred.league.league_id;renderAnnualAwards(preferred.league.league_id)}}
+function renderAnnualAwardCards(sd,arr,loading=false){$('annualAwardContent').innerHTML=`<div class="award-season"><div class="award-season-head"><div><div class="eyebrow">${esc(sd.league.season)} SEASON</div><h3 style="margin:3px 0">${esc(displayLeagueName(sd.league))}</h3></div>${loading?'<div class="archive-loading"><span class="tinyspin"></span> Loading GM awards…</div>':`<span class="badge">${arr.length} awards</span>`}</div>${arr.length?`<div class="award-list">${arr.map(a=>`<div class="award-row clickable" onclick="openProfile('${a.owner}')"><div class="award-title">${a.icon} ${esc(a.title)}</div><div class="award-winner">${esc(ownerName(a.owner))}</div><div class="award-detail">${esc(a.detail||'')}</div></div>`).join('')}</div>`:'<div class="notice">Awards will populate after completed games are archived.</div>'}</div>`}
+async function renderAnnualAwards(id){const sd=seasonDataById(id);if(!sd)return;const season=String(sd.league.season),core=coreAnnualAwards(sd);annualAwardArchive[season]=core;renderAnnualAwardCards(sd,core,true);const gm=await gmAnnualAwards(sd);if($('annualAwardSeason').value!==String(id))return;annualAwardArchive[season]=[...core,...gm];renderAnnualAwardCards(sd,annualAwardArchive[season],false);renderHallOfFame()}
+function playoffCareerV6(id){let w=0,l=0,t=0;games.filter(g=>g.playoff&&(g.ownerA===id||g.ownerB===id)).forEach(g=>{const mine=g.ownerA===id?g.pointsA:g.pointsB,opp=g.ownerA===id?g.pointsB:g.pointsA;if(mine>opp)w++;else if(mine<opp)l++;else t++});return{w,l,t}}
+function hofResume(id){const o=ownerStats[id]||ensureOwner(id),po=playoffCareerV6(id),all=Object.values(ownerStats).filter(x=>x.games>0),maxPF=Math.max(1,...all.map(x=>x.pf)),scoring=Math.min(20,(o.pf/maxPF)*20),seasons=o.seasons?.size||0,score=(o.titles||0)*30+po.w*5+(o.w||0)+scoring+seasons*2;return{id,score,titles:o.titles||0,wins:o.w||0,playoffWins:po.w,pf:o.pf||0,seasons}}
+function careerBadges(id){const o=ownerStats[id]||ensureOwner(id),po=playoffCareerV6(id),badges=[],aw=annualAwardsForOwner(id);if(o.titles>=2)badges.push('👑 Dynasty Club');else if(o.titles===1)badges.push('🏆 Champion');if(o.w>=20)badges.push('🔥 20-Win Club');if(po.w>=3)badges.push('⚔️ Playoff Proven');if(aw.some(x=>x.title==='Points King'))badges.push('🎯 Points King');if(aw.some(x=>x.title==='Waiver Wire Wizard'))badges.push('🧙 Waiver Wizard');if(aw.some(x=>x.title==='Trade Machine'))badges.push('🤝 Trade Machine');if(aw.some(x=>x.title==='Public Execution'))badges.push('💀 Executioner');return badges}
+function ballotKey(){return`aff-hof-ballot-${currentLeague?.season||'current'}`}
+function getBallot(){try{return JSON.parse(localStorage.getItem(ballotKey())||'[]')}catch(e){return[]}}
+function saveBallot(v){try{localStorage.setItem(ballotKey(),JSON.stringify(v))}catch(e){}}
+function renderHallOfFame(){const resumes=Object.values(ownerStats).filter(o=>o.games>0).map(o=>hofResume(o.id)).sort((a,b)=>b.score-a.score),max=Math.max(1,...resumes.map(r=>r.score));$('hofGrid').innerHTML=resumes.slice(0,12).map((r,i)=>`<div class="hof-card clickable" onclick="openProfile('${r.id}')"><div class="hof-rank">#${i+1}</div><div class="hof-name">${esc(ownerName(r.id))}</div><div class="hof-score">${r.titles} title${r.titles===1?'':'s'} • ${r.wins} wins • ${r.playoffWins} playoff wins</div><div class="badge-wall">${careerBadges(r.id).slice(0,3).map(b=>`<span class="badge-chip">${esc(b)}</span>`).join('')}</div><div class="hof-meter"><span style="width:${Math.max(5,(r.score/max)*100)}%"></span></div><div class="mini" style="margin-top:6px">Résumé score ${fmt(r.score)}</div></div>`).join('');setupHofBallot(resumes)}
+function setupHofBallot(resumes){const saved=new Set(getBallot());$('hofBallot').innerHTML=resumes.slice(0,12).map(r=>`<label class="ballot-card"><input type="checkbox" value="${esc(r.id)}" ${saved.has(r.id)?'checked':''}><div><b>${esc(ownerName(r.id))}</b><div class="mini">${r.titles} titles • ${r.wins} wins • HOF ${fmt(r.score)}</div></div></label>`).join('');const sync=()=>{const boxes=[...$('hofBallot').querySelectorAll('input[type="checkbox"]')],checked=boxes.filter(x=>x.checked);if(checked.length>3){checked.at(-1).checked=false}const vals=boxes.filter(x=>x.checked).map(x=>x.value);saveBallot(vals);$('hofVoteCount').textContent=vals.length};$('hofBallot').querySelectorAll('input[type="checkbox"]').forEach(x=>x.addEventListener('change',sync));$('hofVoteCount').textContent=[...saved].filter(id=>resumes.some(r=>r.id===id)).length;$('clearBallotBtn').onclick=()=>{saveBallot([]);$('hofBallot').querySelectorAll('input').forEach(x=>x.checked=false);$('hofVoteCount').textContent='0'}}
+function preloadCoreAnnualAwards(){seasonData.forEach(sd=>annualAwardArchive[String(sd.league.season)]=coreAnnualAwards(sd));renderHallOfFame()}
+
+function franchiseCurrentRoster(id){return currentRosters.find(r=>r.owner_id===id)||null}
+function franchiseLatestRoster(id){
+  for(const sd of [...seasonData].sort((a,b)=>Number(b.league.season)-Number(a.league.season))){
+    const r=sd.rosters.find(x=>x.owner_id===id);if(r)return{sd,r}
+  }
+  return null
+}
+function franchiseTeamName(id){
+  const current=franchiseCurrentRoster(id);
+  if(current)return rosterName(current,currentUsers);
+  const latest=franchiseLatestRoster(id);
+  return latest?rosterName(latest.r,latest.sd.users):ownerName(id)
+}
+function franchiseAvatar(id,large=false){
+  const meta=ownerMeta[id]||{},name=ownerName(id),initials=name.split(/\s+/).map(x=>x[0]).join("").slice(0,2).toUpperCase();
+  const cls=large?"franchise-hero-avatar":"franchise-avatar",fb=large?"franchise-hero-fallback":"franchise-avatar-fallback";
+  return meta.avatar?`<img class="${cls}" src="https://sleepercdn.com/avatars/thumbs/${esc(meta.avatar)}" alt="">`:`<div class="${fb}">${esc(initials)}</div>`
+}
+function franchiseOwnerIds(){
+  const current=[...new Set(currentRosters.map(r=>r.owner_id).filter(Boolean))];
+  const historical=Object.keys(ownerStats).filter(id=>ownerStats[id]?.games>0&&!current.includes(id));
+  return{current,historical}
+}
+function franchiseHofRank(id){
+  const rows=Object.values(ownerStats).filter(o=>o.games>0).map(o=>hofResume(o.id)).sort((a,b)=>b.score-a.score);
+  const i=rows.findIndex(r=>r.id===id);return i>=0?i+1:null
+}
+function franchiseSeasonResume(id){
+  return [...seasonData].sort((a,b)=>Number(b.league.season)-Number(a.league.season)).map(sd=>{
+    const r=sd.rosters.find(x=>x.owner_id===id);if(!r)return null;
+    const st=r.settings||{},wins=Number(st.wins||0),losses=Number(st.losses||0),ties=Number(st.ties||0);
+    const regRank=seasonSortedRosters(sd).findIndex(x=>x.owner_id===id)+1;
+    let finish=`#${regRank} Regular Season`;
+    if(sd.champ?.winner===id)finish="🏆 Champion";
+    else if(sd.champ?.runnerUp===id)finish="🥈 Runner-Up";
+    else if(sd.playoffOwners?.has(id))finish=`Playoffs • #${regRank} Regular Season`;
+    let pw=0,pl=0,pt=0;
+    sd.games.filter(g=>g.playoff&&(g.ownerA===id||g.ownerB===id)).forEach(g=>{
+      const mine=g.ownerA===id?g.pointsA:g.pointsB,opp=g.ownerA===id?g.pointsB:g.pointsA;
+      if(mine>opp)pw++;else if(mine<opp)pl++;else pt++;
+    });
+    return{
+      season:String(sd.league.season),wins,losses,ties,
+      record:`${wins}-${losses}${ties?("-"+ties):""}`,
+      playoffRecord:(pw+pl+pt)?`${pw}-${pl}${pt?("-"+pt):""}`:"—",
+      pw,pl,pt,pf:seasonPoints(r),pa:seasonAgainst(r),finish,regRank
+    }
+  }).filter(Boolean)
+}
+function franchiseRivalRows(id){
+  return rivalryRows().filter(r=>r.ids.includes(id)).map(r=>{
+    const other=r.ids.find(x=>x!==id);return{...r,other,meWins:r.wins[id]||0,otherWins:r.wins[other]||0,mePoints:r.points[id]||0,otherPoints:r.points[other]||0}
+  }).sort((a,b)=>b.games-a.games)
+}
+function setupFranchises(){
+  const ids=franchiseOwnerIds();
+  const card=(id,isAlumni=false)=>{
+    const o=ownerStats[id]||ensureOwner(id),rank=franchiseHofRank(id),r=franchiseCurrentRoster(id),st=r?.settings||{},badges=careerBadges(id).slice(0,2);
+    return`<div class="franchise-card" onclick="openFranchise('${id}')">
+      <div class="franchise-card-top">${franchiseAvatar(id)}<div><div class="label">${isAlumni?"AFFL Alumni":"Current Franchise"}</div><h3>${esc(franchiseTeamName(id))}</h3><div class="mini">${esc(ownerName(id))}</div></div></div>
+      <div class="franchise-minirow"><span class="badge">${o.titles||0} 🏆</span><span class="badge">${o.w||0}-${o.l||0} career</span>${rank?`<span class="badge">HOF #${rank}</span>`:""}${r?`<span class="badge">${st.wins||0}-${st.losses||0} current</span>`:""}</div>
+      <div class="badge-wall">${badges.map(b=>`<span class="badge-chip">${esc(b)}</span>`).join("")}</div>
+    </div>`
+  };
+  $("franchiseDirectory").innerHTML=ids.current.map(id=>card(id,false)).join("")||`<div class="notice">No current franchises found.</div>`;
+  if(ids.historical.length){$("franchiseAlumniWrap").classList.remove("hidden");$("franchiseAlumni").innerHTML=ids.historical.map(id=>card(id,true)).join("")}
+  else $("franchiseAlumniWrap").classList.add("hidden")
+}
+function switchToFranchiseTab(){
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.tab==="franchises"));
+  document.querySelectorAll(".tab").forEach(x=>x.classList.add("hidden"));$("franchises").classList.remove("hidden")
+}
+function renderFranchiseAllSeasons(id){
+  const rows=franchiseSeasonResume(id);
+  if(!rows.length){
+    $("franchiseAllSeasons").innerHTML=`<div class="notice">No archived season records were found for this franchise.</div>`;
+    return;
+  }
+  const totals=rows.reduce((a,x)=>({
+    w:a.w+x.wins,l:a.l+x.losses,t:a.t+x.ties,
+    pw:a.pw+x.pw,pl:a.pl+x.pl,pt:a.pt+x.pt,
+    pf:a.pf+x.pf,pa:a.pa+x.pa
+  }),{w:0,l:0,t:0,pw:0,pl:0,pt:0,pf:0,pa:0});
+  const regularTotal=`${totals.w}-${totals.l}${totals.t?("-"+totals.t):""}`;
+  const playoffTotal=(totals.pw+totals.pl+totals.pt)?`${totals.pw}-${totals.pl}${totals.pt?("-"+totals.pt):""}`:"—";
+  $("franchiseAllSeasons").innerHTML=`<div class="allseason-wrap"><table class="allseason-table">
+    <thead><tr><th>Season</th><th>W</th><th>L</th><th>T</th><th>Record</th><th>PF</th><th>PA</th><th>Playoffs</th><th>Finish</th></tr></thead>
+    <tbody>
+      ${rows.map(x=>`<tr>
+        <td>${esc(x.season)}</td>
+        <td><b>${x.wins}</b></td>
+        <td><b>${x.losses}</b></td>
+        <td>${x.ties||"—"}</td>
+        <td class="allseason-record">${esc(x.record)}</td>
+        <td>${fmt(x.pf)}</td>
+        <td>${fmt(x.pa)}</td>
+        <td>${esc(x.playoffRecord)}</td>
+        <td class="allseason-result">${esc(x.finish)}</td>
+      </tr>`).join("")}
+      <tr class="allseason-total">
+        <td>CAREER</td><td>${totals.w}</td><td>${totals.l}</td><td>${totals.t||"—"}</td>
+        <td>${regularTotal}</td><td>${fmt(totals.pf)}</td><td>${fmt(totals.pa)}</td><td>${playoffTotal}</td><td>${rows.length} season${rows.length===1?"":"s"}</td>
+      </tr>
+    </tbody>
+  </table></div>`;
+}
+function renderFranchiseShell(id){
+  const o=ownerStats[id]||ensureOwner(id),rank=franchiseHofRank(id),resume=hofResume(id),views=ownerGames(id).map(g=>ownerGameView(id,g)),po=playoffCareerV6(id);
+  const high=[...views].sort((a,b)=>b.mine-a.mine)[0],low=[...views].filter(x=>x.mine>0).sort((a,b)=>a.mine-b.mine)[0],bigWin=[...views].filter(x=>x.result==="W").sort((a,b)=>b.margin-a.margin)[0],bigLoss=[...views].filter(x=>x.result==="L").sort((a,b)=>a.margin-b.margin)[0];
+  const meta=ownerMeta[id]||{},years=champions.filter(c=>c.winner===id).map(c=>c.season);
+  $("franchiseHero").innerHTML=`<div class="franchise-hero">
+    ${franchiseAvatar(id,true)}
+    <div><div class="eyebrow">AFFL FRANCHISE PROFILE</div><h2 style="margin:4px 0">${esc(franchiseTeamName(id))}</h2><div class="sub">Owner: ${esc(ownerName(id))}${meta.username?` • @${esc(meta.username)}`:""}</div><div class="badge-wall">${careerBadges(id).map(b=>`<span class="career-badge">${esc(b)}</span>`).join("")}</div></div>
+    <div class="franchise-rank"><div class="label">Hall of Fame Rank</div><div class="metric">${rank?("#"+rank):"—"}</div><div class="mini">Résumé ${fmt(resume.score)}</div></div>
+  </div>
+  <div class="franchise-kpis">
+    <div class="profile-kpi"><span class="label">Career Record</span><b>${o.w||0}-${o.l||0}${o.t?("-"+o.t):""}</b><span class="mini">${pct(o.w,o.l,o.t)}</span></div>
+    <div class="profile-kpi"><span class="label">Championships</span><b>${o.titles||0} 🏆</b><span class="mini">${years.join(", ")||"None yet"}</span></div>
+    <div class="profile-kpi"><span class="label">Playoffs</span><b>${po.w}-${po.l}${po.t?("-"+po.t):""}</b><span class="mini">${po.w+po.l+po.t} games</span></div>
+    <div class="profile-kpi"><span class="label">Career PF</span><b>${fmt(o.pf||0)}</b><span class="mini">${o.games?fmt(o.pf/o.games):"—"} / game</span></div>
+    <div class="profile-kpi"><span class="label">Seasons</span><b>${o.seasons?.size||0}</b><span class="mini">Sleeper-era</span></div>
+    <div class="profile-kpi"><span class="label">Awards</span><b>${annualAwardsForOwner(id).length}</b><span class="mini">career hardware</span></div>
+  </div>`;
+  if(years.length)$("franchiseHero").innerHTML+=`<div class="franchise-rafters"><span class="label" style="align-self:center">Championship Rafters</span>${years.map(y=>`<span class="mini-banner">🏆 ${esc(y)} AFFL CHAMPION</span>`).join("")}</div>`;
+  renderFranchiseAllSeasons(id);
+  $("franchiseSeasonHistory").innerHTML=`<div class="season-resume">`+franchiseSeasonResume(id).map(x=>`<div class="season-resume-card"><div class="label">${esc(x.season)}</div><h3 style="margin:4px 0">${esc(x.finish)}</h3><div class="mini">${esc(x.record)} • ${fmt(x.pf)} PF • ${fmt(x.pa)} PA</div></div>`).join("")+`</div>`;
+  const titleItems=champions.filter(c=>c.winner===id||c.runnerUp===id).map(c=>{const won=c.winner===id;return`<div class="trophy-item"><div class="label">${esc(c.season)}</div><h3 style="margin:4px 0">${won?"🏆 Champion":"🥈 Runner-Up"}</h3><div class="mini">${c.winnerScore!=null?`${fmt(c.winnerScore)}-${fmt(c.runnerScore)} • vs ${esc(ownerName(won?c.runnerUp:c.winner))}`:"Championship appearance"}</div></div>`});
+  const awards=annualAwardsForOwner(id).slice(0,8).map(a=>`<div class="trophy-item"><div class="label">${esc(a.season)} • ${a.icon}</div><h3 style="margin:4px 0">${esc(a.title)}</h3><div class="mini">${esc(a.detail||"")}</div></div>`);
+  $("franchiseTrophyCase").innerHTML=`<div class="trophy-case">${[...titleItems,...awards].join("")||'<div class="notice">The trophy case is waiting for hardware.</div>'}</div>`;
+  const rivals=franchiseRivalRows(id);
+  $("franchiseRivalries").innerHTML=`<div class="rival-list">`+rivals.slice(0,8).map(r=>`<div class="rival-card" onclick="openFranchiseRivalry('${id}','${r.other}')"><div class="label">${r.games} meetings${r.playoffGames?` • ${r.playoffGames} playoff`:""}</div><h3 style="margin:4px 0">${esc(ownerName(r.other))}</h3><div class="metric" style="font-size:1.4rem">${r.meWins}-${r.otherWins}${r.ties?("-"+r.ties):""}</div><div class="mini">${fmt(r.mePoints)} - ${fmt(r.otherPoints)} total points</div></div>`).join("")+`</div>`;
+  $("franchiseHighLow").innerHTML=`
+    <div class="statline"><span>🚀 Best score</span><b>${high?fmt(high.mine):"—"}</b></div><div class="mini">${high?`${high.season} Wk ${high.week} vs ${esc(ownerName(high.oppId))}`:""}</div>
+    <div class="statline"><span>🧊 Lowest score</span><b>${low?fmt(low.mine):"—"}</b></div><div class="mini">${low?`${low.season} Wk ${low.week} vs ${esc(ownerName(low.oppId))}`:""}</div>
+    <div class="statline"><span>💥 Biggest win</span><b>${bigWin?("+"+fmt(bigWin.margin)):"—"}</b></div><div class="mini">${bigWin?`${bigWin.season} Wk ${bigWin.week} vs ${esc(ownerName(bigWin.oppId))}`:""}</div>
+    <div class="statline"><span>💀 Worst loss</span><b>${bigLoss?fmt(bigLoss.margin):"—"}</b></div><div class="mini">${bigLoss?`${bigLoss.season} Wk ${bigLoss.week} vs ${esc(ownerName(bigLoss.oppId))}`:""}</div>`;
+}
+function currentRosterHTML(id){
+  const r=franchiseCurrentRoster(id);
+  if(!r)return`<div class="notice">${esc(ownerName(id))} does not currently control a ${esc(currentLeague?.season||"current")} franchise.</div>`;
+  const players=r.players||[],starters=r.starters||[],reserve=new Set(r.reserve||[]),taxi=new Set(r.taxi||[]),starterSet=new Set(starters);
+  const slots=(currentLeague.roster_positions||[]).filter(x=>x!=="BN"&&!String(x).startsWith("RES"));
+  const groups={starters:starters.map((pid,i)=>({pid,slot:slots[i]||"START"})),bench:players.filter(pid=>!starterSet.has(pid)&&!reserve.has(pid)&&!taxi.has(pid)).map(pid=>({pid,slot:"BN"})),reserve:players.filter(pid=>reserve.has(pid)).map(pid=>({pid,slot:"IR"})),taxi:players.filter(pid=>taxi.has(pid)).map(pid=>({pid,slot:"TAXI"}))};
+  const row=x=>{const p=playerDirectory?.[x.pid]||{};return`<div class="roster-player"><span class="roster-pos">${esc(x.slot)}</span><span><b>${esc(playerLabel(x.pid))}</b><div class="roster-team">${esc(p.position||"")} ${p.team?("• "+esc(p.team)):""}</div></span><span class="mini">${p.age?`Age ${esc(p.age)}`:""}</span></div>`};
+  const panel=(title,arr)=>`<div class="roster-panel"><div class="label">${title}</div>${arr.length?arr.map(row).join(""):'<div class="mini" style="margin-top:8px">None</div>'}</div>`;
+  return`<div class="roster-columns">${panel("Starters",groups.starters)}${panel("Bench",groups.bench)}${panel("Reserve / IR",groups.reserve)}${panel("Taxi",groups.taxi)}</div>`
+}
+function ownerDraftRows(id,extrasBySeason){
+  const rows=[];extrasBySeason.forEach(({sd,extras})=>{const roster=sd.rosters.find(r=>r.owner_id===id);if(!roster)return;(extras.draftData||[]).forEach(pack=>(pack.picks||[]).forEach(p=>{if(Number(p.roster_id)===Number(roster.roster_id))rows.push({season:String(sd.league.season),pick:p.pick_no,round:p.round,name:playerLabel(p.player_id,p.metadata),position:p.metadata?.position||"",team:p.metadata?.team||"",keeper:!!p.is_keeper})}))});
+  return rows.sort((a,b)=>Number(b.season)-Number(a.season)||(a.pick||0)-(b.pick||0))
+}
+function ownerTransactions(id,extrasBySeason){
+  const rows=[];extrasBySeason.forEach(({sd,extras})=>{const roster=sd.rosters.find(r=>r.owner_id===id);if(!roster)return;(extras.transactions||[]).filter(t=>t.status==="complete"&&(t.roster_ids||[]).map(Number).includes(Number(roster.roster_id))).forEach(t=>rows.push({...t,_season:String(sd.league.season),_sd:sd}))});
+  return rows.sort((a,b)=>(b.created||0)-(a.created||0))
+}
+async function loadFranchiseExtras(id){
+  $("franchiseDraftVault").innerHTML=`<div class="archive-loading"><span class="tinyspin"></span> Loading ${esc(ownerName(id))}'s draft vault…</div>`;
+  $("franchiseGMActivity").innerHTML=`<div class="archive-loading"><span class="tinyspin"></span> Loading GM activity…</div>`;
+  try{
+    const extrasBySeason=[];
+    for(const sd of [...seasonData].sort((a,b)=>Number(b.league.season)-Number(a.league.season))){
+      if(!sd.rosters.some(r=>r.owner_id===id))continue;
+      const extras=await loadSeasonExtras(sd);extrasBySeason.push({sd,extras});if(currentFranchiseId!==id)return
+    }
+    if(currentFranchiseId!==id)return;
+    const drafts=ownerDraftRows(id,extrasBySeason);
+    $("franchiseDraftVault").innerHTML=drafts.length?drafts.slice(0,80).map(x=>`<div class="vault-row"><div><div class="vault-season">${esc(x.season)}</div><div class="mini">R${x.round} • #${x.pick}</div></div><div><b>${esc(x.name)}</b><div class="mini">${esc(x.position)} ${x.team?("• "+esc(x.team)):""} ${x.keeper?"• KEEPER":""}</div></div><div class="mini">${x.keeper?"🔒":""}</div></div>`).join(""):`<div class="notice">No Sleeper draft picks were found for this franchise.</div>`;
+    const tx=ownerTransactions(id,extrasBySeason),counts={trade:0,waiver:0,free_agent:0};tx.forEach(t=>{if(counts[t.type]!=null)counts[t.type]++});
+    const summary=`<div class="franchise-kpis" style="margin-top:0;margin-bottom:12px"><div class="profile-kpi"><span class="label">Trades</span><b>${counts.trade}</b></div><div class="profile-kpi"><span class="label">Waivers</span><b>${counts.waiver}</b></div><div class="profile-kpi"><span class="label">Free Agents</span><b>${counts.free_agent}</b></div></div>`;
+    const history=tx.slice(0,35).map(t=>{const adds=Object.keys(t.adds||{}).map(pid=>`+ ${playerLabel(pid)}`),drops=Object.keys(t.drops||{}).map(pid=>`− ${playerLabel(pid)}`),picks=(t.draft_picks||[]).map(p=>`${p.season} R${p.round} pick`),bid=t.settings?.waiver_bid!=null?` • $${t.settings.waiver_bid} FAAB`:"";return`<div class="tx-row"><div class="tx-head"><div><span class="tx-type">${esc(String(t.type||"transaction").replace("_"," "))}</span><b style="margin-left:8px">${esc(t._season)}</b></div><span class="mini">Week ${t._week||"?"}${bid}</span></div><div class="tx-players mini">${[...adds,...drops,...picks].map(esc).join(" • ")||"Roster transaction"}</div></div>`}).join("");
+    $("franchiseGMActivity").innerHTML=summary+(history||`<div class="notice">No completed transaction history found.</div>`)
+  }catch(e){
+    if(currentFranchiseId!==id)return;$("franchiseDraftVault").innerHTML=`<div class="notice">Draft history could not be loaded right now. Try again later.</div>`;$("franchiseGMActivity").innerHTML=`<div class="notice">Transaction history could not be loaded right now.</div>`
+  }
+}
+async function openFranchise(id){
+  currentFranchiseId=id;switchToFranchiseTab();$("franchiseProfile").classList.remove("hidden");renderFranchiseShell(id);$("franchiseRosterSeason").textContent=`${currentLeague?.season||"Current"} Roster`;$("franchiseRoster").innerHTML=`<div class="archive-loading"><span class="tinyspin"></span> Loading current roster…</div>`;window.scrollTo({top:0,behavior:"smooth"});
+  try{await loadPlayerDirectory();if(currentFranchiseId!==id)return;$("franchiseRoster").innerHTML=currentRosterHTML(id);loadFranchiseExtras(id)}
+  catch(e){if(currentFranchiseId!==id)return;$("franchiseRoster").innerHTML=`<div class="notice">The roster IDs loaded, but the player directory could not be reached right now.</div>`;loadFranchiseExtras(id)}
+}
+function openFranchiseRivalry(a,b){
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.tab==="rivalries"));document.querySelectorAll(".tab").forEach(x=>x.classList.add("hidden"));$("rivalries").classList.remove("hidden");$("rivalA").value=a;$("rivalB").value=b;renderRivalryDetail();window.scrollTo({top:0,behavior:"smooth"})
+}
+function currentSeasonData(){return seasonData.find(sd=>String(sd.league.league_id)===String(LEAGUE_ID))||seasonData[0]}
+function currentCompletedWeeks(){const sd=currentSeasonData();return sd?[...new Set(sd.games.map(g=>g.week))].sort((a,b)=>a-b):[]}
+function weeklyGames(week){const sd=currentSeasonData();return sd?sd.games.filter(g=>g.week===Number(week)):[]}
+function recentForm(ownerId,week,limit=5){const sd=currentSeasonData();if(!sd)return[];return sd.games.filter(g=>g.week<=week&&(g.ownerA===ownerId||g.ownerB===ownerId)).sort((a,b)=>b.week-a.week).slice(0,limit).reverse().map(g=>{const mine=g.ownerA===ownerId?g.pointsA:g.pointsB,opp=g.ownerA===ownerId?g.pointsB:g.pointsA;return mine>opp?"W":mine<opp?"L":"T"})}
+function recordThrough(ownerId,week){const sd=currentSeasonData();let w=0,l=0,t=0,pf=0,pa=0;if(!sd)return{w,l,t,pf,pa};sd.games.filter(g=>g.week<=week&&(g.ownerA===ownerId||g.ownerB===ownerId)).forEach(g=>{const mine=g.ownerA===ownerId?g.pointsA:g.pointsB,opp=g.ownerA===ownerId?g.pointsB:g.pointsA;pf+=mine;pa+=opp;if(mine>opp)w++;else if(mine<opp)l++;else t++});return{w,l,t,pf,pa}}
+function powerScore(ownerId,week){const r=recordThrough(ownerId,week),form=recentForm(ownerId,week,5),gp=r.w+r.l+r.t||1,winPct=(r.w+r.t*.5)/gp,avgPF=r.pf/gp,formScore=form.reduce((n,x)=>n+(x==="W"?1:x==="T"?.5:0),0)/Math.max(1,form.length);return winPct*55+Math.min(avgPF/180,1)*30+formScore*15}
+function powerRanksForWeek(week){const sd=currentSeasonData();if(!sd)return[];const owners=[...new Set(sd.rosters.map(r=>r.owner_id).filter(Boolean))];return owners.map(id=>({id,score:powerScore(id,week),record:recordThrough(id,week),form:recentForm(id,week,5)})).filter(x=>x.record.w+x.record.l+x.record.t>0).sort((a,b)=>b.score-a.score)}
+function powerMovement(ownerId,week){const now=powerRanksForWeek(week),prev=week>1?powerRanksForWeek(week-1):now,a=now.findIndex(x=>x.id===ownerId),b=prev.findIndex(x=>x.id===ownerId);if(a<0||b<0)return{delta:0,text:"•"};const delta=b-a;return{delta,text:delta>0?`↑${delta}`:delta<0?`↓${Math.abs(delta)}`:"•"}}
+function powerCommentary(row,rank){const r=row.record,form=row.form,avg=r.pf/Math.max(1,r.w+r.l+r.t);let streakType=null,streakN=0;for(let i=form.length-1;i>=0;i--){if(streakType===null){streakType=form[i];streakN=1}else if(form[i]===streakType)streakN++;else break}if(rank===1)return"Top of the mountain this week. Everybody else is staring uphill.";if(streakType==="W"&&streakN>=3)return`${streakN}-game heater. The league has officially been warned.`;if(streakType==="L"&&streakN>=3)return`${streakN} straight losses. The hot seat has started preheating.`;if(avg>=140)return"Scoring enough points to make the schedule look personal.";if(r.w<r.l&&avg>=120)return"Better than the record. The schedule has been throwing elbows.";if(r.w>r.l&&avg<110)return"Winning ugly is still winning.";return"Still writing this season's story."}
+function setupWeekly(){const weeks=currentCompletedWeeks(),liveGuess=Number(nflState?.week||0);currentWeekNumber=weeks.includes(liveGuess)?liveGuess:(weeks.at(-1)||liveGuess||1);const max=Math.max(currentWeekNumber,liveGuess||0,1),opts=[];for(let w=1;w<=max;w++)opts.push(`<option value="${w}">${w===liveGuess?`Week ${w} • NFL current`:`Week ${w}`}</option>`);$("weeklyWeekSelect").innerHTML=opts.join("");$("weeklyWeekSelect").value=String(currentWeekNumber);$("weeklyWeekSelect").onchange=()=>renderWeekly(Number($("weeklyWeekSelect").value));renderWeekly(currentWeekNumber)}
+function renderWeekly(week){
+  currentWeekNumber=Number(week);const gs=weeklyGames(week),sd=currentSeasonData();
+  $("weeklyTitle").textContent=`${sd?.league?.season||""} • Week ${week}`;$("weeklySub").textContent=gs.length?`${gs.length} completed matchup${gs.length===1?"":"s"} archived`:"Waiting on completed Sleeper scores";
+  if(!gs.length){$("weeklyScoreboard").innerHTML=`<div class="notice">No completed matchup scores are available for Week ${week} yet.</div>`;$("weeklyAwardsFull").innerHTML=`<div class="notice">Weekly awards unlock after the games post.</div>`}
+  else{
+    $("weeklyScoreboard").innerHTML=`<div class="match-list">`+gs.map(g=>`<div class="match-card"><div class="label">${g.playoff?"Playoff":"Regular Season"} • Week ${g.week}</div><div class="match-team ${g.pointsA>=g.pointsB?"winner":"loser"}"><span class="owner-link" onclick="openProfile('${g.ownerA}')">${esc(ownerName(g.ownerA))}</span><span class="scorebig">${fmt(g.pointsA)}</span></div><div class="match-team ${g.pointsB>=g.pointsA?"winner":"loser"}"><span class="owner-link" onclick="openProfile('${g.ownerB}')">${esc(ownerName(g.ownerB))}</span><span class="scorebig">${fmt(g.pointsB)}</span></div></div>`).join("")+`</div>`;
+    const tr=[];gs.forEach(g=>tr.push({owner:g.ownerA,points:g.pointsA,opp:g.pointsB},{owner:g.ownerB,points:g.pointsB,opp:g.pointsA}));
+    const high=[...tr].sort((a,b)=>b.points-a.points)[0],low=[...tr].sort((a,b)=>a.points-b.points)[0],blow=[...gs].sort((a,b)=>Math.abs(b.pointsA-b.pointsB)-Math.abs(a.pointsA-a.pointsB))[0],close=[...gs].sort((a,b)=>Math.abs(a.pointsA-a.pointsB)-Math.abs(b.pointsA-b.pointsB))[0],winner=blow.pointsA>=blow.pointsB?blow.ownerA:blow.ownerB,loser=blow.pointsA>=blow.pointsB?blow.ownerB:blow.ownerA,cards=[["🔥","Top Dog",ownerName(high.owner),`${fmt(high.points)} pts`],["💀","Ass Whooping",ownerName(winner),`${fmt(Math.abs(blow.pointsA-blow.pointsB))} over ${ownerName(loser)}`],["😬","Photo Finish",`${ownerName(close.ownerA)} vs ${ownerName(close.ownerB)}`,`${fmt(Math.abs(close.pointsA-close.pointsB))} pts`],["🧊","Ice Cold",ownerName(low.owner),`${fmt(low.points)} pts`]];
+    $("weeklyAwardsFull").innerHTML=`<div class="award-grid">`+cards.map(c=>`<div class="award"><div class="emoji">${c[0]}</div><div class="name">${esc(c[1])}</div><div class="value">${esc(c[2])}</div><div class="mini">${esc(c[3])}</div></div>`).join("")+`</div>`
+  }
+  const ranks=powerRanksForWeek(week);
+  $("powerRankings").innerHTML=ranks.length?ranks.map((row,i)=>{const mv=powerMovement(row.id,week),cls=mv.delta>0?"move-up":mv.delta<0?"move-down":"move-flat";return`<div class="power-card clickable" onclick="openProfile('${row.id}')"><div class="power-head"><div class="power-rank">#${i+1}</div><div><div class="power-name">${esc(ownerName(row.id))}</div><div class="power-meta">${row.record.w}-${row.record.l}${row.record.t?("-"+row.record.t):""} • ${fmt(row.record.pf)} PF</div></div><div class="power-score ${cls}">${mv.text}</div></div><div class="form-row">${row.form.map(x=>`<span class="form-dot ${x.toLowerCase()}">${x}</span>`).join("")}</div><div class="commentary">${esc(powerCommentary(row,i+1))}</div><div class="spark"><span style="width:${Math.max(5,Math.min(100,row.score))}%"></span></div></div>`}).join(""):`<div class="notice">Power rankings activate after the first completed week.</div>`
+}
+
+function newsSeasonRows(){return [...seasonData].filter(sd=>sd.games?.length).sort((a,b)=>Number(b.league.season)-Number(a.league.season))}
+function newsWeeks(sd){return [...new Set((sd?.games||[]).map(g=>g.week))].sort((a,b)=>a-b)}
+function newsGames(sd,week){return (sd?.games||[]).filter(g=>g.week===Number(week))}
+function newsOwnerRecord(sd,ownerId,week){let w=0,l=0,t=0,pf=0,pa=0;for(const g of (sd?.games||[])){if(g.week>week||!(g.ownerA===ownerId||g.ownerB===ownerId))continue;const mine=g.ownerA===ownerId?g.pointsA:g.pointsB,opp=g.ownerA===ownerId?g.pointsB:g.pointsA;pf+=mine;pa+=opp;if(mine>opp)w++;else if(mine<opp)l++;else t++}return{w,l,t,pf,pa,g:w+l+t}}
+function newsRecentForm(sd,ownerId,week,limit=5){return (sd?.games||[]).filter(g=>g.week<=week&&(g.ownerA===ownerId||g.ownerB===ownerId)).sort((a,b)=>b.week-a.week).slice(0,limit).reverse().map(g=>{const mine=g.ownerA===ownerId?g.pointsA:g.pointsB,opp=g.ownerA===ownerId?g.pointsB:g.pointsA;return mine>opp?"W":mine<opp?"L":"T"})}
+function newsPowerScore(sd,ownerId,week){const r=newsOwnerRecord(sd,ownerId,week),form=newsRecentForm(sd,ownerId,week),gp=Math.max(1,r.g),win=(r.w+r.t*.5)/gp,avg=r.pf/gp,fs=form.reduce((n,x)=>n+(x==="W"?1:x==="T"?.5:0),0)/Math.max(1,form.length);return win*55+Math.min(avg/180,1)*30+fs*15}
+function newsPowerRanks(sd,week){const ids=[...new Set((sd?.rosters||[]).map(r=>r.owner_id).filter(Boolean))];return ids.map(id=>({id,record:newsOwnerRecord(sd,id,week),form:newsRecentForm(sd,id,week),score:newsPowerScore(sd,id,week)})).filter(x=>x.record.g>0).sort((a,b)=>b.score-a.score)}
+function newsRankMovement(sd,id,week){const a=newsPowerRanks(sd,week).findIndex(x=>x.id===id),b=week>1?newsPowerRanks(sd,week-1).findIndex(x=>x.id===id):a;if(a<0||b<0)return 0;return b-a}
+function newsStreak(sd,id,week){const log=(sd?.games||[]).filter(g=>g.week<=week&&(g.ownerA===id||g.ownerB===id)).sort((a,b)=>b.week-a.week);let type=null,n=0;for(const g of log){const mine=g.ownerA===id?g.pointsA:g.pointsB,opp=g.ownerA===id?g.pointsB:g.pointsA,res=mine>opp?"W":mine<opp?"L":"T";if(type===null){type=res;n=1}else if(res===type)n++;else break}return{type,n}}
+function newsroomTopStats(sd,week){const gs=newsGames(sd,week),rows=[];gs.forEach(g=>rows.push({owner:g.ownerA,opp:g.ownerB,points:g.pointsA,oppPoints:g.pointsB,game:g},{owner:g.ownerB,opp:g.ownerA,points:g.pointsB,oppPoints:g.pointsA,game:g}));if(!gs.length)return null;const high=[...rows].sort((a,b)=>b.points-a.points)[0],low=[...rows].sort((a,b)=>a.points-b.points)[0],close=[...gs].sort((a,b)=>Math.abs(a.pointsA-a.pointsB)-Math.abs(b.pointsA-b.pointsB))[0],blow=[...gs].sort((a,b)=>Math.abs(b.pointsA-b.pointsB)-Math.abs(a.pointsA-a.pointsB))[0];return{gs,rows,high,low,close,blow}}
+function newsWinner(g){return g.pointsA>=g.pointsB?g.ownerA:g.ownerB}
+function newsLoser(g){return g.pointsA>=g.pointsB?g.ownerB:g.ownerA}
+function newsHeadlineData(sd,week){const st=newsroomTopStats(sd,week);if(!st)return{headline:`${sd.league.season} Week ${week}: the presses are waiting`,dek:"No completed Sleeper scores are available for this edition yet."};const closeMargin=Math.abs(st.close.pointsA-st.close.pointsB),blowMargin=Math.abs(st.blow.pointsA-st.blow.pointsB),cw=newsWinner(st.close),cl=newsLoser(st.close),bw=newsWinner(st.blow),bl=newsLoser(st.blow);if(closeMargin<=1)return{headline:`${ownerName(cw)} survives ${ownerName(cl)} by ${fmt(closeMargin)} in a Week ${week} thriller`,dek:`A razor-thin finish stole the front page while ${ownerName(st.high.owner)} paced the league with ${fmt(st.high.points)} points.`};if(blowMargin>=50)return{headline:`${ownerName(bw)} buries ${ownerName(bl)} by ${fmt(blowMargin)} as Week ${week} gets ugly`,dek:`The week's biggest demolition overshadowed a ${fmt(st.high.points)}-point scoring lead from ${ownerName(st.high.owner)}.`};if(st.high.points>=150)return{headline:`${ownerName(st.high.owner)} detonates for ${fmt(st.high.points)} in Week ${week}`,dek:`The league's top scorer owned the marquee while ${ownerName(cw)} and ${ownerName(cl)} supplied the week's tightest finish.`};return{headline:`${ownerName(st.high.owner)} leads Week ${week} with a ${fmt(st.high.points)}-point statement`,dek:`The AFFL week delivered a top score of ${fmt(st.high.points)}, a closest margin of ${fmt(closeMargin)}, and another shuffle in the power hierarchy.`}}
+function newsUpset(sd,week){if(week<=1)return null;const prev=newsPowerRanks(sd,week-1),idx=Object.fromEntries(prev.map((r,i)=>[r.id,i+1])),upsets=[];for(const g of newsGames(sd,week)){const w=newsWinner(g),l=newsLoser(g);if(idx[w]&&idx[l]&&idx[w]>idx[l])upsets.push({winner:w,loser:l,gap:idx[w]-idx[l],wRank:idx[w],lRank:idx[l],game:g})}return upsets.sort((a,b)=>b.gap-a.gap)[0]||null}
+function newsRivalrySpotlight(sd,week){const candidates=[];for(const g of newsGames(sd,week)){const key=[g.ownerA,g.ownerB].sort().join("|"),r=rivalryMap.get(key);if(r)candidates.push({game:g,meetings:r.games})}return candidates.sort((a,b)=>b.meetings-a.meetings)[0]||null}
+function newsRecordWatch(sd,week){const st=newsroomTopStats(sd,week);if(!st)return null;const before=games.filter(g=>Number(g.season)<Number(sd.league.season)||(String(g.season)===String(sd.league.season)&&g.week<week)),scores=[];before.forEach(g=>scores.push(g.pointsA,g.pointsB));const prevHigh=scores.length?Math.max(...scores):null;if(prevHigh==null||st.high.points>prevHigh)return{owner:st.high.owner,points:st.high.points,previous:prevHigh};return null}
+function newsStorylineCards(sd,week){const cards=[],up=newsUpset(sd,week),riv=newsRivalrySpotlight(sd,week),record=newsRecordWatch(sd,week),ranks=newsPowerRanks(sd,week);if(up)cards.push(["🧨","Upset of the Week",`${ownerName(up.winner)} knocked off power #${up.lRank} ${ownerName(up.loser)} after entering the week at #${up.wRank}.`]);if(riv){const g=riv.game,w=newsWinner(g),l=newsLoser(g);cards.push(["⚔️","Rivalry Watch",`${ownerName(w)} beat ${ownerName(l)} in the most established matchup on this week's slate. The series now has ${riv.meetings} archived meetings.`])}if(record)cards.push(["📚","Record Watch",record.previous==null?`${ownerName(record.owner)} opened the archive with a ${fmt(record.points)}-point benchmark.`:`${ownerName(record.owner)} set a new AFFL single-game high at ${fmt(record.points)}, passing the previous ${fmt(record.previous)} mark.`]);const streaks=ranks.map(r=>({id:r.id,...newsStreak(sd,r.id,week)})).filter(x=>x.n>=2).sort((a,b)=>b.n-a.n);if(streaks[0])cards.push([streaks[0].type==="W"?"🔥":"🥶",streaks[0].type==="W"?"Hot Hand":"Cold Front",`${ownerName(streaks[0].id)} carries a ${streaks[0].n}-game ${streaks[0].type==="W"?"winning":"losing"} streak through Week ${week}.`]);while(cards.length<4){const st=newsroomTopStats(sd,week);if(!st)break;const fallback=[["🚀","Top Score",`${ownerName(st.high.owner)} led the league with ${fmt(st.high.points)} points.`],["😬","Closest Call",`${ownerName(newsWinner(st.close))} escaped by ${fmt(Math.abs(st.close.pointsA-st.close.pointsB))}.`],["💀","Largest Margin",`${ownerName(newsWinner(st.blow))} won by ${fmt(Math.abs(st.blow.pointsA-st.blow.pointsB))}.`]];const f=fallback[cards.length%fallback.length];cards.push(f)}return cards.slice(0,4)}
+function newsStandings(sd,week){const ids=[...new Set((sd?.rosters||[]).map(r=>r.owner_id).filter(Boolean))];return ids.map(id=>({id,...newsOwnerRecord(sd,id,week)})).filter(x=>x.g>0).sort((a,b)=>{const ap=(a.w+a.t*.5)/Math.max(1,a.g),bp=(b.w+b.t*.5)/Math.max(1,b.g);if(bp!==ap)return bp-ap;if(b.pf!==a.pf)return b.pf-a.pf;return a.pa-b.pa})}
+function newsRaceHTML(sd,week){const rows=newsStandings(sd,Math.min(week,Math.max(1,sd.playoffStart-1))),spots=Number(sd.league.settings?.playoff_teams||6),post=week>=sd.playoffStart; if(!rows.length)return`<div class="notice">The playoff race will appear after completed games.</div>`;const show=rows.slice(0,Math.min(rows.length,spots+2));return`<div class="mini" style="margin-bottom:8px">${post?"Postseason field / final regular-season order":"Projected playoff field through this edition"}</div>`+show.map((r,i)=>`<div class="race-row"><div class="seed ${i>=spots?"out":""}">${i+1}</div><div><b>${esc(ownerName(r.id))}</b><div class="mini">${r.w}-${r.l}${r.t?"-"+r.t:""} • ${fmt(r.pf)} PF</div></div><div class="mini">${i<spots?(post?"Playoff field":"IN"):"BUBBLE"}</div></div>`).join("")}
+function newsPowerDeskHTML(sd,week){const ranks=newsPowerRanks(sd,week);return ranks.slice(0,6).map((r,i)=>{const mv=newsRankMovement(sd,r.id,week),move=mv>0?`↑${mv}`:mv<0?`↓${Math.abs(mv)}`:"•",st=newsStreak(sd,r.id,week),note=i===0?"Owns the power desk this week.":st.type==="W"&&st.n>=2?`${st.n} straight wins are pushing the résumé upward.`:st.type==="L"&&st.n>=2?`${st.n} straight losses have the newsroom circling the next matchup.`:r.record.pf/Math.max(1,r.record.g)>=130?"The scoring profile is louder than the record.":"Still within striking distance of a reshuffle.";return`<div class="news-rank"><div class="news-rank-head"><div><span class="rank">#${i+1}</span> <span class="news-rank-name owner-link" onclick="openProfile('${r.id}')">${esc(ownerName(r.id))}</span></div><b>${move}</b></div><div class="news-rank-note">${esc(note)}</div></div>`}).join("")||`<div class="notice">Power notes appear after the first completed week.</div>`}
+function newsFrontPageHTML(sd,week){const st=newsroomTopStats(sd,week);if(!st)return`<div class="notice">No front-page stats yet.</div>`;const close=newsWinner(st.close),blow=newsWinner(st.blow);return`<div class="news-kicker">TOP SCORE</div><div class="news-scoreline">${esc(ownerName(st.high.owner))} • ${fmt(st.high.points)}</div><div class="mini">Highest score of Week ${week}</div><div class="news-divider"></div><div class="news-kicker">PHOTO FINISH</div><div class="news-scoreline">${esc(ownerName(close))} by ${fmt(Math.abs(st.close.pointsA-st.close.pointsB))}</div><div class="mini">${esc(ownerName(st.close.ownerA))} vs ${esc(ownerName(st.close.ownerB))}</div><div class="news-divider"></div><div class="news-kicker">ASS WHOOPING</div><div class="news-scoreline">${esc(ownerName(blow))} by ${fmt(Math.abs(st.blow.pointsA-st.blow.pointsB))}</div><div class="mini">Biggest margin on the board</div>`}
+function newsArticleHTML(sd,week){const st=newsroomTopStats(sd,week);if(!st)return`<p class="news-dropcap">This edition is waiting on completed scores from Sleeper. Once the week closes, the AFFL Newsroom will write the recap automatically.</p>`;const hd=newsHeadlineData(sd,week),closeW=newsWinner(st.close),closeL=newsLoser(st.close),blowW=newsWinner(st.blow),blowL=newsLoser(st.blow),ranks=newsPowerRanks(sd,week),top=ranks[0],up=newsUpset(sd,week),race=newsStandings(sd,Math.min(week,Math.max(1,sd.playoffStart-1))),spots=Number(sd.league.settings?.playoff_teams||6),bubble=race[spots]||null;const p1=`Week ${week} belonged to ${ownerName(st.high.owner)}, who posted ${fmt(st.high.points)} points and set the scoring pace for the league. The week's tightest matchup went to ${ownerName(closeW)}, who escaped ${ownerName(closeL)} by just ${fmt(Math.abs(st.close.pointsA-st.close.pointsB))}.`;const p2=`At the opposite end of the margin chart, ${ownerName(blowW)} handed ${ownerName(blowL)} the week's heaviest defeat, a ${fmt(Math.abs(st.blow.pointsA-st.blow.pointsB))}-point gap. ${ownerName(st.low.owner)} finished with the week's lowest total at ${fmt(st.low.points)}.`;const p3=top?`${ownerName(top.id)} exits the week at the top of the AFFL power desk with a ${top.record.w}-${top.record.l}${top.record.t?"-"+top.record.t:""} record and ${fmt(top.record.pf)} points scored. ${up?`${ownerName(up.winner)} supplied the biggest ranking upset by taking down ${ownerName(up.loser)}.`:"The power order remains close enough that another week can redraw the board quickly."}`:"";const p4=bubble?`The playoff snapshot currently has ${ownerName(race[Math.max(0,spots-1)].id)} holding the final projected spot, with ${ownerName(bubble.id)} sitting first outside the line. Nothing about that border is comfortable yet.`:`The playoff picture is still taking shape, with every completed week adding weight to the standings.`;return`<p class="news-dropcap">${esc(p1)}</p><p>${esc(p2)}</p><p>${esc(p3)}</p><p>${esc(p4)}</p>`}
+function newsArchiveHTML(sd,activeWeek){return newsWeeks(sd).map(w=>`<div class="edition-card ${Number(w)===Number(activeWeek)?"active":""}" onclick="selectNewsEdition('${sd.league.league_id}',${w})"><div class="edition-week">Week ${w}</div><div class="edition-season">${esc(sd.league.season)}${w>=sd.playoffStart?" • Playoffs":""}</div></div>`).join("")}
+function selectNewsEdition(leagueId,week){$("newsSeasonSelect").value=String(leagueId);setupNewsWeeks(leagueId,week);renderNewsroom(leagueId,week);window.scrollTo({top:0,behavior:"smooth"})}
+function setupNewsWeeks(leagueId,preferredWeek=null){const sd=seasonDataById(leagueId),weeks=newsWeeks(sd);$("newsWeekSelect").innerHTML=weeks.map(w=>`<option value="${w}">Week ${w}${w>=sd.playoffStart?" • Playoffs":""}</option>`).join("");const pick=preferredWeek&&weeks.includes(Number(preferredWeek))?Number(preferredWeek):(weeks.at(-1)||1);$("newsWeekSelect").value=String(pick);$("newsWeekSelect").onchange=()=>renderNewsroom($("newsSeasonSelect").value,Number($("newsWeekSelect").value));return pick}
+function setupNewsroom(){const rows=newsSeasonRows();$("newsSeasonSelect").innerHTML=rows.map(sd=>`<option value="${esc(sd.league.league_id)}">${esc(sd.league.season)} Newsroom</option>`).join("");if(!rows.length){$("newsHeadline").textContent="The presses are waiting";return}const current=rows.find(sd=>String(sd.league.league_id)===String(LEAGUE_ID)&&sd.games.length),preferred=current||rows[0];$("newsSeasonSelect").value=String(preferred.league.league_id);$("newsSeasonSelect").onchange=()=>{const id=$("newsSeasonSelect").value,w=setupNewsWeeks(id);renderNewsroom(id,w)};const w=setupNewsWeeks(preferred.league.league_id);renderNewsroom(preferred.league.league_id,w)}
+function renderNewsroom(leagueId,week){const sd=seasonDataById(leagueId);if(!sd)return;week=Number(week);const hd=newsHeadlineData(sd,week);$("newsKicker").textContent=`${sd.league.season} • WEEK ${week}${week>=sd.playoffStart?" • POSTSEASON":""}`;$("newsHeadline").textContent=hd.headline;$("newsDek").textContent=hd.dek;$("newsByline").textContent=`AFFL Newsroom • generated from Sleeper archive data`;$("newsArticle").innerHTML=newsArticleHTML(sd,week);$("newsFrontPage").innerHTML=newsFrontPageHTML(sd,week);$("newsStorylines").innerHTML=newsStorylineCards(sd,week).map(c=>`<div class="story-card"><div class="story-icon">${c[0]}</div><div class="story-title">${esc(c[1])}</div><div class="story-copy">${esc(c[2])}</div></div>`).join("");$("newsPlayoffRace").innerHTML=newsRaceHTML(sd,week);$("newsPowerDesk").innerHTML=newsPowerDeskHTML(sd,week);$("newsEditionArchive").innerHTML=newsArchiveHTML(sd,week)}
+function seasonDataById(id){return seasonData.find(sd=>String(sd.league.league_id)===String(id))}
+function seasonRosterOwner(sd,rosterId){return sd?.rosterOwners?.[rosterId]||null}
+function seasonOwnerRoster(sd,ownerId){return (sd?.rosters||[]).find(r=>r.owner_id===ownerId)}
+function seasonPoints(r){const x=r?.settings||{};return (x.fpts||0)+(x.fpts_decimal||0)/100}
+function seasonAgainst(r){const x=r?.settings||{};return (x.fpts_against||0)+(x.fpts_against_decimal||0)/100}
+function seasonSortedRosters(sd){
+  return [...(sd?.rosters||[])].sort((a,b)=>{
+    const A=a.settings||{},B=b.settings||{};
+    if((B.wins||0)!==(A.wins||0))return(B.wins||0)-(A.wins||0);
+    if((A.losses||0)!==(B.losses||0))return(A.losses||0)-(B.losses||0);
+    return seasonPoints(b)-seasonPoints(a)
+  })
+}
+function archiveTab(){
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.tab==="seasons"));
+  document.querySelectorAll(".tab").forEach(x=>x.classList.add("hidden"));
+  $("seasons").classList.remove("hidden")
+}
+function setupSeasonArchivePicker(){
+  const rows=[...seasonData].sort((a,b)=>Number(b.league.season)-Number(a.league.season));
+  $("seasonArchiveSelect").innerHTML=rows.map(sd=>`<option value="${esc(sd.league.league_id)}">${esc(sd.league.season)} Season</option>`).join("");
+  $("seasonArchiveSelect").onchange=()=>renderSeasonArchive($("seasonArchiveSelect").value);
+  const preferred=rows.find(sd=>sd.league.status==="complete")||rows[0];
+  if(preferred){$("seasonArchiveSelect").value=preferred.league.league_id;currentArchiveId=preferred.league.league_id;renderSeasonArchive(preferred.league.league_id)}
+}
+function openSeasonArchive(id){
+  archiveTab();$("seasonArchiveSelect").value=String(id);renderSeasonArchive(id);window.scrollTo({top:0,behavior:"smooth"})
+}
+function seasonStandingsHTML(sd){
+  const rows=seasonSortedRosters(sd);
+  if(!rows.length)return`<div class="notice">No final roster standings were found for this season.</div>`;
+  return`<table><thead><tr><th>#</th><th>Owner</th><th>Record</th><th>PF</th><th>PA</th><th>Moves</th></tr></thead><tbody>`+
+  rows.map((r,i)=>{const st=r.settings||{};return`<tr><td class="rank">${i+1}</td><td><b class="owner-link" onclick="openProfile('${r.owner_id}')">${esc(ownerName(r.owner_id))}</b></td><td>${st.wins||0}-${st.losses||0}${st.ties?("-"+st.ties):""}</td><td>${fmt(seasonPoints(r))}</td><td>${fmt(seasonAgainst(r))}</td><td>${st.total_moves||0}</td></tr>`}).join("")+`</tbody></table>`
+}
+function seasonGameTeams(g){
+  return[
+    {owner:g.ownerA,points:g.pointsA,opp:g.pointsB},
+    {owner:g.ownerB,points:g.pointsB,opp:g.pointsA}
+  ]
+}
+function seasonSuperlativesHTML(sd){
+  if(!sd.games.length)return`<div class="notice">No completed scores yet.</div>`;
+  const tg=[];sd.games.forEach(g=>tg.push(...seasonGameTeams(g).map(x=>({...x,week:g.week}))));
+  const regular=sd.games.filter(g=>!g.playoff),base=regular.length?regular:sd.games;
+  const all=[];base.forEach(g=>all.push(...seasonGameTeams(g).map(x=>({...x,week:g.week}))));
+  const high=[...all].sort((a,b)=>b.points-a.points)[0],low=[...all].filter(x=>x.points>0).sort((a,b)=>a.points-b.points)[0];
+  const blow=[...base].sort((a,b)=>Math.abs(b.pointsA-b.pointsB)-Math.abs(a.pointsA-a.pointsB))[0];
+  const close=[...base].sort((a,b)=>Math.abs(a.pointsA-a.pointsB)-Math.abs(b.pointsA-b.pointsB))[0];
+  const winner=blow?(blow.pointsA>=blow.pointsB?blow.ownerA:blow.ownerB):null;
+  return`${high?`<div class="statline"><span>🚀 Highest score</span><b>${fmt(high.points)}</b></div><div class="mini">${esc(ownerName(high.owner))} • Week ${high.week}</div>`:""}
+  ${low?`<div class="statline"><span>🧊 Lowest score</span><b>${fmt(low.points)}</b></div><div class="mini">${esc(ownerName(low.owner))} • Week ${low.week}</div>`:""}
+  ${blow?`<div class="statline"><span>💀 Biggest blowout</span><b>${fmt(Math.abs(blow.pointsA-blow.pointsB))}</b></div><div class="mini">${esc(ownerName(winner))} • Week ${blow.week}</div>`:""}
+  ${close?`<div class="statline"><span>😬 Closest game</span><b>${fmt(Math.abs(close.pointsA-close.pointsB))}</b></div><div class="mini">${esc(ownerName(close.ownerA))} vs ${esc(ownerName(close.ownerB))} • Week ${close.week}</div>`:""}`
+}
+function setupSeasonWeeks(sd){
+  const weeks=[...new Set(sd.games.map(g=>g.week))].sort((a,b)=>a-b);
+  $("seasonWeekSelect").innerHTML=weeks.map(w=>`<option value="${w}">${w>=sd.playoffStart?`Playoffs • Week ${w}`:`Week ${w}`}</option>`).join("");
+  if(weeks.length)$("seasonWeekSelect").value=weeks[0];
+  $("seasonWeekSelect").onchange=()=>renderSeasonWeek(sd,Number($("seasonWeekSelect").value));
+  renderSeasonWeek(sd,weeks[0])
+}
+function renderSeasonWeek(sd,week){
+  const gs=sd.games.filter(g=>g.week===Number(week));
+  if(!gs.length){$("seasonWeekGames").innerHTML=`<div class="notice">No completed matchups found for this week.</div>`;return}
+  $("seasonWeekGames").innerHTML=`<div class="match-list">`+gs.map(g=>`<div class="match-card">
+    <div class="label">${g.playoff?"Playoff matchup":"Regular season"} • Week ${g.week}</div>
+    <div class="match-team ${g.pointsA>=g.pointsB?"winner":"loser"}"><span class="owner-link" onclick="openProfile('${g.ownerA}')">${esc(ownerName(g.ownerA))}</span><span class="scorebig">${fmt(g.pointsA)}</span></div>
+    <div class="match-team ${g.pointsB>=g.pointsA?"winner":"loser"}"><span class="owner-link" onclick="openProfile('${g.ownerB}')">${esc(ownerName(g.ownerB))}</span><span class="scorebig">${fmt(g.pointsB)}</span></div>
+  </div>`).join("")+`</div>`
+}
+function seasonBracketHTML(sd){
+  if(!sd?.bracket?.length)return`<div class="notice">No winner's bracket was found for this season.</div>`;
+  const byMatch=Object.fromEntries(sd.bracket.map(m=>[m.m,m])),rounds={};
+  sd.bracket.filter(m=>!m.p||[1,3,5,7].includes(Number(m.p))).forEach(m=>(rounds[m.r]??=[]).push(m));
+  return Object.keys(rounds).sort((a,b)=>a-b).map(r=>`<div class="bracket-round"><div class="round-title">Round ${r}</div>`+rounds[r].map(m=>{
+    const r1=resolveBracketRoster(m,"t1",byMatch),r2=resolveBracketRoster(m,"t2",byMatch),o1=r1?sd.rosterOwners[r1]:null,o2=r2?sd.rosterOwners[r2]:null,g=bracketScore(sd,o1,o2,m.r);
+    const p1=g?(g.ownerA===o1?g.pointsA:g.pointsB):null,p2=g?(g.ownerA===o2?g.pointsA:g.pointsB):null,w=sd.rosterOwners[m.w],label=Number(m.p)===1?"Championship":Number(m.p)===3?"3rd Place":Number(m.p)===5?"5th Place":"Playoff Match";
+    return`<div class="bracket-game"><div class="label">${label}</div>
+      <div class="bracket-team ${w&&o1===w?"win":"lose"}"><span>${o1?`<span class="owner-link" onclick="openProfile('${o1}')">${esc(ownerName(o1))}</span>`:"TBD"}</span><b>${p1!=null?fmt(p1):""}</b></div>
+      <div class="bracket-team ${w&&o2===w?"win":"lose"}"><span>${o2?`<span class="owner-link" onclick="openProfile('${o2}')">${esc(ownerName(o2))}</span>`:"TBD"}</span><b>${p2!=null?fmt(p2):""}</b></div>
+    </div>`
+  }).join("")+`</div>`).join("")
+}
+async function loadPlayerDirectory(){
+  if(playerDirectory)return playerDirectory;
+  const positions=["QB","RB","WR","TE","K","DEF","DL","LB","DB"];
+  const chunks=await Promise.all(positions.map(p=>fetchJSON(`${API}/players/nfl?position=${p}`,true)));
+  playerDirectory={};
+  chunks.filter(Boolean).forEach(obj=>Object.assign(playerDirectory,obj));
+  return playerDirectory
+}
+function playerLabel(id,meta=null){
+  if(meta?.first_name||meta?.last_name)return`${meta.first_name||""} ${meta.last_name||""}`.trim();
+  const p=playerDirectory?.[id];
+  if(p)return p.full_name||`${p.first_name||""} ${p.last_name||""}`.trim()||id;
+  if(String(id).length<=4&&/^[A-Z]+$/.test(String(id)))return`${id} D/ST`;
+  return`Player ${id}`
+}
+function lineupSide(g,ownerId){
+  if(g.ownerA===ownerId)return{starters:g.startersA||[],points:g.playerPointsA||{}};
+  return{starters:g.startersB||[],points:g.playerPointsB||{}}
+}
+function championshipLineupHTML(sd){
+  const c=sd.champ;if(!c?.winner||!c?.runnerUp)return`<div class="notice">No completed championship matchup found.</div>`;
+  const g=sd.games.find(x=>x.week===c.titleWeek&&((x.ownerA===c.winner&&x.ownerB===c.runnerUp)||(x.ownerA===c.runnerUp&&x.ownerB===c.winner)));
+  if(!g)return`<div class="notice">Championship result found, but Sleeper did not return the weekly lineup in the archive.</div>`;
+  const slots=(sd.league.roster_positions||[]).filter(x=>x!=="BN"&&!String(x).startsWith("RES"));
+  function card(owner,title){
+    const side=lineupSide(g,owner),rows=side.starters.map((pid,i)=>({pid,slot:slots[i]||"START",pts:Number(side.points?.[pid]||0)}));
+    const mvp=[...rows].sort((a,b)=>b.pts-a.pts)[0];
+    return`<div class="lineup-card"><div class="label">${title}</div><h3 style="margin:4px 0 8px">${esc(ownerName(owner))}</h3>`+
+    rows.map(r=>`<div class="player-row ${mvp&&r.pid===mvp.pid?"mvp":""}"><span class="slot">${esc(r.slot)}</span><span>${esc(playerLabel(r.pid))}${mvp&&r.pid===mvp.pid?" ⭐":""}</span><span class="playerpts">${fmt(r.pts)}</span></div>`).join("")+`</div>`
+  }
+  return`<div class="mini" style="margin-bottom:10px">${esc(sd.league.season)} Championship • ${fmt(c.winnerScore)} - ${fmt(c.runnerScore)}</div><div class="lineup-grid">${card(c.winner,"🏆 Champion lineup")}${card(c.runnerUp,"Runner-up lineup")}</div>`
+}
+async function loadSeasonExtras(sd){
+  const id=String(sd.league.league_id);
+  if(seasonExtrasCache[id])return seasonExtrasCache[id];
+  const draftList=await fetchJSON(`${API}/league/${id}/drafts`,true)||[];
+  const draftData=await Promise.all(draftList.map(async d=>({draft:d,picks:await fetchJSON(`${API}/draft/${d.draft_id}/picks`,true)||[]})));
+  const txCalls=[];for(let w=1;w<=MAX_WEEKS;w++)txCalls.push(fetchJSON(`${API}/league/${id}/transactions/${w}`,true));
+  const txWeeks=await Promise.all(txCalls),transactions=[];
+  txWeeks.forEach((rows,i)=>{if(Array.isArray(rows))rows.forEach(t=>transactions.push({...t,_week:i+1}))});
+  transactions.sort((a,b)=>(b.created||0)-(a.created||0));
+  seasonExtrasCache[id]={draftData,transactions};
+  return seasonExtrasCache[id]
+}
+function txOwnerNames(sd,t){
+  return(t.roster_ids||[]).map(rid=>ownerName(seasonRosterOwner(sd,rid))).filter(Boolean)
+}
+function transactionHTML(sd,transactions,filter="all"){
+  let rows=transactions.filter(t=>t.status==="complete"&&(filter==="all"||t.type===filter));
+  if(!rows.length)return`<div class="notice">No ${filter==="all"?"completed transactions":filter.replace("_"," ")} found.</div>`;
+  return rows.slice(0,100).map(t=>{
+    const owners=txOwnerNames(sd,t).join(" ↔ ")||"League transaction";
+    const adds=Object.keys(t.adds||{}).map(pid=>`+ ${playerLabel(pid)}`);
+    const drops=Object.keys(t.drops||{}).map(pid=>`− ${playerLabel(pid)}`);
+    const picks=(t.draft_picks||[]).map(p=>`${p.season} R${p.round} pick`);
+    const bid=t.settings?.waiver_bid!=null?` • $${t.settings.waiver_bid} FAAB`:"";
+    const when=t.created?new Date(t.created).toLocaleDateString():"";
+    return`<div class="tx-row"><div class="tx-head"><div><span class="tx-type">${esc(t.type.replace("_"," "))}</span><b style="margin-left:8px">${esc(owners)}</b></div><span class="mini">Wk ${t._week}${when?` • ${esc(when)}`:""}${bid}</span></div>
+      <div class="tx-players mini">${[...adds,...drops,...picks].map(esc).join(" • ")||"Roster / FAAB transaction"}</div></div>`
+  }).join("")+(rows.length>100?`<div class="mini" style="margin-top:10px">Showing the 100 most recent of ${rows.length} transactions.</div>`:"")
+}
+function renderDraftBoard(sd,extras){
+  const drafts=extras.draftData||[];
+  if(!drafts.length){$("seasonDraftSelect").classList.add("hidden");$("seasonDraftBoard").innerHTML=`<div class="notice">No Sleeper draft was found for this season.</div>`;return}
+  $("seasonDraftSelect").classList.toggle("hidden",drafts.length<=1);
+  $("seasonDraftSelect").innerHTML=drafts.map((d,i)=>`<option value="${i}">${esc(d.draft.metadata?.name||`${sd.league.season} Draft`)}</option>`).join("");
+  function draw(){
+    const pack=drafts[Number($("seasonDraftSelect").value)||0],picks=[...(pack?.picks||[])].sort((a,b)=>(a.pick_no||0)-(b.pick_no||0));
+    if(!picks.length){$("seasonDraftBoard").innerHTML=`<div class="notice">Draft found, but no completed picks were returned.</div>`;return}
+    const rounds={};picks.forEach(p=>(rounds[p.round]??=[]).push(p));
+    $("seasonDraftBoard").innerHTML=Object.keys(rounds).sort((a,b)=>a-b).map(r=>`<div class="draft-round"><div class="round-title">Round ${r}</div>`+
+      rounds[r].map(p=>{const oid=seasonRosterOwner(sd,Number(p.roster_id));return`<div class="draft-pick"><div class="picknum">#${p.pick_no}</div><div><b>${esc(playerLabel(p.player_id,p.metadata))}</b><div class="pickpos">${esc(p.metadata?.position||"")} ${p.metadata?.team?("• "+esc(p.metadata.team)):""} ${p.is_keeper?'<span class="keeper">• KEEPER</span>':""}</div></div><div class="mini">${oid?esc(ownerName(oid)):""}</div></div>`}).join("")+`</div>`).join("")
+  }
+  $("seasonDraftSelect").onchange=draw;draw()
+}
+async function renderSeasonArchive(id){
+  const sd=seasonDataById(id);if(!sd)return;
+  currentArchiveId=String(id);
+  $("seasonArchiveSelect").value=String(id);
+  $("seasonArchiveTitle").textContent=`${sd.league.season} ${LEAGUE_DISPLAY_NAME}`;
+  $("seasonArchiveSub").textContent=`${sd.league.status||"season"} • ${sd.rosters.length} teams • Sleeper season archive`;
+  const champ=sd.champ,seed=seasonSortedRosters(sd)[0],pfKing=[...sd.rosters].sort((a,b)=>seasonPoints(b)-seasonPoints(a))[0];
+  $("seasonArchiveChampion").innerHTML=champ?.winner?`<div style="margin-top:12px"><span class="badge">🏆 Champion: <b>${esc(ownerName(champ.winner))}</b></span>${champ.winnerScore!=null?`<span class="badge">${fmt(champ.winnerScore)} - ${fmt(champ.runnerScore)} vs ${esc(ownerName(champ.runnerUp))}</span>`:""}</div>`:`<div style="margin-top:12px"><span class="badge">Season in progress</span></div>`;
+  $("seasonKpis").innerHTML=`
+    <div class="profile-kpi"><span class="label">Champion</span><b>${champ?.winner?esc(ownerName(champ.winner)):"—"}</b><span class="mini">${champ?.winnerScore!=null?fmt(champ.winnerScore)+" pts":""}</span></div>
+    <div class="profile-kpi"><span class="label">#1 Regular Seed</span><b>${seed?esc(ownerName(seed.owner_id)):"—"}</b><span class="mini">${seed?(seed.settings?.wins||0)+"-"+(seed.settings?.losses||0):""}</span></div>
+    <div class="profile-kpi"><span class="label">Points King</span><b>${pfKing?esc(ownerName(pfKing.owner_id)):"—"}</b><span class="mini">${pfKing?fmt(seasonPoints(pfKing))+" PF":""}</span></div>
+    <div class="profile-kpi"><span class="label">Games Archived</span><b>${sd.games.length}</b><span class="mini">${sd.games.filter(g=>g.playoff).length} playoff</span></div>`;
+  $("seasonStandings").innerHTML=seasonStandingsHTML(sd);
+  $("seasonSuperlatives").innerHTML=seasonSuperlativesHTML(sd);
+  setupSeasonWeeks(sd);
+  $("seasonPlayoffBracket").innerHTML=seasonBracketHTML(sd);
+  $("seasonChampionshipLineup").innerHTML=championshipLineupHTML(sd);
+  $("seasonDraftBoard").innerHTML=`<div class="archive-loading"><span class="tinyspin"></span> Loading ${sd.league.season} draft history…</div>`;
+  $("seasonTransactions").innerHTML=`<div class="archive-loading"><span class="tinyspin"></span> Loading ${sd.league.season} GM activity…</div>`;
+
+  try{
+    const [extras]=await Promise.all([loadSeasonExtras(sd),loadPlayerDirectory()]);
+    if(currentArchiveId!==String(id))return;
+    $("seasonChampionshipLineup").innerHTML=championshipLineupHTML(sd);
+    renderDraftBoard(sd,extras);
+    const drawTx=()=>{$("seasonTransactions").innerHTML=transactionHTML(sd,extras.transactions,$("seasonTxFilter").value)};
+    $("seasonTxFilter").onchange=drawTx;drawTx();
+    const trades=extras.transactions.filter(t=>t.status==="complete"&&t.type==="trade").length;
+    const waivers=extras.transactions.filter(t=>t.status==="complete"&&t.type==="waiver").length;
+    const fas=extras.transactions.filter(t=>t.status==="complete"&&t.type==="free_agent").length;
+    $("seasonKpis").innerHTML+=`<div class="profile-kpi"><span class="label">Trades</span><b>${trades}</b><span class="mini">completed</span></div><div class="profile-kpi"><span class="label">Waivers</span><b>${waivers}</b><span class="mini">claims</span></div><div class="profile-kpi"><span class="label">Free Agents</span><b>${fas}</b><span class="mini">adds</span></div><div class="profile-kpi"><span class="label">Draft Picks</span><b>${extras.draftData.reduce((n,d)=>n+d.picks.length,0)}</b><span class="mini">archived</span></div>`
+  }catch(e){
+    if(currentArchiveId!==String(id))return;
+    $("seasonDraftBoard").innerHTML=`<div class="notice">The core season archive loaded, but the draft/transaction extras could not be reached right now.</div>`;
+    $("seasonTransactions").innerHTML=`<div class="notice">Try refreshing later to reload GM activity.</div>`
+  }
+}
+function ownerGames(id){return games.filter(g=>g.ownerA===id||g.ownerB===id)}
+function ownerGameView(id,g){const mine=g.ownerA===id?g.pointsA:g.pointsB,opp=g.ownerA===id?g.pointsB:g.pointsA,oppId=g.ownerA===id?g.ownerB:g.ownerA;return{...g,mine,opp,oppId,result:mine>opp?"W":mine<opp?"L":"T",margin:mine-opp}}
+function bestRival(id){return rivalryRows().filter(r=>r.ids.includes(id)).sort((a,b)=>b.games-a.games)[0]||null}
+function openProfile(id){
+  const o=ownerStats[id]||ensureOwner(id),views=ownerGames(id).map(g=>ownerGameView(id,g));
+  const playoff=views.filter(g=>g.playoff),pw=playoff.filter(g=>g.result==="W").length,pl=playoff.filter(g=>g.result==="L").length,pt=playoff.filter(g=>g.result==="T").length;
+  const high=[...views].sort((a,b)=>b.mine-a.mine)[0],low=[...views].filter(x=>x.mine>0).sort((a,b)=>a.mine-b.mine)[0];
+  const bigWin=[...views].filter(x=>x.result==="W").sort((a,b)=>b.margin-a.margin)[0],bigLoss=[...views].filter(x=>x.result==="L").sort((a,b)=>a.margin-b.margin)[0];
+  const rival=bestRival(id),meta=ownerMeta[id]||{},initials=ownerName(id).split(/\s+/).map(x=>x[0]).join("").slice(0,2).toUpperCase();
+  const avatar=meta.avatar?`<img class="avatar" src="https://sleepercdn.com/avatars/thumbs/${esc(meta.avatar)}" alt="">`:`<div class="avatar-fallback">${esc(initials)}</div>`;
+  const titleYears=champions.filter(c=>c.winner===id).map(c=>c.season).join(", ");
+  $("profileSheet").innerHTML=`<div class="profile-head">${avatar}<div><div class="eyebrow">AFFL OWNER PROFILE</div><h2 style="margin:3px 0">${esc(ownerName(id))}</h2><div class="mini">${o.seasons?.size||0} Sleeper season${o.seasons?.size===1?"":"s"} archived${meta.username?` • @${esc(meta.username)}`:""}</div></div><button class="closebtn" onclick="closeProfile()">×</button></div>
+  <div class="profile-kpis">
+    <div class="profile-kpi"><span class="label">Career</span><b>${o.w}-${o.l}${o.t?("-"+o.t):""}</b><span class="mini">${pct(o.w,o.l,o.t)}</span></div>
+    <div class="profile-kpi"><span class="label">Titles</span><b>${o.titles||0} 🏆</b><span class="mini">${titleYears||"None yet"}</span></div>
+    <div class="profile-kpi"><span class="label">Playoffs</span><b>${pw}-${pl}${pt?("-"+pt):""}</b><span class="mini">${playoff.length} games</span></div>
+    <div class="profile-kpi"><span class="label">Career PF</span><b>${fmt(o.pf)}</b><span class="mini">${o.games?fmt(o.pf/o.games):"—"} / game</span></div>
+  </div>
+  <div class="grid">
+    <div class="card span6"><h3 class="section-title">Career Highs & Lows</h3>
+      <div class="statline"><span>Best score</span><b>${high?fmt(high.mine):"—"}</b></div><div class="mini">${high?`${high.season} Wk ${high.week} vs ${esc(ownerName(high.oppId))}`:""}</div>
+      <div class="statline"><span>Lowest score</span><b>${low?fmt(low.mine):"—"}</b></div><div class="mini">${low?`${low.season} Wk ${low.week} vs ${esc(ownerName(low.oppId))}`:""}</div>
+      <div class="statline"><span>Biggest win</span><b>${bigWin?("+"+fmt(bigWin.margin)):"—"}</b></div>
+      <div class="statline"><span>Worst loss</span><b>${bigLoss?fmt(bigLoss.margin):"—"}</b></div>
+    </div>
+    <div class="card span6"><h3 class="section-title">Rivalry File</h3>
+      ${rival?(()=>{const other=rival.ids.find(x=>x!==id),iw=rival.wins[id]||0,ow=rival.wins[other]||0;return`<div class="label">Most frequent opponent</div><h3 style="margin:4px 0">${esc(ownerName(other))}</h3><div class="metric">${iw}-${ow}${rival.ties?("-"+rival.ties):""}</div><div class="mini">${rival.games} meetings • ${rival.playoffGames} playoff meetings</div>`})():`<div class="notice">No rivalry data yet.</div>`}
+    </div>
+    <div class="card span12"><h3 class="section-title">Career Hardware</h3><div class="badge-wall">${careerBadges(id).map(b=>`<span class="career-badge">${esc(b)}</span>`).join("")||'<span class="mini">No career badges yet.</span>'}</div><div style="margin-top:10px">${annualAwardsForOwner(id).slice(0,12).map(a=>`<div class="statline"><span>${a.icon} ${esc(a.title)} <span class="mini">(${a.season})</span></span><b>${esc(a.detail||"")}</b></div>`).join("")||'<div class="mini">Awards will appear here as the archive is calculated.</div>'}</div></div>
+  </div>`;
+  $("profileModal").classList.remove("hidden");document.body.style.overflow="hidden"
+}
+function closeProfile(){$("profileModal").classList.add("hidden");document.body.style.overflow=""}
+function resolveBracketRoster(match,side,byMatch){const direct=match?.[side];if(Number.isInteger(direct))return direct;const from=match?.[side+"_from"];if(!from)return null;const key=Object.keys(from)[0],src=byMatch[from[key]];if(!src)return null;if(key==="w"&&Number.isInteger(src.w))return src.w;if(key==="l"&&Number.isInteger(src.l))return src.l;return null}
+function bracketScore(sd,o1,o2,round){if(!o1||!o2)return null;const week=sd.playoffStart+Math.max(0,Number(round||1)-1);return sd.games.find(g=>g.week===week&&((g.ownerA===o1&&g.ownerB===o2)||(g.ownerA===o2&&g.ownerB===o1)))||null}
+function playoffSeasonOptions(){const rows=seasonData.filter(sd=>sd.bracket?.length).sort((a,b)=>Number(b.league.season)-Number(a.league.season));$("playoffSeason").innerHTML=rows.map(sd=>`<option value="${esc(sd.league.league_id)}">${esc(sd.league.season)} Playoffs</option>`).join("");$("playoffSeason").onchange=renderPlayoffBracket;renderPlayoffBracket()}
+function renderPlayoffBracket(){
+  const id=$("playoffSeason").value,sd=seasonData.find(x=>x.league.league_id===id);
+  if(!sd||!sd.bracket?.length){$("playoffBracket").innerHTML=`<div class="notice">No completed playoff bracket found.</div>`;return}
+  const byMatch=Object.fromEntries(sd.bracket.map(m=>[m.m,m])),rounds={};
+  sd.bracket.filter(m=>!m.p||[1,3,5,7].includes(Number(m.p))).forEach(m=>(rounds[m.r]??=[]).push(m));
+  $("playoffBracket").innerHTML=Object.keys(rounds).sort((a,b)=>a-b).map(r=>`<div class="bracket-round"><div class="round-title">Round ${r}</div>${rounds[r].map(m=>{
+    const r1=resolveBracketRoster(m,"t1",byMatch),r2=resolveBracketRoster(m,"t2",byMatch),o1=r1?sd.rosterOwners[r1]:null,o2=r2?sd.rosterOwners[r2]:null,g=bracketScore(sd,o1,o2,m.r);
+    const p1=g?(g.ownerA===o1?g.pointsA:g.pointsB):null,p2=g?(g.ownerA===o2?g.pointsA:g.pointsB):null,w=sd.rosterOwners[m.w],label=Number(m.p)===1?"Championship":Number(m.p)===3?"3rd Place":Number(m.p)===5?"5th Place":"Match "+m.m;
+    return`<div class="bracket-game"><div class="label">${label}</div><div class="bracket-team ${w&&o1===w?"win":"lose"}"><span>${o1?`<span class="owner-link" onclick="openProfile('${o1}')">${esc(ownerName(o1))}</span>`:"TBD"}</span><b>${p1!=null?fmt(p1):""}</b></div><div class="bracket-team ${w&&o2===w?"win":"lose"}"><span>${o2?`<span class="owner-link" onclick="openProfile('${o2}')">${esc(ownerName(o2))}</span>`:"TBD"}</span><b>${p2!=null?fmt(p2):""}</b></div></div>`
+  }).join("")}</div>`).join("")
+}
+function renderHeader(){
+  $("leagueMeta").textContent=`${LEAGUE_DISPLAY_NAME} • ${currentLeague.season} • Sleeper synced`;
+  $("heroName").textContent=LEAGUE_DISPLAY_NAME;
+  $("heroSub").textContent=`${currentLeague.total_rosters||currentRosters.length} teams • ${currentLeague.season} season • ${seasons.length} linked season${seasons.length===1?"":"s"} in the archive`;
+  $("mTeams").textContent=currentLeague.total_rosters||currentRosters.length;
+  $("mSeasons").textContent=seasons.length;
+  $("mGames").textContent=games.length;
+  $("mChamps").textContent=champions.length;
+  $("syncPill").textContent="LIVE";
+  document.querySelector(".dot").style.background="var(--green)"
+}
+
+// ===== V11 COUNCIL CHAMBER =====
+const DEFAULT_COUNCIL_DATA={updated:"2026",votes:[],amendments:[],cases:[{case_number:"AFFL-2026-001",season:"2026",date:"August 2026",title:"Replacement Owner Draft Position Redraw",status:"RULING",issue:"How to assign the two open replacement-franchise draft positions to Greg and Drew.",decision:"Greg and Drew redraw between the two available replacement-franchise draft positions. No draft-position auction is used. The redraw result becomes the official 2026 assignment.",precedent:"Season-specific ruling. It resolves the 2026 replacement-owner situation and does not create a universal future replacement-owner rule."}]};
+async function loadCouncilData(){
+  try{const r=await fetch(`affl-votes.json?ts=${Date.now()}`,{cache:"no-store"});if(!r.ok)throw new Error("vote file unavailable");councilData=await r.json()}catch(e){councilData=DEFAULT_COUNCIL_DATA}
+  return councilData
+}
+function voteCounts(v){const y=Number(v.yes||0),n=Number(v.no||0),a=Number(v.abstain||0);return{y,n,a,total:y+n+a}}
+function voteStatusClass(status){status=String(status||"").toUpperCase();return status.includes("PASS")?"vote-pass":status.includes("FAIL")?"vote-fail":"vote-open"}
+function renderCouncilChamber(data){
+  const votes=data.votes||[],active=votes.filter(v=>String(v.status||"").toUpperCase()==="OPEN"),closed=votes.filter(v=>String(v.status||"").toUpperCase()!=="OPEN"),cases=data.cases||[],amend=data.amendments||[];
+  $("councilDataStamp").textContent=`Vote file • ${data.updated||"current"}`;
+  $("councilDashboard").innerHTML=`<div class="council-kpi"><div class="label">Open Votes</div><div class="metric">${active.length}</div><div class="mini">awaiting result</div></div><div class="council-kpi"><div class="label">Archived Votes</div><div class="metric">${closed.length}</div><div class="mini">permanent record</div></div><div class="council-kpi"><div class="label">Council Cases</div><div class="metric">${cases.length}</div><div class="mini">recorded rulings</div></div><div class="council-kpi"><div class="label">Amendments</div><div class="metric">${amend.length}</div><div class="mini">recorded changes</div></div>`;
+  $("councilVotes").innerHTML=votes.length?votes.slice().reverse().map(v=>{const c=voteCounts(v),status=String(v.status||"OPEN").toUpperCase();return`<div class="vote-card"><div class="toolbar" style="margin-bottom:4px"><div><div class="label">${esc(v.vote_number||"AFFL Vote")} • ${esc(v.date||v.season||"")}</div><h3 style="margin:4px 0">${esc(v.title||v.proposal||"League Vote")}</h3></div><span class="vote-result ${voteStatusClass(status)}">${esc(status)}</span></div><div class="mini">${esc(v.proposal||v.description||"")}</div><div class="vote-bars"><div class="vote-bar"><div class="label">Yes</div><b>${c.y}</b></div><div class="vote-bar"><div class="label">No</div><b>${c.n}</b></div><div class="vote-bar"><div class="label">Abstain</div><b>${c.a}</b></div></div>${v.result_note?`<div class="mini" style="margin-top:8px">${esc(v.result_note)}</div>`:""}${Array.isArray(v.owner_votes)&&v.owner_votes.length?`<div class="mini" style="margin-top:8px">${v.owner_votes.map(x=>`${esc(x.owner)}: <b>${esc(x.vote)}</b>`).join(" • ")}</div>`:""}</div>`}).join(""):`<div class="notice">No league votes have been entered yet. When a vote finishes, update <b>affl-votes.json</b> and it will appear here.</div>`;
+  $("councilAmendments").innerHTML=amend.length?amend.slice().reverse().map(a=>`<div class="amendment-row"><div class="label">${esc(a.date||a.season||"")} • ${esc(a.article||"Amendment")}</div><b>${esc(a.title||a.change||"")}</b><div class="mini">${esc(a.result||a.note||"")}</div></div>`).join(""):`<div class="notice">No formal amendments recorded in the data file yet.</div>`;
+  $("councilCases").innerHTML=cases.length?cases.slice().reverse().map(c=>`<div class="case-archive-card"><div class="toolbar" style="margin-bottom:5px"><div class="case-number">${esc(c.case_number||"AFFL Case")}</div><span class="case-status">${esc(c.status||"RULING")}</span></div><h3 style="margin:4px 0">${esc(c.title||"Council Ruling")}</h3><div class="mini">${esc(c.date||c.season||"")}</div><p class="mini"><b>Issue:</b> ${esc(c.issue||"")}</p><div class="constitution-rule"><b>Decision:</b> ${esc(c.decision||"")}</div>${c.precedent?`<p class="mini"><b>Precedent:</b> ${esc(c.precedent)}</p>`:""}</div>`).join(""):`<div class="notice">No Council cases recorded.</div>`
+}
+async function setupCouncilChamber(){renderCouncilChamber(await loadCouncilData())}
+
+// ===== V12 CHAMPIONSHIP CENTRAL =====
+function setupChampionshipCentral(){
+  const rows=[...champions].sort((a,b)=>Number(b.season)-Number(a.season)),latest=rows[0];
+  if(!latest){$("champCentralHero").innerHTML=`<div class="eyebrow">AFFL CHAMPIONSHIP CENTRAL</div><h2>No completed championship in the archive yet.</h2>`;$("champRafters").innerHTML="";$("champDynasty").innerHTML="";$("champVault").innerHTML="";return}
+  const sd=seasonData.find(x=>String(x.league.league_id)===String(latest.leagueId)),team=sd?.rosters?.find(r=>r.owner_id===latest.winner),teamName=team?rosterName(team,sd.users):ownerName(latest.winner);
+  $("champCentralHero").innerHTML=`<div class="champ-hero"><div><div class="eyebrow">DEFENDING AFFL CHAMPION</div><h2 style="margin:5px 0">${esc(ownerName(latest.winner))}</h2><div class="sub">${esc(teamName)} • ${esc(latest.season)} Champion${latest.winnerScore!=null?` • ${fmt(latest.winnerScore)}-${fmt(latest.runnerScore)} over ${esc(ownerName(latest.runnerUp))}`:""}</div><div style="margin-top:12px"><button class="btn goldbtn" onclick="openFranchise('${latest.winner}')">Open Champion Franchise</button></div></div><div class="champ-crown">🏆</div></div>`;
+  $("champRafters").innerHTML=rows.map(c=>`<div class="title-banner" onclick="openSeasonArchive('${c.leagueId}')"><div class="label">AFFL CHAMPIONSHIP BANNER</div><div class="title-year">${esc(c.season)}</div><h3 style="margin:1px 0 4px">${esc(ownerName(c.winner))}</h3><div class="mini">${c.winnerScore!=null?`${fmt(c.winnerScore)}-${fmt(c.runnerScore)} • ${esc(ownerName(c.runnerUp))}`:`Runner-up: ${esc(ownerName(c.runnerUp))}`}</div></div>`).join("");
+  const dynasty=Object.values(ownerStats).filter(o=>(o.titles||0)||(o.runnerUps||0)).sort((a,b)=>(b.titles||0)-(a.titles||0)||(b.runnerUps||0)-(a.runnerUps||0)||(b.w||0)-(a.w||0));
+  $("champDynasty").innerHTML=dynasty.map((o,i)=>`<div class="dynasty-row"><span class="rank">${i+1}</span><span><b class="owner-link" onclick="openFranchise('${o.id}')">${esc(ownerName(o.id))}</b><div class="mini">${o.runnerUps||0} runner-up</div></span><b>${o.titles||0}</b><span>🏆</span></div>`).join("")||`<div class="notice">No title résumés yet.</div>`;
+  $("champVault").innerHTML=rows.map(c=>`<div class="champ-vault-row"><div><div class="title-year" style="font-size:1.25rem">${esc(c.season)}</div><div class="mini">Week ${c.titleWeek||"—"}</div></div><div><b>${esc(ownerName(c.winner))}</b> defeated ${esc(ownerName(c.runnerUp))}<div class="mini">${c.winnerScore!=null?`${fmt(c.winnerScore)} - ${fmt(c.runnerScore)}`:"Score unavailable"}</div></div><button class="btn" onclick="openSeasonArchive('${c.leagueId}')">Open Season</button></div>`).join("")
+}
+
+// ===== V13 DRAFT NIGHT HQ =====
+function draftOwnerForRoster(rid){return currentRosters.find(r=>Number(r.roster_id)===Number(rid))?.owner_id||null}
+function draftOwnerForSlot(d,slot){const rid=d.slot_to_roster_id?.[String(slot)]??d.slot_to_roster_id?.[slot];if(rid!=null)return draftOwnerForRoster(rid);const e=Object.entries(d.draft_order||{}).find(([,s])=>Number(s)===Number(slot));return e?.[0]||null}
+function draftSlotForPick(pick,teams,type){const r=Math.ceil(pick/teams),within=((pick-1)%teams)+1;return String(type||"").toLowerCase()==="snake"&&r%2===0?teams-within+1:within}
+function draftPlayerName(p){return playerLabel(p.player_id,p.metadata)}
+function draftValue(p){const rank=Number(playerDirectory?.[p.player_id]?.search_rank);if(!Number.isFinite(rank)||rank<=0)return null;const diff=Number(p.pick_no||0)-rank;let label="🎯 Near board";if(diff>=20)label="🔥 Big value";else if(diff>=8)label="📈 Value";else if(diff<=-20)label="🚀 Aggressive";else if(diff<=-8)label="🎲 Reach";return{rank,diff,label}}
+function draftGrade(avg){if(avg==null||!Number.isFinite(avg))return"INC";if(avg>=20)return"A+";if(avg>=10)return"A";if(avg>=2)return"B";if(avg>=-6)return"C";return"D"}
+function formatDraftTime(ts){if(!ts)return"Not scheduled";try{return new Date(Number(ts)).toLocaleString()}catch(e){return"Scheduled"}}
+async function setupDraftHQ(){
+  $("draftRefreshBtn").onclick=()=>loadDraftHQ(true);
+  await loadDraftHQ(false)
+}
+async function loadDraftHQ(force=false){
+  $("draftHQStatus").textContent="Loading";
+  const list=await fetchJSON(`${API}/league/${LEAGUE_ID}/drafts`,true)||[];
+  draftHQData={list};
+  if(!list.length){$("draftHQSelect").innerHTML=`<option>No draft found</option>`;$("draftHQStatus").textContent="Waiting";$("draftHQTop").innerHTML=`<div class="notice">Sleeper has not returned a draft for this league yet.</div>`;$("draftBoard").innerHTML="";$("draftOrder").innerHTML="";$("draftPickFeed").innerHTML="";$("draftReports").innerHTML="";return}
+  const sel=$("draftHQSelect");sel.innerHTML=list.map((d,i)=>`<option value="${esc(d.draft_id)}">${esc(d.season||currentLeague.season)} ${String(d.type||"draft").toUpperCase()}${d.status?` • ${esc(d.status)}`:""}</option>`).join("");
+  const preferred=list.find(d=>d.status==="drafting")||list.find(d=>d.status==="pre_draft")||list[0];sel.value=preferred.draft_id;sel.onchange=()=>renderDraftHQ(sel.value);await renderDraftHQ(sel.value)
+}
+async function renderDraftHQ(draftId){
+  $("draftHQStatus").textContent="Syncing";$("draftBoard").innerHTML=`<div class="archive-loading"><span class="tinyspin"></span> Loading draft board…</div>`;
+  let d=await fetchJSON(`${API}/draft/${draftId}`,true);if(!d)d=draftHQData?.list?.find(x=>String(x.draft_id)===String(draftId));if(!d)return;
+  const picks=await fetchJSON(`${API}/draft/${draftId}/picks`,true)||[];if(picks.length&&!playerDirectory){try{await loadPlayerDirectory()}catch(e){}}
+  const teams=Number(d.settings?.teams||currentLeague.total_rosters||currentRosters.length||12),rounds=Number(d.settings?.rounds||currentLeague.settings?.draft_rounds||15),total=teams*rounds,next=picks.length+1,status=String(d.status||"pre_draft"),complete=status==="complete"||picks.length>=total,slot=complete?null:draftSlotForPick(next,teams,d.type),onOwner=slot?draftOwnerForSlot(d,slot):null;
+  $("draftHQStatus").textContent=status.replace("_"," ");$("draftBoardMeta").textContent=`${picks.length}/${total} picks • ${rounds} rounds • ${teams} teams`;
+  $("draftHQTop").innerHTML=`<div class="draft-top"><div class="on-clock"><div class="label">${complete?"Draft Status":"On The Clock"}</div><div class="metric">${complete?"DRAFT COMPLETE":esc(ownerName(onOwner)||`Slot ${slot}`)}</div><div class="mini">${complete?`${picks.length} picks recorded`:`Pick ${next} • Round ${Math.ceil(next/teams)} • Slot ${slot}`}</div></div><div class="on-clock"><div class="label">Draft Details</div><b>${esc(String(d.type||"snake").toUpperCase())} • ${rounds} rounds</b><div class="mini" style="margin-top:5px">${status==="pre_draft"?`Starts: ${esc(formatDraftTime(d.start_time))}`:`Sleeper status: ${esc(status)}`}</div></div></div>`;
+  const byNo=Object.fromEntries(picks.map(p=>[Number(p.pick_no),p]));let board="";for(let n=1;n<=total;n++){const p=byNo[n],r=Math.ceil(n/teams),sl=draftSlotForPick(n,teams,d.type),owner=p?draftOwnerForRoster(p.roster_id):draftOwnerForSlot(d,sl),v=p?draftValue(p):null;board+=p?`<div class="draft-pick"><div class="pickno">${r}.${String(((n-1)%teams)+1).padStart(2,"0")} • #${n}</div><div class="player">${esc(draftPlayerName(p))}</div><div class="mini">${esc(p.metadata?.position||"")} ${p.metadata?.team?`• ${esc(p.metadata.team)}`:""}</div><div class="mini">${esc(ownerName(owner))}</div>${v?`<div class="value">${esc(v.label)}</div>`:""}</div>`:`<div class="draft-pick empty"><div class="pickno">${r}.${String(((n-1)%teams)+1).padStart(2,"0")} • #${n}</div><div class="player">${n===next&&!complete?"ON CLOCK":"Open"}</div><div class="mini">${esc(ownerName(owner))}</div></div>`}$("draftBoard").innerHTML=board;
+  $("draftOrder").innerHTML=Array.from({length:teams},(_,i)=>i+1).map(sl=>{const id=draftOwnerForSlot(d,sl);return`<div class="draft-slot"><div class="label">Slot ${sl}</div><b>${esc(ownerName(id))}</b><div class="mini">${esc(franchiseTeamName(id))}</div></div>`}).join("");
+  $("draftPickFeed").innerHTML=picks.length?[...picks].sort((a,b)=>b.pick_no-a.pick_no).slice(0,16).map(p=>{const id=draftOwnerForRoster(p.roster_id),v=draftValue(p);return`<div class="pick-feed-row"><b>#${p.pick_no}</b><span><b>${esc(draftPlayerName(p))}</b><div class="mini">${esc(ownerName(id))} • ${esc(p.metadata?.position||"")} ${p.metadata?.team?`• ${esc(p.metadata.team)}`:""}</div></span><span class="mini">${v?esc(v.label):""}</span></div>`}).join(""):`<div class="notice">No picks have been made yet. This feed wakes up as soon as the draft starts.</div>`;
+  const groups={};picks.forEach(p=>{const id=draftOwnerForRoster(p.roster_id);if(!id)return;(groups[id]??=[]).push(p)});const owners=Array.from({length:teams},(_,i)=>draftOwnerForSlot(d,i+1)).filter(Boolean);
+  $("draftReports").innerHTML=owners.map(id=>{const ps=groups[id]||[],vals=ps.map(draftValue).filter(Boolean),avg=vals.length?vals.reduce((a,v)=>a+v.diff,0)/vals.length:null,positions={};ps.forEach(p=>{const pos=p.metadata?.position||"?";positions[pos]=(positions[pos]||0)+1});const best=vals.length?vals.slice().sort((a,b)=>b.diff-a.diff)[0]:null;return`<div class="draft-report"><div class="label">${esc(franchiseTeamName(id))}</div><h3 style="margin:4px 0">${esc(ownerName(id))}</h3><div class="draft-grade">${draftGrade(avg)}</div><div class="mini">${ps.length} pick${ps.length===1?"":"s"}${avg!=null?` • avg board value ${avg>=0?"+":""}${fmt(avg)}`:" • waiting on picks"}</div><div class="badge-wall">${Object.entries(positions).map(([p,n])=>`<span class="badge-chip">${esc(p)} ${n}</span>`).join("")}</div>${best&&best.diff>=8?`<div class="mini" style="margin-top:7px">Best board value: +${fmt(best.diff)}</div>`:""}</div>`}).join("")
+}
+
+function renderEverything(){renderHeader();renderCurrent();renderAllTime();renderAwards();renderChampions();renderTimeline();renderRecords();renderOfficialRivalryWeek();renderRivalrySelectors();renderRivalryTable();playoffSeasonOptions();setupSeasonArchivePicker();setupWeekly();setupNewsroom();preloadCoreAnnualAwards();setupAnnualAwards();setupFranchises();setupChampionshipCentral();setupCouncilChamber();setupDraftHQ()}
+function toggleConstitution(openState){
+  document.querySelectorAll("#council .constitution-doc details").forEach(d=>d.open=openState)
+}
+async function boot(){$("loading").classList.remove("hidden");$("error").classList.add("hidden");document.querySelectorAll(".tab").forEach(x=>x.classList.add("hidden"));$("syncPill").textContent="SYNCING";try{setProgress(5,"Connecting to your 2026 league…");currentLeague=await fetchJSON(`${API}/league/${LEAGUE_ID}`);setProgress(9,"Finding linked league seasons…");seasons=await buildLeagueChain();setProgress(14,"Reading current owners…");[currentUsers,currentRosters,nflState]=await Promise.all([fetchJSON(`${API}/league/${LEAGUE_ID}/users`),fetchJSON(`${API}/league/${LEAGUE_ID}/rosters`),fetchJSON(`${API}/state/nfl`,true).then(x=>x||{})]);rememberNames(currentUsers);seasonData=[];for(let i=0;i<seasons.length;i++)seasonData.push(await fetchSeason(seasons[i],i,seasons.length));setProgress(78,"Building owner career records…");compileArchive();setProgress(90,"Calculating rivalries, streaks and awards…");renderEverything();setProgress(100,"Archive ready");setTimeout(()=>{$("loading").classList.add("hidden");$("overview").classList.remove("hidden")},250)}catch(err){$("loading").classList.add("hidden");$("error").classList.remove("hidden");$("error").innerHTML=`<h3 style="margin-top:0">AFFL HQ couldn't finish the sync</h3><p class="sub">${esc(err.name==="AbortError"?"Sleeper took too long to respond.":err.message)}</p><button class="btn goldbtn" onclick="boot()">Try Again</button><div class="mini" style="margin-top:10px">If this keeps appearing after Try Again, send a screenshot of the message. It may be a Sleeper connection issue or an AFFL HQ code error.</div>`;$("syncPill").textContent="RETRY"}}
+document.querySelectorAll("nav button").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");document.querySelectorAll(".tab").forEach(x=>x.classList.add("hidden"));$(btn.dataset.tab).classList.remove("hidden")}));$("refreshBtn").addEventListener("click",boot);boot();
+</script>
+</body></html>
